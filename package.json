@@ -1,0 +1,20 @@
+{
+  "name": "sanblas",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node -r esm ./static_site_generation/build_production.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "chokidar": "^3.0.2",
+    "esm": "^3.2.25",
+    "fela": "^10.6.1",
+    "fela-dom": "^10.6.1",
+    "htm": "^2.2.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-fela": "^10.6.1"
+  }
+}
