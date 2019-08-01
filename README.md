@@ -57,3 +57,4 @@ San Blas works for that. Make HTML with components, sprinkle on decoupled client
 - Recipes:
   - Blog (add metalsmith bits)
   - Adding more Babel bits
+  - Replace Webpack with Parcel

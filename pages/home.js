@@ -1,14 +1,22 @@
-import {html} from 'htm/react'
+import React from 'react'
+import {Island} from '../sanblas'
 import Nav from '../components/nav'
 
 export default function Home () {
-  return html`
-    <header>
-      <${Nav} items=${['home', 'about', 'help']} />
-    </header>
+  return (
+    <>
+      <Island
+        as='header'
+        hydrateAs='Nav'
+        component={Nav}
+        componentProps={{
+          items: ['home', 'about', 'help']
+        }}
+      />
 
-    <div role='main'>
-      <p>Hello world</p>
-    </div>
-  `
+      <div role='main'>
+        <p>Hello world</p>
+      </div>
+    </>
+  )
 }

@@ -1,6 +1,6 @@
 import Home from '../pages/home'
+import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import {html} from 'htm/react'
 import fs from 'fs'
 import { createRenderer } from 'fela'
 import {RendererProvider} from 'react-fela'
@@ -12,13 +12,12 @@ const renderer = createRenderer({
 })
 
 function buildProduction () {
-  const bodyHTML = ReactDOMServer.renderToString(html`
-    <${RendererProvider} renderer=${renderer}>
-      <${Home} />
-    <//>
-  `)
+  const bodyHTML = ReactDOMServer.renderToString(
+    <RendererProvider renderer={renderer}>
+      <Home />
+    </RendererProvider>
+  )
   const stylesHTML = renderToMarkup(renderer)
-
   const renderedDocument = defaultLayout({ bodyHTML, stylesHTML })
 
   fs.writeFile(`${process.cwd()}/output/index.html`, renderedDocument, (err) => {
@@ -27,4 +26,6 @@ function buildProduction () {
   })
 }
 
+console.log('building page')
 buildProduction()
+

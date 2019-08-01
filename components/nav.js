@@ -1,4 +1,4 @@
-import {html} from 'htm/react'
+import React from 'react'
 import {useFela} from 'react-fela'
 
 const styles = {
@@ -19,17 +19,18 @@ const styles = {
 export default function Nav ({items}) {
   const {css} = useFela()
 
-  return html`
-    <nav className=${css(styles.nav)}>
-      ${items.map((item) => html`
+  return (
+    <nav className={css(styles.nav)}>
+      {items.map((item) => (
         <a
-          href=${item}
-          key=${item}
-          className=${css(styles.item)}
+          href={'#' + item}
+          key={item}
+          className={css(styles.item)}
+          onClick={() => window.alert(item)}
         >
-          ${item}
+          {item}
         </a>
-      `)}
+      ))}
     </nav>
-  `
+  )
 }
