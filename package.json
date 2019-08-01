@@ -2,12 +2,12 @@
   "name": "sanblas",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"yarn:serve-output\" \"yarn:watch-webpack\"",
+    "app": "concurrently \"yarn:serve-output\" \"yarn:watch-webpack\" --prefix-colors=yellow.dim,green.dim",
+    "all": "concurrently \"yarn:serve-output\" \"yarn:watch-webpack\" \"yarn:storybook\" --prefix-colors=yellow.dim,green.dim,blue.dim",
+    "serve-output": "serve --config ./serve.output.json",
     "build-webpack": "webpack",
     "watch-webpack": "webpack --watch",
-    "watch-html": "node -r esm ./static_site_generation/build.js",
-    "serve-output": "serve --config ./serve.output.json",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook --ci"
   },
   "license": "MIT",
   "private": true,
