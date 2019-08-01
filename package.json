@@ -7,7 +7,7 @@
     "watch-webpack": "webpack --watch",
     "watch-html": "node -r esm ./static_site_generation/build.js",
     "serve-output": "serve --config ./serve.output.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "storybook": "start-storybook"
   },
   "license": "MIT",
   "private": true,
@@ -15,6 +15,7 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/react": "^5.1.10",
     "babel-loader": "^8.0.6",
     "concurrently": "^4.1.1",
     "fela": "^10.6.1",
