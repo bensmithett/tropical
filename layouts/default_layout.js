@@ -7,7 +7,7 @@ export default function defaultLayout ({stylesHTML, bodyHTML}) {
   </head>
   <body>
     ${bodyHTML}
-    <script src='client_bundle.js'></script>
+    <script src='/client.bundle.js'></script>
   </body>
 </html>
 `

@@ -36,25 +36,9 @@ San Blas works for that. Make HTML with components, sprinkle on decoupled client
 
 ## TODO
 
-- Dev server:
-  - Serve different pipelines from different server instances with https://www.npmjs.com/package/concurrently
-    - Serve HTML out of `output`
-    - Maybe client JS too, if not out of webpack dev server
-    - Serve images straight out of `static` (via a helper URL with dev/prod differences)
-    - Force us to not assume everything will be on the same host, as in real world
-- Client JS:
-  - Simple bootstrapping script
-    - "Island" mounting
-    - Fela reyhdrate & runtime for any styles that are only rendered on the client
-  - Webpack
-    - Keep it very very simple, bundling only
-    - no need for dev server? Just rebuild
-  - Babel
-    - for prod htm transform only
 - Production build:
   - ensure `NODE_ENV=production` for React optimisations
-  - Static asset revving. See if we can avoid a gulp dependency & try https://github.com/plantain-00/rev-static
+  - Static asset revving. Webpack should be enough, but see also https://github.com/plantain-00/rev-static
 - Recipes:
   - Blog (add metalsmith bits)
   - Adding more Babel bits
-  - Replace Webpack with Parcel

@@ -2,12 +2,11 @@
   "name": "sanblas",
   "version": "1.0.0",
   "scripts": {
-    "app": "concurrently \"yarn:serve-output\" \"yarn:watch-webpack\" --prefix-colors=yellow.dim,green.dim",
-    "all": "concurrently \"yarn:serve-output\" \"yarn:watch-webpack\" \"yarn:storybook\" --prefix-colors=yellow.dim,green.dim,blue.dim",
-    "serve-output": "serve --config ./serve.output.json",
-    "build-webpack": "webpack",
-    "watch-webpack": "webpack --watch",
-    "storybook": "start-storybook --ci"
+    "app": "concurrently \"yarn:webpack-client\" \"yarn:webpack-build-script\" --prefix-colors=yellow.dim,green.dim,blue.dim",
+    "all": "concurrently \"yarn:webpack-client\" \"yarn:webpack-build-script\" \"yarn:storybook\" --prefix-colors=yellow.dim,green.dim,cyan.dim,magenta.dim",
+    "webpack-client": "webpack-dev-server --config ./config/webpack.config.client.js",
+    "webpack-build-script": "webpack --watch --config ./config/webpack.config.build_script.js",
+    "storybook": "start-storybook --ci --port 9001"
   },
   "license": "MIT",
   "private": true,
@@ -20,11 +19,12 @@
     "concurrently": "^4.1.1",
     "fela": "^10.6.1",
     "fela-dom": "^10.6.1",
+    "file-loader": "^4.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-fela": "^10.6.1",
-    "serve": "^11.1.0",
     "webpack": "^4.38.0",
-    "webpack-cli": "^3.3.6"
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
   }
 }

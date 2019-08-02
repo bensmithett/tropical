@@ -28,4 +28,3 @@ function buildProduction () {
 
 console.log('building page')
 buildProduction()
-

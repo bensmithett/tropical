@@ -1,5 +1,6 @@
 import React from 'react'
 import {useFela} from 'react-fela'
+import bull from '../static/bull.png'
 
 const styles = {
   nav: {
@@ -21,6 +22,7 @@ export default function Nav ({items}) {
 
   return (
     <nav className={css(styles.nav)}>
+      <img src={bull} />
       {items.map((item) => (
         <a
           href={'#' + item}

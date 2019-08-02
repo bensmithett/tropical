@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom'
 import {createRenderer} from 'fela'
 import {rehydrate} from 'fela-dom'
 import {RendererProvider} from 'react-fela'
-import hydratableComponents from './hydratable_components'
+
+import Nav from '../components/nav'
+const hydratableComponents = {
+  Nav
+}
 
 // Rehydrate fela
 const renderer = createRenderer()
