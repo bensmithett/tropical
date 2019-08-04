@@ -8,7 +8,6 @@ module.exports = {
     port: 9002
   },
   entry: path.join(__dirname, '../entrypoints/client.entry.js'),
-  mode: 'development',
   module: {
     rules: [shared.rules.js, shared.rules.files]
   },

@@ -5,7 +5,6 @@ const exec = require('child_process').exec
 module.exports = {
   entry: path.join(__dirname, '../entrypoints/build_script.entry.js'),
   target: 'node',
-  mode: 'development',
   module: {
     rules: [shared.rules.js, shared.rules.files]
   },

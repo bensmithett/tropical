@@ -4,8 +4,9 @@
   "scripts": {
     "app": "concurrently \"yarn:webpack-client\" \"yarn:webpack-build-script\" --kill-others --prefix-colors=yellow.dim,green.dim,blue.dim",
     "all": "concurrently \"yarn:webpack-client\" \"yarn:webpack-build-script\" \"yarn:storybook\" --kill-others --prefix-colors=yellow.dim,green.dim,cyan.dim,magenta.dim",
-    "webpack-client": "webpack-dev-server --config ./config/webpack.config.client.js",
-    "webpack-build-script": "webpack --watch --config ./config/webpack.config.build_script.js",
+    "webpack-client": "webpack-dev-server --config ./config/webpack.config.client.js --mode=development",
+    "webpack-build-script": "webpack --watch --config ./config/webpack.config.build_script.js --mode=development",
+    "build": "webpack --config ./config/webpack.config.client.js --mode=production && webpack --config ./config/webpack.config.build_script.js --mode=production",
     "storybook": "start-storybook --port 9001 --quiet"
   },
   "license": "MIT",
