@@ -1,8 +1,9 @@
-export default function defaultLayout ({stylesHTML, bodyHTML}) {
+export default function defaultLayout ({stylesHTML, bodyHTML, helmet}) {
   return `<!doctype html>
 <html lang="en">
   <head>
-    <title>Envato</title>
+    ${helmet.title.toString()}
+    ${helmet.meta.toString()}
     ${stylesHTML}
   </head>
   <body>

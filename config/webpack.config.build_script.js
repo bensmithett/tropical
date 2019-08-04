@@ -20,9 +20,8 @@ function postBuild (compiler) {
   compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
     const outputBundle = path.resolve(__dirname, '../output/build_script.bundle.js')
     exec(`node ${outputBundle}`, (err, stdout, stderr) => {
-      if (err) process.stderr.write('err', err)
-      if (stderr) process.stderr.write('stderr', stderr)
-      if (stdout) process.stdout.write(stdout)
+      if (err || stderr) console.error(err || stderr)
+      if (stdout) console.log(stdout)
     })
   })
 }

@@ -1,30 +1,56 @@
-import Home from '../pages/home'
+/*
+This build script takes React components from the `pages` directory 
+and renders each to a HTML file.
+
+If you need to do other processing like parsing Markdown or generating RSS feeds,
+your build script will look different. (TODO: add some recipes for doing that stuff!)
+*/
+
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import fs from 'fs'
 import { createRenderer } from 'fela'
-import {RendererProvider} from 'react-fela'
-import {renderToMarkup} from 'fela-dom'
+import { RendererProvider } from 'react-fela'
+import { renderToMarkup } from 'fela-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import defaultLayout from '../layouts/default_layout'
+import cssReset from '../global_css/css_reset.js'
 
-const renderer = createRenderer({
-  devMode: true
-})
+function buildPage (PageComponent, outputFilename) {
+  const felaRenderer = createRenderer({
+    devMode: true
+  })
+  cssReset(felaRenderer)
 
-function buildProduction () {
+  const helmetContext = {}
+
   const bodyHTML = ReactDOMServer.renderToString(
-    <RendererProvider renderer={renderer}>
-      <Home />
+    <RendererProvider renderer={felaRenderer}>
+      <HelmetProvider context={helmetContext}>
+        <PageComponent />
+      </HelmetProvider>
     </RendererProvider>
   )
-  const stylesHTML = renderToMarkup(renderer)
-  const renderedDocument = defaultLayout({ bodyHTML, stylesHTML })
 
-  fs.writeFile(`${process.cwd()}/output/index.html`, renderedDocument, (err) => {
+  const stylesHTML = renderToMarkup(felaRenderer)
+  const helmet = { helmetContext }
+  const renderedDocument = defaultLayout({ bodyHTML, stylesHTML, helmet })
+
+  fs.writeFile(`${process.cwd()}/output/${outputFilename}.html`, renderedDocument, (err) => {
     if (err) throw err
-    console.log('done!')
+    console.log(`page built: ${outputFilename}`)
   })
 }
 
-console.log('building page')
-buildProduction()
+// Builds a page for everything in `pages`, assuming the default export of each is a React component
+const req = require.context('../pages', true, /.js$/)
+req.keys().forEach(filename => {
+  const PageComponent = req(filename).default
+
+  const outputFilename = filename.substring(
+    filename.indexOf('./') + 1, 
+    filename.lastIndexOf('.js')
+  )
+
+  buildPage(PageComponent, outputFilename)
+})

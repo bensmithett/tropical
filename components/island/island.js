@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function Island ({
+export default function Island ({
   as = 'div',
   hydrateAs,
   component,
@@ -21,10 +21,3 @@ export function Island ({
     </El>
   )
 }
-
-// export function imageURL (path) {
-//   let manifest
-//   if (prod) manifest = require('')
-// }
-
-// export function assetURL (path)
