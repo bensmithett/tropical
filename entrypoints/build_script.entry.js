@@ -1,6 +1,8 @@
 /*
-This build script takes React components from the `pages` directory 
-and renders each to a HTML file.
+This build script loops through React components in the `pages` directory 
+and renders each to a HTML file, incorporating:
+- styles from Fela
+- title & meta elements from React Helmet Async
 
 If you need to do other processing like parsing Markdown or generating RSS feeds,
 your build script will look different. (TODO: add some recipes for doing that stuff!)
@@ -33,7 +35,7 @@ function buildPage (PageComponent, outputFilename) {
   )
 
   const stylesHTML = renderToMarkup(felaRenderer)
-  const helmet = { helmetContext }
+  const { helmet } = helmetContext
   const renderedDocument = defaultLayout({ bodyHTML, stylesHTML, helmet })
 
   fs.writeFile(`${process.cwd()}/output/${outputFilename}.html`, renderedDocument, (err) => {
@@ -42,7 +44,6 @@ function buildPage (PageComponent, outputFilename) {
   })
 }
 
-// Builds a page for everything in `pages`, assuming the default export of each is a React component
 const req = require.context('../pages', true, /.js$/)
 req.keys().forEach(filename => {
   const PageComponent = req(filename).default

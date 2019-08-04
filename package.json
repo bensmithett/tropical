@@ -6,7 +6,7 @@
     "all": "concurrently \"yarn:webpack-client\" \"yarn:webpack-build-script\" \"yarn:storybook\" --kill-others --prefix-colors=yellow.dim,green.dim,cyan.dim,magenta.dim",
     "webpack-client": "webpack-dev-server --config ./config/webpack.config.client.js",
     "webpack-build-script": "webpack --watch --config ./config/webpack.config.build_script.js",
-    "storybook": "start-storybook --ci --port 9001"
+    "storybook": "start-storybook --port 9001 --quiet"
   },
   "license": "MIT",
   "private": true,

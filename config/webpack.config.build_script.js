@@ -13,7 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, '../output'),
     filename: 'build_script.bundle.js'
   },
-  plugins: [{apply: postBuild}]
+  plugins: [{ apply: postBuild }]
 }
 
 function postBuild (compiler) {

@@ -4,16 +4,17 @@ import {createRenderer} from 'fela'
 import {rehydrate} from 'fela-dom'
 import {RendererProvider} from 'react-fela'
 
-// Rehydrate fela
+// Rehydrate Fela styles
 const felaRenderer = createRenderer()
 rehydrate(felaRenderer)
 
-// Rehydrate prerendered <Island /> components
+// Ensure all the components we'll rehydrate on the client are included in this bundle...
 import ExampleComponent from '../components/example_component/example_component'
 const hydratableComponents = {
   ExampleComponent
 }
 
+// ...then rehydrate prerendered <Island /> components
 document
   .querySelectorAll('[data-sanblas-hydrate-as]')
   .forEach((island) => {
