@@ -24,3 +24,7 @@ function postBuild (compiler) {
     })
   })
 }
+
+// TODO
+// Plugin to generate HTML files as part of build so we can use clean plugin & stay in webpack universe
+// https://webpack.js.org/contribute/plugin-patterns/#exploring-assets-chunks-modules-and-dependencies

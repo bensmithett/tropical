@@ -71,8 +71,9 @@ San Blas' client will find this HTML and [`hydrate`](https://reactjs.org/docs/re
 ## TODO
 
 - Production build:
-  - ensure `NODE_ENV=production` for React optimisations
+  - Clean output folder (tricky with standalone webpack builds - see TODO in build script config to avoid)
   - Static asset revving. Webpack should be enough, but see also https://github.com/plantain-00/rev-static
 - Recipes:
   - Blog (add metalsmith bits)
   - Adding more Babel bits
+  - Preact
