@@ -18,11 +18,14 @@ San Blas doesn't do…
 
 Those things are great for some sites. San Blas just has different goals:
 
-**🚀 Great performance can be simple.** Complex performance hacks are great for certain kinds of sites and benchmarks, but come with their own tradeoffs. Often the basics are enough.
+**🚀 Great performance can be simple.**
+Complex performance hacks can be useful for certain kinds of sites and benchmarks, but come with their own tradeoffs. Often the basics are enough.
 
-**♻️ Rethink isomorphic JS.** Code reuse is valuable, but mostly-content websites rarely need to re-render the entire page on the client.
+**♻️ Rethink isomorphic JS.**
+Code reuse is valuable, but mostly-content websites usually don't need to re-render the entire page on the client.
 
-**⚛️ Components should be developed in isolation.** Building a plane while flying it is hard. Hot reloading parts of the plane is harder. Build components in a dedicted [component development environment](https://storybook.js.org/) and drastically simplify the main app's dev server.
+**⚛️ Components should be developed in isolation.**
+Building a plane while flying it is hard. Hot reloading the plane is harder. Build components in a dedicted [component development environment](https://storybook.js.org/) and drastically simplify the main app's dev server.
 
 **🧬 Write meaningful, dynamic styles. Ship atomic CSS.**
 
@@ -37,9 +40,9 @@ Those things are great for some sites. San Blas just has different goals:
 - **[Babel](https://babeljs.io/)** so you can write JSX and ES2030
 - Decoupled client & server builds:
   - **Server:** Build static site assets from your `pages`
-  - **Client:** Full control over the client JS bundle (if any) to enhance your prerendered HTML with 🏝 **islands of interactivity** 🏝. Mix and match React components (isomorphic or client-only) with vanilla JS and other libraries… the power is yours!
+  - **Client:** Full control over the client JS bundle (if any) to enhance parts of your prerendered HTML. Mix and match React components (isomorphic or client-only) with vanilla JS and other libraries… the power is yours!
   - Sensible `development` and `production` builds.
-- The San Blas `<Island>` component for easy isomorphic, progressively enhanced React.
+- San Blas `<Island>` & `withIsland()` helpers for easy, targeted, isomorphic React.
 
 Not feeling these defaults? **Change them!** San Blas is a template repo, not a black box library with config options you need to learn.
 
@@ -47,11 +50,11 @@ Not feeling these defaults? **Change them!** San Blas is a template repo, not a 
 
 Isomorphic React is often approached with one big assumption: render the same component (usually the full page) into the same container node in both the prerendering and client environments.
 
-That's reasonable if the page is coated in a thick layer of client side interactivity. But if you just need to enhance a content-heavy page with a hamburger menu and a couple of modals, there's no need to bundle up the entire page's dependencies to load and re-render on the client.
+That's reasonable if the page is coated in a thick layer of client side interactivity. But if you just need to enhance a mostly-static-content page with a hamburger menu and a couple of modals, there's no need to bundle up the entire page's dependencies to load and re-render on the client.
 
 I like to think of these pages as having 🏝 **islands of interactivity** 🏝 in a sea of otherwise static content.
 
-`<Island>` and `withIsland()` are just convenient ways to prerender an isomorphic React component:
+`<Island>` and `withIsland()` are simple helpers for prerendering an isomorphic React component:
 
 ```es6
 // Use the withIsland() higher order component
@@ -71,7 +74,7 @@ const NavIsland = withIsland(Nav)
 // </div>
 ```
 
-San Blas' client runtime will find this HTML and [`hydrate`](https://reactjs.org/docs/react-dom.html#hydrate) it with the same component and props it was prerendered with.
+San Blas' client runtime will find this HTML and [`hydrate`](https://reactjs.org/docs/react-dom.html#hydrate) it with the same isomorphic component and props that it was prerendered with.
 
 
 ## TODO

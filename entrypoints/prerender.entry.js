@@ -11,6 +11,7 @@ your build script will look different. (TODO: add some recipes for doing that st
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import fs from 'fs'
+import path from 'path'
 import { createRenderer } from 'fela'
 import { RendererProvider } from 'react-fela'
 import { renderToMarkup } from 'fela-dom'
@@ -38,9 +39,12 @@ function buildPage (PageComponent, outputFilename) {
   const { helmet } = helmetContext
   const renderedDocument = defaultLayout({ bodyHTML, stylesHTML, helmet })
 
-  fs.writeFile(`${process.cwd()}/output/${outputFilename}.html`, renderedDocument, (err) => {
+  const outputDir = path.resolve(__dirname, '../prerender')
+  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir)
+  
+  fs.writeFile(`${outputDir}${outputFilename}.html`, renderedDocument, (err) => {
     if (err) throw err
-    console.log(`page built: ${outputFilename}`)
+    console.log(`page built: ${outputDir}${outputFilename}.html`)
   })
 }
 
