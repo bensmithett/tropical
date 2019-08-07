@@ -1,4 +1,4 @@
-import { configure, addDecorator } from '@storybook/react'
+import { configure, addDecorator, addParameters } from '@storybook/react'
 import React from 'react'
 import {createRenderer} from 'fela'
 import {RendererProvider} from 'react-fela'
@@ -10,10 +10,17 @@ function loadStories() {
   req.keys().forEach(filename => req(filename))
 }
 
+// Setup Fela client runtime
+const renderer = createRenderer({devMode: true})
+cssReset(renderer)
 addDecorator((storyFn) => {
-  const renderer = createRenderer()
-  cssReset(renderer)
   return <RendererProvider renderer={renderer}>{storyFn()}</RendererProvider>
+})
+
+addParameters({
+  options: {
+    showPanel: false
+  }
 })
 
 configure(loadStories, module)
