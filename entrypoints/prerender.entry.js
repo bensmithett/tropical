@@ -39,23 +39,30 @@ function buildPage (PageComponent, outputFilename) {
   const { helmet } = helmetContext
   const renderedDocument = defaultLayout({ bodyHTML, stylesHTML, helmet })
 
-  const outputDir = path.resolve(__dirname, '../prerender')
+  const outputDir = path.resolve(__dirname, '../output')
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir)
-  
+
   fs.writeFile(`${outputDir}${outputFilename}.html`, renderedDocument, (err) => {
     if (err) throw err
     console.log(`page built: ${outputDir}${outputFilename}.html`)
   })
 }
 
-const req = require.context('../pages', true, /.js$/)
-req.keys().forEach(filename => {
-  const PageComponent = req(filename).default
+function renderPages (msg) {
+  console.log('MESSAGE!', msg)
+  const req = require.context('../pages', true, /.js$/)
+  req.keys().forEach(filename => {
+    const PageComponent = req(filename).default
 
-  const outputFilename = filename.substring(
-    filename.indexOf('./') + 1, 
-    filename.lastIndexOf('.js')
-  )
+    const outputFilename = filename.substring(
+      filename.indexOf('./') + 1, 
+      filename.lastIndexOf('.js')
+    )
 
-  buildPage(PageComponent, outputFilename)
-})
+    buildPage(PageComponent, outputFilename)
+  })
+}
+
+console.log('running...')
+
+export default renderPages

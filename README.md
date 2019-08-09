@@ -86,3 +86,4 @@ San Blas' client runtime will find this HTML and [`hydrate`](https://reactjs.org
   - Blog (add metalsmith bits)
   - Adding more Babel bits
   - Preact
+  - styled-componentsish API & [writing normal css](https://github.com/jxnblk/css-to-object)

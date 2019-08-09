@@ -2,10 +2,10 @@
   "name": "sanblas",
   "version": "1.0.0",
   "scripts": {
-    "app": "webpack-dev-server --config ./config/webpack.config.dev.js --mode=development",
-    "all": "concurrently \"yarn:webpack-dev\" \"yarn:storybook\" --kill-others --prefix-colors=yellow.dim,green.dim,cyan.dim",
-    "build": "webpack --config ./config/webpack.config.client.js --mode=production && webpack --config ./config/webpack.config.prerender.js --mode=production",
-    "storybook": "start-storybook --port 9001 --quiet"
+    "app": "webpack-dev-server --config ./config/webpack/config.client.js --mode=development",
+    "build": "webpack --config ./config/webpack/config.client.js --mode=production",
+    "storybook": "start-storybook --port 9001 --quiet",
+    "start": "concurrently \"yarn:app\" \"yarn:storybook\" --kill-others --prefix-colors=yellow.dim,cyan.dim"
   },
   "license": "MIT",
   "private": true,
@@ -15,15 +15,18 @@
     "@babel/preset-react": "^7.0.0",
     "@storybook/react": "^5.1.10",
     "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
     "concurrently": "^4.1.1",
     "fela": "^10.6.1",
     "fela-dom": "^10.6.1",
     "file-loader": "^4.1.0",
+    "glob": "^7.1.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-fela": "^10.6.1",
     "react-helmet-async": "^1.0.2",
     "webpack": "^4.38.0",
+    "webpack-assets-manifest": "^3.1.1",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
   }

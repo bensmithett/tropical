@@ -8,7 +8,7 @@ export default function defaultLayout ({stylesHTML, bodyHTML, helmet}) {
   </head>
   <body>
     ${bodyHTML}
-    <script src='/client.bundle.js'></script>
+    <script src='client.bundle.js'></script>
   </body>
 </html>
 `
