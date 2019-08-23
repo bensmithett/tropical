@@ -1,14 +1,20 @@
-export default function defaultLayout ({stylesHTML, bodyHTML, helmet}) {
+export default function defaultLayout ({
+  stylesHTML,
+  bodyHTML,
+  helmet,
+  clientBundlePath
+}) {
   return `<!doctype html>
 <html lang="en">
   <head>
     ${helmet.title.toString()}
     ${helmet.meta.toString()}
+    ${helmet.link.toString()}
     ${stylesHTML}
   </head>
   <body>
     ${bodyHTML}
-    <script src='client.bundle.js'></script>
+    <script src='${clientBundlePath}'></script>
   </body>
 </html>
 `

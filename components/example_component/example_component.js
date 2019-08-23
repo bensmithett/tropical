@@ -1,6 +1,6 @@
 import React from 'react'
-import {useFela} from 'react-fela'
-import island from '../../static/island.jpg'
+import { useFela } from 'react-fela'
+import island from '../../images/island.jpg'
 
 const styles = {
   root: {
@@ -26,17 +26,16 @@ const styles = {
   }
 }
 
-export default function ExampleComponent ({alertMessage}) {
-  const {css} = useFela()
+export default function ExampleComponent ({ alertMessage }) {
+  const { css } = useFela()
 
   return (
     <div className={css(styles.root)}>
-      <p>Welcome to your <a href='https://github.com/bensmithett/sanblas/'>San Blas</a> site!</p>
-      <img
-        src={island}
-        alt='San Blas islands'
-        className={css(styles.img)}
-      />
+      <p>
+        Welcome to your{' '}
+        <a href='https://github.com/bensmithett/sanblas/'>San Blas</a> site!
+      </p>
+      <img src={island} alt='San Blas islands' className={css(styles.img)} />
       <p>
         <button
           className={css(styles.button)}
@@ -48,3 +47,5 @@ export default function ExampleComponent ({alertMessage}) {
     </div>
   )
 }
+
+ExampleComponent.displayName = 'ExampleComponent'

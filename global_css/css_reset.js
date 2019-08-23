@@ -1,5 +1,5 @@
-export default function (renderer) {
-  renderer.renderStatic({
+export default function (felaRenderer) {
+  felaRenderer.renderStatic({
     fontSize: '16px',
     fontFamily: 'sans-serif',
     lineHeight: 1.5,
