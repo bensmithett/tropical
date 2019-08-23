@@ -19,17 +19,22 @@ San Blas doesn't do…
 Those things are great for some sites. San Blas just has different priorities:
 
 **🚀 Great performance can be simple.**
+
 Complex performance optimisations can be useful for some sites and benchmarks, but come with their own tradeoffs. Often the basics are enough.
 
 **♻️ Rethink isomorphic JS.**
+
 Code reuse is valuable, but mostly-content websites usually don't need to re-render the entire page on the client.
 
 **⚛️ Components are best developed in isolation.**
+
 Building a plane while it's flying is hard. Hot reloading the plane is harder. Build components in a dedicted [component development environment](https://storybook.js.org/) and drastically simplify the main app's dev server.
 
 **🧬 Write meaningful, dynamic styles. Ship atomic CSS.**
 
-**🤷‍♀️ Prefer flexibility over out-of-the-box functionality.** Avoid a configurable black box. Keep it simple enough to hack directly.
+**🛠 Prefer a flexible starting point over out-of-the-box functionality.**
+
+Avoid a configurable black box. Keep it simple enough to hack directly.
 
 ## What you get
 
@@ -50,7 +55,7 @@ Not feeling these defaults? **Change them!** San Blas is a template repo, not a 
 
 San Blas' `package.json` comes with 3 scripts:
 
-- `yarn storybook`: Start Storybook
+- `yarn storybook`: Start Storybook at http://localhost:9000
 - `yarn start`: Build the site in `development` mode & serve it at http://localhost:5000
 - `yarn build`: Build the site in `production` mode into the `output` directory
 

@@ -4,7 +4,7 @@
   "scripts": {
     "start": "concurrently \"node ./build.js development\" \"serve\" --kill-others --prefix-colors=yellow.dim,cyan.dim",
     "build": "node ./build.js production",
-    "storybook": "start-storybook --port 9001 --quiet"
+    "storybook": "start-storybook --port 9000"
   },
   "license": "MIT",
   "private": true,
