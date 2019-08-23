@@ -42,7 +42,6 @@ Building a plane while it's flying is hard. Hot reloading the plane is harder. B
 - Decoupled client and prerender builds:
   - **Prerender (aka server-render aka snapshot):** Build HTML and other assets from `pages` entrypoints
   - **Client:** Progressively enhance prerendered HTML. Mix and match React components (isomorphic or client-only) with vanilla JS and other libraries
-  - Sensible `development` and `production` builds
 - San Blas `withIsland()` higher order component for easy, targeted isomorphic React
 
 Not feeling these defaults? **Change them!** San Blas is a template repo, not a black box library that you need to learn to configure.
