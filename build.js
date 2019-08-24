@@ -130,7 +130,13 @@ rimraf(path.resolve(__dirname, './output/*'), (err) => {
       console.log(chalk.cyan('🏝  Loading webpacked prerender module...'))
       const prerender = require(prerenderModulePath)
       console.log(chalk.cyan('🏝  Prerendering...'))
-      prerender(manifest, mode)
+
+      try {
+        prerender(manifest, mode)
+      } catch (err) {
+        console.error(chalk.red('🏝  Error in prerender function...'))
+        console.error(chalk.red(err))
+      }
     }
 
     if (mode === 'production') {
