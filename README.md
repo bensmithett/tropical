@@ -8,9 +8,9 @@ This is a [template repo](https://github.blog/2019-06-06-generate-new-repositori
 
 ---
 
-Welcome to your new San Blas site!
+Welcome to your new [San Blas](https://sanblas.netlify.com/) site!
 
 - Install dependencies: `yarn` or `npm install`
 - `yarn start` or `npm start` & visit http://localhost:5000
 
-TODO: Big old link to docs
+[Read the docs](https://sanblas.netlify.com/) for more info.
