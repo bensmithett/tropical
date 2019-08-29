@@ -15,7 +15,7 @@ const shared = {
       loader: 'babel-loader'
     },
     files: {
-      test: /\.(png|jpe?g|gif|svg)$/,
+      test: /\.(png|jpe?g|gif|svg|woff2?|mp3|mp4|webm|webp)$/,
       loader: 'file-loader',
       options: {
         name: '[path][name].[contenthash].[ext]'
