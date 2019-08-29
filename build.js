@@ -140,7 +140,7 @@ rimraf(path.resolve(__dirname, './output/*'), (err) => {
     }
 
     if (mode === 'production') {
-      console.log(chalk.cyan('🏝  Deleting unused files...'))
+      console.log(chalk.cyan('🏝  Deleting files only required for prerendering...'))
       rimraf(path.resolve(__dirname, './output/+(prerender.bundle.js|manifest.*.json)'), (err) => {
         if (err) {
           console.error(chalk.red(error))
