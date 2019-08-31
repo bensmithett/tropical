@@ -28,22 +28,25 @@ export default function prerender (manifest, mode) {
   // First, let's require every JS file in the `pages` directory and create a useful collection of pages
   // using Webpack's context module API: https://webpack.js.org/guides/dependency-management/
   const pages = []
-  const req = require.context('../pages', true, /.js$/)
+
+  const req = require.context('../pages', true, /.mdx$/)
   req.keys().forEach(sourceFilePath => {
     const pageModule = req(sourceFilePath)
     const sourceFile = path.parse(sourceFilePath)
 
     pages.push({
       Component: pageModule.default,
+      meta: pageModule.meta,
       urlPath: getURLPath(sourceFile),
       sourceFile
     })
   })
 
   // Now let's build each page
-  pages.forEach(({ Component, urlPath, sourceFile }) => {
+  pages.forEach(({ Component, meta, urlPath, sourceFile }) => {
     buildPage({
       Component,
+      meta,
       urlPath,
       sourceFile,
       manifest,
@@ -62,7 +65,7 @@ function getURLPath (sourceFile) {
   )
 }
 
-function buildPage ({ Component, urlPath, sourceFile, manifest, mode }) {
+function buildPage ({ Component, meta, urlPath, sourceFile, manifest, mode }) {
   // 1. Create a shared Fela renderer and Helmet context to be used by the page
   const felaRenderer = createRenderer({
     devMode: mode === 'development'
@@ -75,6 +78,8 @@ function buildPage ({ Component, urlPath, sourceFile, manifest, mode }) {
     <RendererProvider renderer={felaRenderer}>
       <HelmetProvider context={helmetContext}>
         <Helmet>
+          <title>{meta.title}</title>
+          <meta name='description' content={meta.description} />
           <link rel='icon' href={favicon} />
           <meta name='viewport' content='width=device-width, initial-scale=1' />
         </Helmet>

@@ -3,6 +3,7 @@ const rimraf = require('rimraf')
 const chalk = require('chalk')
 const webpack = require('webpack')
 const ManifestPlugin = require('webpack-manifest-plugin')
+const rehypeSlug = require('rehype-slug')
 
 /*
 Webpack module rules shared between client & prerender configs
@@ -20,6 +21,18 @@ const shared = {
       options: {
         name: '[path][name].[contenthash].[ext]'
       }
+    },
+    mdx: {
+      test: /\.mdx$/,
+      use: [
+        'babel-loader',
+        {
+          loader: '@mdx-js/loader',
+          options: {
+            rehypePlugins: [rehypeSlug]
+          }
+        }
+      ]
     }
   },
   output: {
@@ -67,7 +80,7 @@ const prerenderConfig = () => {
     },
     mode: 'none',
     module: {
-      rules: [shared.rules.js, shared.rules.files]
+      rules: [shared.rules.js, shared.rules.files, shared.rules.mdx]
     },
     output: {
       ...shared.output,
