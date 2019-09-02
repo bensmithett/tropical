@@ -25,33 +25,34 @@ import cssReset from '../global_css/css_reset.js'
 import favicon from '../images/favicon.png'
 
 export default function prerender (manifest, mode) {
-  // Require every file in the `pages` directory
-  // Uses Webpack's context module API: https://webpack.js.org/guides/dependency-management/
+  // First, let's require every JS file in the `pages` directory and create a useful collection of pages
+  // using Webpack's context module API: https://webpack.js.org/guides/dependency-management/
+  const pages = []
   const req = require.context('../pages', true, /.js$/)
-  req.keys().forEach(filename => {
-    const PageComponent = req(filename).default
+  req.keys().forEach(sourceFilePath => {    
+    pages.push({
+      Component: req(sourceFilePath).default,
+      sourceFile: path.parse(sourceFilePath)
+    })
+  })
 
-    // Use the module's filename as its output HTML filename
-    const outputFilename = filename.substring(
-      filename.indexOf('./') + 1, 
-      filename.lastIndexOf('.js')
-    )
-
-    buildPage(
-      PageComponent,
-      outputFilename,
+  // Now let's build each page
+  pages.forEach((page) => {
+    buildPage({
+      PageComponent: page.Component,
+      sourceFile: page.sourceFile,
       manifest,
       mode
-    )
+    })
   })
 }
 
-function buildPage (
+function buildPage ({
   PageComponent,
-  outputFilename,
+  sourceFile,
   manifest,
   mode
-) {
+}) {
   // 1. Create a shared Fela renderer and Helmet context to be used by the page
   const felaRenderer = createRenderer({
     devMode: mode === 'development'
@@ -83,11 +84,21 @@ function buildPage (
   })
 
   // 4. Save to a HTML file
-  const outputDir = path.resolve(__dirname, '../output')
-  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir)
+  // If a page is called `index`, we'll save its HTML file in place.
+  // Otherwise we'll create a folder at the page's filename and put an `index.html` in it, so we get clean URLs.
+  const outputDir = path.resolve(
+    __dirname,
+    '../output',
+    sourceFile.dir,
+    sourceFile.name === 'index' ? '' : sourceFile.name
+  )
 
-  fs.writeFile(`${outputDir}${outputFilename}.html`, renderedDocument, (err) => {
+  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, {recursive: true})
+  
+  const outputFilePath = `${outputDir}/index.html`
+
+  fs.writeFile(outputFilePath, renderedDocument, (err) => {
     if (err) throw err
-    console.log(chalk.green(`🏝  Page built: ${outputDir}${outputFilename}.html`))
+    console.log(chalk.green(`🏝  Page built: ${outputFilePath}`))
   })
 }
