@@ -29,30 +29,40 @@ export default function prerender (manifest, mode) {
   // using Webpack's context module API: https://webpack.js.org/guides/dependency-management/
   const pages = []
   const req = require.context('../pages', true, /.js$/)
-  req.keys().forEach(sourceFilePath => {    
+  req.keys().forEach(sourceFilePath => {
+    const pageModule = req(sourceFilePath)
+    const sourceFile = path.parse(sourceFilePath)
+
     pages.push({
-      Component: req(sourceFilePath).default,
-      sourceFile: path.parse(sourceFilePath)
+      Component: pageModule.default,
+      urlPath: getURLPath(sourceFile),
+      sourceFile
     })
   })
 
   // Now let's build each page
-  pages.forEach((page) => {
+  pages.forEach(({ Component, urlPath, sourceFile }) => {
     buildPage({
-      PageComponent: page.Component,
-      sourceFile: page.sourceFile,
+      Component,
+      urlPath,
+      sourceFile,
       manifest,
       mode
     })
   })
 }
 
-function buildPage ({
-  PageComponent,
-  sourceFile,
-  manifest,
-  mode
-}) {
+function getURLPath (sourceFile) {
+  // We'll get clean URLs by naming all HTML files `index.html` in a folder with the source filename
+  // (except source files called `index` - they can be output in place)
+  return path.join(
+    '/',
+    sourceFile.dir,
+    sourceFile.name === 'index' ? '' : sourceFile.name
+  )
+}
+
+function buildPage ({ Component, urlPath, sourceFile, manifest, mode }) {
   // 1. Create a shared Fela renderer and Helmet context to be used by the page
   const felaRenderer = createRenderer({
     devMode: mode === 'development'
@@ -68,7 +78,7 @@ function buildPage ({
           <link rel='icon' href={favicon} />
           <meta name='viewport' content='width=device-width, initial-scale=1' />
         </Helmet>
-        <PageComponent />
+        <Component />
       </HelmetProvider>
     </RendererProvider>
   )
@@ -83,21 +93,18 @@ function buildPage ({
     clientBundlePath: manifest['client.js']
   })
 
-  // 4. Save to a HTML file
-  // If a page is called `index`, we'll save its HTML file in place.
-  // Otherwise we'll create a folder at the page's filename and put an `index.html` in it, so we get clean URLs.
+  // 4. Save to an `index.html` file in the correct location.
   const outputDir = path.resolve(
     __dirname,
     '../output',
-    sourceFile.dir,
-    sourceFile.name === 'index' ? '' : sourceFile.name
+    `.${urlPath}`
   )
 
-  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, {recursive: true})
-  
+  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true })
+
   const outputFilePath = `${outputDir}/index.html`
 
-  fs.writeFile(outputFilePath, renderedDocument, (err) => {
+  fs.writeFile(outputFilePath, renderedDocument, err => {
     if (err) throw err
     console.log(chalk.green(`🏝  Page built: ${outputFilePath}`))
   })
