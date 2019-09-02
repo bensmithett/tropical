@@ -94,11 +94,7 @@ function buildPage ({ Component, urlPath, sourceFile, manifest, mode }) {
   })
 
   // 4. Save to an `index.html` file in the correct location.
-  const outputDir = path.resolve(
-    __dirname,
-    '../output',
-    `.${urlPath}`
-  )
+  const outputDir = path.resolve(__dirname, '../output', `.${urlPath}`)
 
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true })
 
