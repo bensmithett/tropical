@@ -42,17 +42,39 @@ export default function prerender (manifest, mode) {
     })
   })
 
-  // Now let's build each page
-  pages.forEach(({ Component, meta, urlPath, sourceFile }) => {
-    buildPage({
-      Component,
-      meta,
-      urlPath,
-      sourceFile,
-      manifest,
-      mode
-    })
+  // Now, let's build every page we found that is part of the "posts" collection
+  // (and keep track of all the "posts" pages in an array. We'll use it later to build a post
+  // archive on the homepage, as well as an RSS feed)
+  const posts = []
+  pages.forEach(page => {
+    if (page.meta.collection === 'posts') {
+      posts.push(page)
+      buildPage({
+        ...page,
+        manifest,
+        mode
+      })
+    }
   })
+
+  // Now we have a collection of all our posts. Let's sort them by date, most recent first.
+  posts.sort((a, b) => new Date(b.meta.date) - new Date(a.meta.date))
+
+  // Now we have our archive of all posts. Let's build the homepage.
+  const homepage = pages.find(
+    page => page.sourceFile.dir === '.' && page.sourceFile.name === 'index'
+  )
+  buildPage({
+    ...homepage,
+    manifest,
+    mode,
+    // We've updated buildPage to accept an optional pageProps param, so we can pass the collection of posts into
+    // the homepage component. That means they'll be accessible in our MDX file via a global `props.posts`.
+    pageProps: { posts }
+  })
+
+  // Finally, let's build our JSON feed:
+  buildJSONFeed(posts)
 }
 
 function getURLPath (sourceFile) {
@@ -65,7 +87,15 @@ function getURLPath (sourceFile) {
   )
 }
 
-function buildPage ({ Component, meta, urlPath, sourceFile, manifest, mode }) {
+function buildPage ({
+  Component,
+  meta,
+  urlPath,
+  sourceFile,
+  manifest,
+  mode,
+  pageProps = {}
+}) {
   // 1. Create a shared Fela renderer and Helmet context to be used by the page
   const felaRenderer = createRenderer({
     devMode: mode === 'development'
@@ -81,9 +111,10 @@ function buildPage ({ Component, meta, urlPath, sourceFile, manifest, mode }) {
           <title>{meta.title}</title>
           <meta name='description' content={meta.description} />
           <link rel='icon' href={favicon} />
+          <link rel="alternate" href='/feed.json' title='My JSON Feed' type='application/json' />
           <meta name='viewport' content='width=device-width, initial-scale=1' />
         </Helmet>
-        <Component />
+        <Component {...pageProps} />
       </HelmetProvider>
     </RendererProvider>
   )
@@ -108,5 +139,40 @@ function buildPage ({ Component, meta, urlPath, sourceFile, manifest, mode }) {
   fs.writeFile(outputFilePath, renderedDocument, err => {
     if (err) throw err
     console.log(chalk.green(`🏝  Page built: ${outputFilePath}`))
+  })
+}
+
+function buildJSONFeed (posts) {
+  const siteURL = 'https://example.org'
+
+  // A minimal JSON Feed
+  // See https://jsonfeed.org/version/1 to extend it
+  const feed = {
+    version: 'https://jsonfeed.org/version/1',
+    title: 'My Example Feed',
+    home_page_url: siteURL,
+    feed_url: `${siteURL}/feed.json`,
+    items: posts.map(({ Component, urlPath, meta }) => ({
+      id: urlPath,
+      url: `${siteURL}${urlPath}`,
+      title: meta.title,
+      date_published: new Date(meta.date).toISOString(),
+      content_text: ReactDOMServer.renderToStaticMarkup(
+        // Render with Fela & Helmet providers, just in case any components in the page require them
+        // We don't need to do anything with the results though, because we only want the CSS-free body HTML for our feed
+        <RendererProvider renderer={createRenderer()}>
+          <HelmetProvider context={{}}>
+            <Component />
+          </HelmetProvider>
+        </RendererProvider>
+      )
+    }))
+  }
+
+  const outputFilePath = path.resolve(__dirname, '../output/feed.json')
+
+  fs.writeFile(outputFilePath, JSON.stringify(feed), err => {
+    if (err) throw err
+    console.log(chalk.green(`🏝  JSON Feed built: ${outputFilePath}`))
   })
 }

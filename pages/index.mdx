@@ -8,7 +8,7 @@ export const meta = {
 
 The San Blas Islands of Panama is an `archipelago` comprising approximately 365 islands and cays, of which 49 are inhabited. They lie off the north coast of the Isthmus of Panama, east of the Panama Canal. A part of the comarca (district) [Guna Yala](https://en.wikipedia.org/wiki/Guna_Yala) along the Caribbean coast of Panama is home to the Guna people.
 
-![A known image URL](https://commons.wikimedia.org/wiki/File:San_Blas_Islands.jpg)
+![A known image URL](https://upload.wikimedia.org/wikipedia/commons/0/0a/San_Blas_Islands.jpg)
 
 import image from '../images/island.jpg'
 
@@ -21,3 +21,14 @@ import image from '../images/island.jpg'
   - the densely crowded island village of Carti Sugtupu
   - and the two keys, Cayos Limones, and Cayos Holandeses, both renowned for their clear waters.
 - The islands could be rendered uninhabitable by sea level rise in the late 21st century.
+
+## Post archive
+
+<ul>
+  {props.posts.map(post => (
+    <li key={post.urlPath}>
+      <a href={post.urlPath}>{post.meta.title}</a>
+      <small>({post.meta.date})</small>
+    </li>
+  ))}
+</ul>
