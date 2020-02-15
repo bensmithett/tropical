@@ -29,5 +29,9 @@
     "serve": "^11.3.0",
     "webpack": "^4.41.6",
     "webpack-manifest-plugin": "^2.2.0"
+  },
+  "sanblas": {
+    "feedTitle": "Blog Posts on another San Blas site",
+    "siteURL": "https://example.org"
   }
 }

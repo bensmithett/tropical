@@ -1,3 +1,8 @@
+export const meta = {
+  title: 'Your San Blas site',
+  description: ''
+}
+
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import withIsland from '../components/with_island/with_island'
@@ -9,12 +14,6 @@ const ExampleComponentIsland = withIsland(ExampleComponent, {
 
 export default function IndexPage () {
   return (
-    <>
-      <Helmet>
-        <title>Your San Blas site is ready</title>
-      </Helmet>
-
-      <ExampleComponentIsland alertMessage='An yeel itoe' />
-    </>
+    <ExampleComponentIsland alertMessage='An yeel itoe' />
   )
 }
