@@ -1,27 +1,55 @@
+/*
+This is a pretty long file, but fear not!
+
+As complexity grows you may split this up into separate modules,
+but right now we can just read this file from top to bottom &
+understand our entire build process and Webpack configuration.
+****************************************************************/
+
 const path = require('path')
 const rimraf = require('rimraf')
 const chalk = require('chalk')
 const webpack = require('webpack')
 const ManifestPlugin = require('webpack-manifest-plugin')
+const rehypeSlugPlugin = require('rehype-slug')
 
 /*
-Webpack module rules shared between client & prerender configs
+Webpack options shared across our 2 configs (client and prerender)
 ****************************************************************/
 const shared = {
   rules: {
+    // Use Babel to transform JS files as per our babel.config.js
     js: {
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader'
     },
-    files: {
+
+    // Transform static file imports into URL strings
+    staticFiles: {
       test: /\.(png|jpe?g|gif|svg|woff2?|mp3|mp4|webm|webp)$/,
       loader: 'file-loader',
       options: {
         name: '[path][name].[contenthash].[ext]'
       }
+    },
+
+    // Transform MDX files into React components.
+    mdx: {
+      test: /\.mdx$/,
+      use: [
+        'babel-loader',
+        {
+          loader: '@mdx-js/loader',
+          options: {
+            // The rehype-slug plugin adds id's to h1-h6 elements so you can link to them.
+            rehypePlugins: [ rehypeSlugPlugin ]
+          }
+        }
+      ]
     }
   },
+
   output: {
     path: path.resolve(__dirname, './output'),
     publicPath: '/'
@@ -31,14 +59,18 @@ const shared = {
 /*
 Client JS bundle Webpack config
 *********************************************/
-const clientConfig = (mode) => {
+const clientConfig = mode => {
   return {
     entry: {
-      client: path.join(__dirname, './entrypoints/client.js'),
+      client: path.join(__dirname, './entrypoints/client.js')
     },
     mode,
     module: {
-      rules: [shared.rules.js, shared.rules.files]
+      rules: [
+        shared.rules.js,
+        shared.rules.staticFiles,
+        shared.rules.mdx
+      ]
     },
     output: {
       ...shared.output,
@@ -62,12 +94,17 @@ const prerenderConfig = () => {
     },
     target: 'node',
     node: {
-      // Allow the webpacked prerender module to access these Node globals in the context of its source's location
+      // Allow the webpacked prerender module to access the Node global
+      // __dirname in the context of its source's location
       __dirname: true
     },
     mode: 'none',
     module: {
-      rules: [shared.rules.js, shared.rules.files]
+      rules: [
+        shared.rules.js,
+        shared.rules.staticFiles,
+        shared.rules.mdx
+      ]
     },
     output: {
       ...shared.output,
@@ -85,38 +122,44 @@ const prerenderConfig = () => {
 }
 
 /*
-Build webpack bundles & run the prerenderer.
+Now we can build our 2 bundles (client & prerender) & run our prerender function
+to generate our static site!
 
-- 🔥 whatever is currently in `output`
-- Build both Webpack configs into `output`
-- Call the default export of the prerender bundle
-- Watch for changes, rinse & repeat
+1. Delete everything currently in the `output` folder
+2. Build both bundles into `output`
+3. Call the default export of the prerender bundle
+4. Watch for changes, repeat step 2.
 
-That's all. You won't even find a dev server in here!
+That's all!
 **********************************************************/
-rimraf(path.resolve(__dirname, './output/*'), (err) => {
+rimraf(path.resolve(__dirname, './output/*'), err => {
   if (err) {
     console.error(chalk.red(error))
     process.exit()
   }
 
+  // Our package scripts pass either 'development' or 'production' for use as Webpack's 'mode'
   const mode = process.argv[2]
-  const compiler = webpack([
-    clientConfig(mode),
-    prerenderConfig()
-  ])
+  
+  // Compile our bundles with Webpack
+  const compiler = webpack([clientConfig(mode), prerenderConfig()])
 
+  // Watch for changes and define what should happen after every Webpack compilation.
   const watching = compiler.watch({}, (err, compilation) => {
     let hasErrors = !!err
 
+    // Log the results of the Webpack compilation
     const statsArray = compilation.stats
-
-    statsArray.forEach((stats) => {
-      if (stats.compilation.errors && stats.compilation.errors.length) hasErrors = true
+    statsArray.forEach(stats => {
+      if (stats.compilation.errors && stats.compilation.errors.length) {
+        hasErrors = true
+      }
       console.log(stats.toString({ colors: true }))
     })
 
     if (!hasErrors) {
+      // The asset manifest lists the generated caching-friendly filenames 
+      // so we can refer to them without knowing the final name (e.g. client.bundle.some-random-hash.js)
       console.log(chalk.cyan('🏝  Loading asset manifest...'))
       const manifest = {
         ...require('./output/manifest.prerender.json'),
@@ -124,7 +167,11 @@ rimraf(path.resolve(__dirname, './output/*'), (err) => {
       }
       delete manifest['prerender.js']
 
-      const prerenderModulePath = path.resolve(__dirname, './output/prerender.bundle.js')
+      // Import the prerender module and call its default exported function
+      const prerenderModulePath = path.resolve(
+        __dirname,
+        './output/prerender.bundle.js'
+      )
       console.log(chalk.cyan('🏝  Clearing commonjs require cache...'))
       delete require.cache[require.resolve(prerenderModulePath)]
       console.log(chalk.cyan('🏝  Loading webpacked prerender module...'))
@@ -140,14 +187,22 @@ rimraf(path.resolve(__dirname, './output/*'), (err) => {
     }
 
     if (mode === 'production') {
-      console.log(chalk.cyan('🏝  Deleting files only required for prerendering...'))
-      rimraf(path.resolve(__dirname, './output/+(prerender.bundle.js|manifest.*.json)'), (err) => {
-        if (err) {
-          console.error(chalk.red(error))
-          process.exit()
+      console.log(
+        chalk.cyan('🏝  Deleting files only required for prerendering...')
+      )
+      rimraf(
+        path.resolve(
+          __dirname,
+          './output/+(prerender.bundle.js|manifest.*.json)'
+        ),
+        err => {
+          if (err) {
+            console.error(chalk.red(error))
+            process.exit()
+          }
+          watching.close()
         }
-        watching.close()
-      })
+      )
     }
   })
 })
