@@ -5,15 +5,18 @@ export const meta = {
 
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
-import withIsland from '../components/with_island/with_island'
-import ExampleComponent from '../components/example_component/example_component'
+import islands from '../components/islands'
 
-const ExampleComponentIsland = withIsland(ExampleComponent, {
-  islandTag: 'header'
-})
+const { ExampleComponent } = islands
 
-export default function IndexPage () {
+export default function IndexPage ({ posts }) {
   return (
-    <ExampleComponentIsland alertMessage='An yeel itoe' />
+    <>
+      <ExampleComponent alertMessage='An yeel itoe' />
+      <h2>Posts</h2>
+      {
+        posts.map(({meta, urlPath}) => <a href={urlPath}>{meta.title}</a>)
+      }
+    </>
   )
 }

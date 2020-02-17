@@ -1,6 +1,5 @@
 /*
 This module's default export (a function called `prerender`) is responsible for creating your HTML files.
-San Blas doesn't care *how* you generate your HTML files.
 
 This one...
 
@@ -8,7 +7,7 @@ This one...
 - creates a JSON Feed
 - sets up Fela and Helmet so they can be used in pages and components
 
-...but yours could do whatever you like!
+...but San Blas doesn't care *how* you generate your HTML files. Change this at your leisure!
 */
 
 import packageJSON from '../package.json'
@@ -169,7 +168,7 @@ function buildJSONFeedFile (posts) {
     title: feedTitle,
     home_page_url: siteURL,
     feed_url: `${siteURL}/feed.json`,
-    items: posts.map(({ Component, urlPath, meta }) => ({
+    items: posts.map(({ PageComponent, urlPath, meta }) => ({
       id: urlPath,
       url: `${siteURL}${urlPath}`,
       title: meta.title,
@@ -179,7 +178,7 @@ function buildJSONFeedFile (posts) {
         // We don't need to do anything with the results though, because we only want the CSS-free body HTML for our feed
         <RendererProvider renderer={createRenderer()}>
           <HelmetProvider context={{}}>
-            <Component />
+            <PageComponent />
           </HelmetProvider>
         </RendererProvider>
       )
