@@ -20,7 +20,7 @@ import { createRenderer } from 'fela'
 import { RendererProvider } from 'react-fela'
 import { renderToMarkup } from 'fela-dom'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
-import cssReset from '../global_css/css_reset.js'
+import { cssReset } from '../components/global_css'
 import favicon from '../images/favicon.png'
 
 export default function prerender (manifest, mode) {

@@ -2,22 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { RendererProvider } from 'react-fela'
 
-export function registerIslands (config) {
-  let islands = {}
-
-  Object.entries(config).forEach(([name, item]) => {
-    if (typeof item === 'function') {
-      islands[name] = withIsland(name, item)
-    } else {
-      const { component, ...islandOptions } = item
-      islands[name] = withIsland(name, component, islandOptions)
-    }
-  })
-
-  return islands
-}
-
-export function withIsland (componentName, Component, {
+export function asIsland (componentName, Component, {
   islandTag = 'div',
   islandProps = {},
 } = {}) {
@@ -36,7 +21,7 @@ export function withIsland (componentName, Component, {
       </Island>
     )
   }
-  Hoc.displayName = `withIsland(${componentName})`
+  Hoc.displayName = `asIsland(${componentName})`
   return Hoc
 }
 
