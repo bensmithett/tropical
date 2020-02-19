@@ -7,7 +7,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import WelcomeBanner from '../components/welcome_banner/welcome_banner'
 import PostList from '../components/post_list/post_list'
-import { asIsland } from '../isomorphic_helpers'
+import { asIsland } from '../lib/isomorphic_helpers'
 
 const WelcomeBannerIsland = asIsland('WelcomeBanner', WelcomeBanner)
 
