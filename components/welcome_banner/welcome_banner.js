@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useFela } from 'react-fela'
 import island from '../../images/island.jpg'
+import {asIsland} from '../../lib/isomorphic_helpers'
 
 const styles = {
   root: {
@@ -50,3 +51,5 @@ export default function WelcomeBanner ({ alertMessage }) {
     </div>
   )
 }
+
+export const WelcomeBannerIsland = asIsland('WelcomeBanner', WelcomeBanner)
