@@ -18,14 +18,23 @@ export default function DocsLayout ({ children }) {
     <div
       className={css({
         color: '#fff',
-        display: 'grid',
-        gridTemplateColumns: '200px 1fr',
-        gridGap: '20px',
         padding: '10px',
-        position: 'relative'
+        position: 'relative',
+
+        '@media (min-width: 600px)': {
+          display: 'grid',
+          gridTemplateColumns: '200px 1fr',
+          gridGap: '20px'
+        }
       })}
     >
-      <nav>
+      <nav
+        className={css({
+          '@media (max-width: 599px)': {
+            marginBottom: '30px'
+          }
+        })}
+      >
         <ul className={list}>
           <li>
             <a href='#getting-started'>Getting started</a>

@@ -26,12 +26,13 @@ export default function Background ({ children, wide }) {
     >
       <div
         className={
-          !wide &&
-          css({
-            margin: '0 auto',
-            maxWidth: '42rem',
-            padding: '0 1rem'
-          })
+          wide
+            ? undefined
+            : css({
+                margin: '0 auto',
+                maxWidth: '42rem',
+                padding: '0 1rem'
+              })
         }
       >
         {children}
