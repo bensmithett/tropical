@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFela } from 'react-fela'
 import island from '../../images/island.jpg'
+import {asIsland} from '../../lib/isomorphic_helpers'
 
 const styles = {
   root: {
-    minHeight: '100vh',
+    minHeight: '60vh',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -26,20 +27,23 @@ const styles = {
   }
 }
 
-export default function ExampleComponent ({ alertMessage }) {
+export default function WelcomeBanner ({ alertMessage }) {
   const { css } = useFela()
+  const [ isMounted, setMounted ] = useState(false)
+
+  useEffect(() => { setMounted(true) }, [])
 
   return (
     <div className={css(styles.root)}>
       <p>
-        Welcome to your{' '}
-        <a href='https://github.com/bensmithett/sanblas/'>San Blas</a> site!
+        Welcome to your <a href='https://github.com/bensmithett/sanblas/'>San Blas</a> site!
       </p>
       <img src={island} alt='San Blas islands' className={css(styles.img)} />
       <p>
         <button
           className={css(styles.button)}
           onClick={() => window.alert(alertMessage)}
+          disabled={!isMounted}
         >
           Click me
         </button>
@@ -48,4 +52,4 @@ export default function ExampleComponent ({ alertMessage }) {
   )
 }
 
-ExampleComponent.displayName = 'ExampleComponent'
+export const WelcomeBannerIsland = asIsland('WelcomeBanner', WelcomeBanner)

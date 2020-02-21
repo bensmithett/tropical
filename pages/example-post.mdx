@@ -1,0 +1,51 @@
+<!--
+Example of a page written in Markdown (MDX) in a .mdx file.
+
+Every page should export a `meta` object with at least a `title` and `description`.
+This one also exports a `collection` and `date` to signify it's part of the "posts" collection.
+-->
+export const meta = {
+  title: 'Example Post',
+  description: 'An example post written in MDX',
+  collection: 'posts',
+  date: '2020-11-04'
+}
+
+# Your example blog post
+
+You can write your posts and pages in either MDX or JS.
+
+If you remove the `collection` and `date` from this file's `meta`, this will just be a standalone page rather than part of your `posts` collection.
+
+MDX lets you render JSX alongside your Markdown, so you can include custom HTML...
+
+import island from '../images/island.jpg'
+
+<figure>
+  <img src={island} alt='An island' width={400} />
+  <figcaption>MDX is pretty cool...</figcaption>
+</figure>
+
+----
+
+... as well as reuse existing components. Note that every page receives the `posts` collection as a prop.
+
+import PostList from '../components/post_list/post_list'
+
+<PostList posts={props.posts} />
+
+---
+
+Remember, components are only prerendered by default.
+
+If you want to automatically rehydrate on the client (aka isomorphic/universal) you'll need to import a component wrapped with the `asIsland` higher order component.
+
+import WelcomeBanner, { WelcomeBannerIsland } from '../components/welcome_banner/welcome_banner'
+
+## Prerendered only
+
+<WelcomeBanner alertMessage='An yeel itoe' />
+
+## Rehydrated
+
+<WelcomeBannerIsland alertMessage='An yeel itoe' />

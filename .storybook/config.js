@@ -2,13 +2,7 @@ import { configure, addDecorator, addParameters } from '@storybook/react'
 import React from 'react'
 import {createRenderer} from 'fela'
 import {RendererProvider} from 'react-fela'
-import cssReset from '../global_css/css_reset'
-
-// automatically import all files ending in *.stories.js
-const req = require.context('../components', true, /.stories.js$/)
-function loadStories() {
-  req.keys().forEach(filename => req(filename))
-}
+import {cssReset} from '../components/global_css'
 
 // Setup Fela client runtime
 const renderer = createRenderer({devMode: true})
@@ -23,4 +17,6 @@ addParameters({
   }
 })
 
-configure(loadStories, module)
+configure([
+  require.context('../components', true, /.stories.js$/)
+], module)

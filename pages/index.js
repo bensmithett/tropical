@@ -1,20 +1,28 @@
+// Example of a page written as a React component in a .js file.
+
+// Every page should export a `meta` object with at least a title and description.
+export const meta = {
+  title: 'Your San Blas site',
+  description: ''
+}
+
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
-import withIsland from '../components/with_island/with_island'
-import ExampleComponent from '../components/example_component/example_component'
+import PostList from '../components/post_list/post_list'
 
-const ExampleComponentIsland = withIsland(ExampleComponent, {
-  islandTag: 'header'
-})
+/*
+By default, React components are only used to build your prerendered HTML.
 
-export default function IndexPage () {
+If you want to automatically rehydrate on the client (aka isomorphic/universal) you can
+wrap your original component with the `asIsland` higher order component for use in pages.
+*/
+import { WelcomeBannerIsland } from '../components/welcome_banner/welcome_banner'
+
+export default function IndexPage ({ posts }) {
   return (
     <>
-      <Helmet>
-        <title>Your San Blas site is ready</title>
-      </Helmet>
-
-      <ExampleComponentIsland alertMessage='An yeel itoe' />
+      <WelcomeBannerIsland alertMessage='An yeel itoe' />
+      <PostList posts={posts} />
     </>
   )
 }

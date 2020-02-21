@@ -1,9 +1,9 @@
 {
   "name": "sanblas",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
-    "start": "concurrently \"node ./build.js development\" \"serve\" --kill-others --prefix-colors=yellow.dim,cyan.dim",
-    "build": "node ./build.js production",
+    "start": "concurrently \"node ./lib/build.js development\" \"serve\" --kill-others --prefix-colors=yellow.dim,cyan.dim",
+    "build": "node ./lib/build.js production",
     "storybook": "start-storybook --port 9000"
   },
   "license": "MIT",
@@ -12,6 +12,7 @@
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
+    "@mdx-js/loader": "^1.5.5",
     "@storybook/react": "^5.3.13",
     "babel-loader": "^8.0.6",
     "chalk": "^3.0.0",
@@ -23,9 +24,14 @@
     "react-dom": "^16.12.0",
     "react-fela": "^11.1.2",
     "react-helmet-async": "^1.0.4",
+    "rehype-slug": "^2.0.3",
     "rimraf": "^3.0.2",
     "serve": "^11.3.0",
     "webpack": "^4.41.6",
     "webpack-manifest-plugin": "^2.2.0"
+  },
+  "sanblas": {
+    "feedTitle": "Blog Posts on another San Blas site",
+    "siteURL": "https://example.org"
   }
 }
