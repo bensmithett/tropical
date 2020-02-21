@@ -1,0 +1,146 @@
+# San Blas Documentation
+
+San Blas is a [template repo](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/), not a library you `npm install` into your existing project.
+
+At its core, San Blas is just the four JS files in the `lib` folder.
+
+Because they're not hidden away in `node_modules`, you're free to read, understand, hack and extend your project if you want to change anything.
+
+## Getting started
+
+Install dependencies: `yarn` (or `npm install`)
+
+San Blas' `package.json` comes with 3 scripts:
+
+- `yarn storybook` starts Storybook at http://localhost:9000
+- `yarn start` builds the site in `development` mode and serves it at http://localhost:5000
+- `yarn build` builds the site in `production` mode into the `output` directory
+
+## Global configuration
+
+You need to configure 2 things in the `sanblas` field in `package.json`:
+
+- `feedTitle`: the title of your [JSON Feed](https://jsonfeed.org/)
+- `siteURL`: your site's root URL. Ensures images have absolute paths so they work in feed readers
+  - used internally as [file-loader's `publicPath`](https://webpack.js.org/loaders/file-loader/#publicpath)
+
+## Pages
+
+Each JS and MDX file in the `pages` directory is compiled into a HTML file by `entry.prerender.js`.
+
+Each page should export:
+
+- `default`: a React component (JS pages only; MDX pages do this automatically)
+- `meta`: *(object)*
+  - `title`: page title *(string, required)*
+  - `description`: page description *(string, required)*
+  - `collection`: collection the page should be part of *(string)*
+    - `'posts'` is the only value supported by default
+  - `date`: any date string parsable by JS `new Date()` *(string, required if `collection: 'posts'` is set)*
+
+## Components
+
+React components used to build pages, styled with [Fela](https://fela.js.org/)
+
+**By default, components used in pages are only prerendered.** Any client-side behaviour in your component (e.g. event handlers, timers, `useEffect` hooks or lifecycle methods) will not work in the browser until you [`rehydrate`](https://reactjs.org/docs/react-dom.html#hydrate) the prerendered component.
+
+Use the provided `isomorphic_helpers.js` or DIY manually in `entry.client.js`.
+
+**Isomorphic React is totally optional!** You can add behaviour to your prerendered HTML using vanilla JS and other libraries, or by manually mounting client-only React components.
+
+## Core files
+
+These 4 small files are the heart of San Blas. They're heavily commented, so I encourage you to read them, understand what's happening and make changes to suit your needs!
+
+- `build.js`
+- `entry.client.js`
+- `entry.prerender.js`
+- `isomorphic_helpers.js`
+
+### `build.js`
+
+Builds 2 JS bundles from the `entry.prerender.js` and `entry.client.js` entrypoints, then uses the prerender bundle to generate your static site.
+
+### `entry.client.js`
+
+The browser JS bundle loaded by a `<script>` tag on your pages. It enhances your prerendered HTML with client-side JS.
+
+It does the following by default:
+
+- **Rehydrate Fela styles:** If you use Fela in your client bundle (including in any components), you need to [rehydrate](https://fela.js.org/docs/api/fela-dom/rehydrate.html) fela-dom's cache from prerendered styles.
+- **Import and rehydrate prerendered components:** See `isomorphic_helpers.js`
+
+### `entry.prerender.js`
+
+This file's default exported function is called by `build.js` in Node to build your site's HTML files and other static assets.
+
+### `isomorphic_helpers.js`
+
+Exports 2 functions:
+
+#### `asIsland`
+
+A [higher-order component](https://reactjs.org/docs/higher-order-components.html) for prerendering components in your pages that will later be rehydrated with the same props on the client.
+
+```js
+asIsland(componentName, Component, options)
+```
+
+- `componentName`: the name of the component as passed to `rehydrateIslands` *(string, required)*
+- `Component`: any React component whose props can be serialised with `JSON.stringify` *(React component, required)*
+- `options`: *(object)*
+  - `islandTag`: the HTML element to wrap the component with *(string, default: 'div')*
+  - `islandProps`: any props to be passed to the island element *(object, default: {})*
+
+#### `rehydrateIslands`
+
+Used by the browser JS bundle to [rehydrate]](https://reactjs.org/docs/react-dom.html#hydrate) any components that were prerendered using the `asIsland` higher-order component.
+
+```js
+rehydrateIslands(components)
+```
+
+- `components`: an object containing the components to be rehydrated, keyed by the `componentName` values used in `asIsland` *(object, required)*
+
+#### Example usage of isomorphic helpers
+
+Export a version of your component wrapped with the `asIsland` higher-order component:
+
+```js
+export default function WelcomeBanner ({ alertMessage }) { ... }
+export const WelcomeBannerIsland = asIsland('WelcomeBanner', WelcomeBanner)
+```
+
+Then, in a page where the component needs client-side behaviour, render the island rather than the original component:
+
+```js
+import { WelcomeBannerIsland } from '../components/welcome_banner/welcome_banner'
+
+export default function MyPage () {
+  return <>
+    ...
+    <WelcomeBannerIsland alertMessage='hi' />
+    ...
+  </>
+}
+```
+
+Finally, ensure the original component is imported into `entry.client.js` and passed to `rehydrateIslands`:
+
+```js
+import WelcomeBanner from '../components/welcome_banner/welcome_banner'
+rehydrateIslands({ WelcomeBanner })
+```
+
+Your component will appear inside a wrapper tag in your prerendered HTML:
+
+```html
+<div
+  data-sanblas-hydrate-as='WelcomeBanner'
+  data-sanblas-hydrate-with='{\"alertMessage\":\"hi\"}'
+>
+  ...
+</div>
+```
+
+This element will be detected by `rehydrateIslands` and your component will be rehydrated with its original props.

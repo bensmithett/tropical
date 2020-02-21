@@ -1,0 +1,65 @@
+import { Feature } from '../components/markdown/markdown'
+
+## What you get
+
+- Build **[React](https://reactjs.org/)** components in **[Storybook](https://storybook.js.org/)**
+- **[Fela](http://fela.js.org/)** for component-centric CSS & generated atomic classes
+- **[Webpack](https://webpack.js.org/)** for module bundling & asset revving
+- **[Babel](https://babeljs.io/)** so you can write JSX and ES2030
+- **[Serve](https://github.com/zeit/serve)** for a straightforward dev server
+- **[React Helmet Async](https://github.com/staylor/react-helmet-async/)** for `<head>` management
+- Independent **client** and **prerender** entrypoints:
+  - **Prerender (**aka **server-render** aka **snapshot):** Build HTML files and other static assets
+  - **Client:** Progressively enhance prerendered HTML. Mix and match React components (isomorphic or client-only) with vanilla JS and other libraries
+- All the ingredients for a **blog:** collections, a **[JSON Feed](https://jsonfeed.org/)** and **[MDX](https://mdxjs.com/)** for superpowered Markdown
+
+San Blas is just a [template repo](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/). Not feeling these defaults? **Change them!**
+
+## What you don't get
+
+- hot module reloading 🙅‍♀️ <small>(except in Storybook, which is the only place you really need it)</small>
+- code splitting 🙅‍♀️
+- [lazy loading](https://www.bensmithett.com/an-argument-against-lazy-loading/) 🙅‍♀️
+- "instant" client side route transitions 🙅‍♀️ <small>([yep](https://twitter.com/ryanflorence/status/1186515553285857280))</small>
+- Progressive Web App™ 🙅‍♀️
+- isomorphic 🙅‍♀️ <small>(not the [automatic full-page kind](https://github.com/bensmithett/sanblas/blob/docs/decisions/003_dont_default_to_full_page_isomophic_react.md) you're used to anyway)</small>
+- graphql 🙅‍♀️
+- workers 🙅‍♀️
+- types 🙅‍♀️
+- ["blazing fast"](https://github.com/search?q=blazing+fast) or ["zero config"](https://github.com/search?q=zero+config) 🙅‍♀️
+
+## Why?
+
+Those things are great for some projects. San Blas just has different priorities.
+
+<Feature>🚀 Great performance can be simple.</Feature>
+
+Complex performance optimisations can be useful for some sites and benchmarks, but have their own tradeoffs. Often the basics are enough.
+
+<Feature>♻️ Rethink isomorphic JS.</Feature>
+
+Prerendering and rehydration is valuable, but mostly-content websites usually don't need to re-load and re-render the entire page on the client.
+
+<Feature>⚛️ Components are best developed in isolation.</Feature>
+
+Build components in a dedicated [component development environment](https://storybook.js.org/) and drastically simplify the main app's dev server.
+
+<Feature>🧬 Write meaningful, expressive styles & ship atomic classes.</Feature>
+
+All the benefits of atomic CSS. No new <abbr title='Domain Specific Language'>DSL</abbr> to learn.
+
+<Feature>🛠 Prefer a flexible starting point over out-of-the-box functionality.</Feature>
+
+Avoid a configurable black box framework or plugin system. Keep it simple enough to understand and hack directly.
+
+### Architecture decisions
+
+Read more detailed rationale for San Blas' architecture in the [architecture decision records](https://github.com/bensmithett/sanblas/tree/docs/decisions).
+
+## Get started
+
+[**Read the docs**](/docs) or [**get the template repo on GitHub**](https://github.com/bensmithett/sanblas)
+
+#### Who built this?
+
+Hi there! I'm [Ben](https://www.bensmithett.com/), I've been building websites for a while now. I've worked on the industrial-strength static site tooling behind [Envato Sites](https://sites.envato.com/) and [Milkshake](https://milkshake.app/) & have experienced enough 💩🐌 internet connections around the world to have opinions about web performance.
