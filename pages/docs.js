@@ -1,6 +1,7 @@
 import React from 'react'
 import DocsMDX from './_docs.mdx'
 import Background from '../components/background/background'
+import DocsLayout from '../components/docs_layout/docs_layout'
 import Header from '../components/header/header'
 import Markdown from '../components/markdown/markdown'
 
@@ -13,9 +14,11 @@ export default function Docs () {
   return (
     <Background wide>
       <Header />
-      <Markdown>
-        <DocsMDX />
-      </Markdown>
+      <DocsLayout>
+        <Markdown>
+          <DocsMDX />
+        </Markdown>
+      </DocsLayout>
     </Background>
   )
 }

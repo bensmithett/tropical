@@ -2,19 +2,23 @@
 
 San Blas is a [template repo](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/), not a library you `npm install` into your existing project.
 
-At its core, San Blas is just the four JS files in the `lib` folder.
+At its core, San Blas is just [four files](#core-files).
 
 Because they're not hidden away in `node_modules`, you're free to read, understand, hack and extend your project if you want to change anything.
 
 ## Getting started
 
+Click the green *Use this template* button [on GitHub](https://github.com/bensmithett/sanblas) and clone your new repo.
+
 Install dependencies: `yarn` (or `npm install`)
 
-San Blas' `package.json` comes with 3 scripts:
+San Blas comes with 3 package scripts:
 
 - `yarn storybook` starts Storybook at http://localhost:9000
 - `yarn start` builds the site in `development` mode and serves it at http://localhost:5000
 - `yarn build` builds the site in `production` mode into the `output` directory
+
+Start Storybook to build and style your `components`, then use them in MDX or JS files in `pages`. When you're ready, `yarn build` and deploy the `output` folder to your favourite static host!
 
 ## Global configuration
 
@@ -32,25 +36,25 @@ Each page should export:
 
 - `default`: a React component (JS pages only; MDX pages do this automatically)
 - `meta`: *(object)*
-  - `title`: page title *(string, required)*
-  - `description`: page description *(string, required)*
-  - `collection`: collection the page should be part of *(string)*
+  - `title` *(string, required)*
+  - `description` *(string, required)*
+  - `collection` *(string)*
     - `'posts'` is the only value supported by default
   - `date`: any date string parsable by JS `new Date()` *(string, required if `collection: 'posts'` is set)*
 
 ## Components
 
-React components used to build pages, styled with [Fela](https://fela.js.org/)
+The React components you build pages with, styled with [Fela](https://fela.js.org/)
 
 **By default, components used in pages are only prerendered.** Any client-side behaviour in your component (e.g. event handlers, timers, `useEffect` hooks or lifecycle methods) will not work in the browser until you [`rehydrate`](https://reactjs.org/docs/react-dom.html#hydrate) the prerendered component.
 
-Use the provided `isomorphic_helpers.js` or DIY manually in `entry.client.js`.
+You can do this with the provided `isomorphic_helpers.js` or DIY manually in `entry.client.js`.
 
-**Isomorphic React is totally optional!** You can add behaviour to your prerendered HTML using vanilla JS and other libraries, or by manually mounting client-only React components.
+**Isomorphic React is totally optional!** You can add behaviour to your prerendered HTML using vanilla JS, other libraries, or by manually mounting client-only React components.
 
 ## Core files
 
-These 4 small files are the heart of San Blas. They're heavily commented, so I encourage you to read them, understand what's happening and make changes to suit your needs!
+These 4 small files in the `lib` directory are the heart of San Blas. They're heavily commented, so I encourage you to read them, understand what's happening and make changes to suit your needs!
 
 - `build.js`
 - `entry.client.js`

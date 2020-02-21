@@ -32,6 +32,17 @@ const code = {
 const styles = {
   color: '#fff',
 
+  '> h1': {
+    fontSize: '1.7rem',
+    marginTop: 0,
+    marginBottom: '1rem',
+
+    '@media (min-width: 600px)': {
+      fontSize: '2rem',
+      marginBottom: '1.5rem',
+    }
+  },
+
   '> h2': {
     fontSize: '1.5rem',
     marginTop: '3rem',
