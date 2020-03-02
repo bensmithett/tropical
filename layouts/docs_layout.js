@@ -1,13 +1,14 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import Background from '../components/background/background'
-import Banner from '../components/banner/banner'
+import DocsLayout from '../components/docs_layout/docs_layout'
+import Header from '../components/header/header'
 import Markdown from '../components/markdown/markdown'
 import favicon from '../images/favicon.png'
 
 export default function DefaultLayout ({ meta, children }) {
   return (
-    <Background>
+    <Background wide>
       <Helmet>
         <title>{meta.title}</title>
         <meta name='description' content={meta.description} />
@@ -15,8 +16,13 @@ export default function DefaultLayout ({ meta, children }) {
         <link rel='alternate' href='/feed.json' type='application/json' />
         <link rel='icon' href={favicon} />
       </Helmet>
-      <Banner />
-      <Markdown>{children}</Markdown>
+
+      <Header />
+      <DocsLayout>
+        <Markdown>
+          {children}
+        </Markdown>
+      </DocsLayout>
     </Background>
   )
 }
