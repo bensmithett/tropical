@@ -20,9 +20,9 @@ import { createRenderer } from 'fela'
 import { RendererProvider } from 'react-fela'
 import { renderToMarkup } from 'fela-dom'
 import { Helmet } from 'react-helmet'
-import { cssReset } from '../components/global_css'
-import documentTemplate from '../layouts/document_template'
-import DefaultLayout from '../layouts/default_layout'
+import { cssReset } from './components/global_css'
+import documentTemplate from './layouts/document_template'
+import DefaultLayout from './layouts/default_layout'
 
 export default function prerender (manifest, mode) {
   /*
@@ -30,7 +30,7 @@ export default function prerender (manifest, mode) {
   (uses Webpack's context module API, see https://webpack.js.org/guides/dependency-management/)
   */
   const pages = []
-  const req = require.context('../pages', true, /^(?!.*\/_).*(js|mdx)$/)
+  const req = require.context('./pages', true, /^(?!.*\/_).*(js|mdx)$/)
   req.keys().forEach(sourceFilePath => {
     const pageModule = req(sourceFilePath)
     const sourceFile = path.parse(sourceFilePath)

@@ -2,8 +2,8 @@
   "name": "sanblas",
   "version": "2.0.1",
   "scripts": {
-    "start": "concurrently \"node ./lib/build.js development\" \"serve\" --kill-others --prefix-colors=yellow.dim,cyan.dim",
-    "build": "node ./lib/build.js production",
+    "start": "concurrently \"node ./app/build.js development\" \"serve\" --kill-others --prefix-colors=yellow.dim,cyan.dim",
+    "build": "node ./app/build.js production",
     "storybook": "start-storybook --port 9000"
   },
   "license": "MIT",
