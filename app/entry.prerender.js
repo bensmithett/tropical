@@ -21,7 +21,6 @@ import { RendererProvider } from 'react-fela'
 import { renderToMarkup } from 'fela-dom'
 import { Helmet } from 'react-helmet'
 import { cssReset } from './components/global_css'
-import documentTemplate from './layouts/document_template'
 import DefaultLayout from './layouts/default_layout'
 
 export default function prerender (manifest, mode) {
@@ -162,4 +161,26 @@ function buildJSONFeedFile (pageProps) {
     if (err) throw err
     console.log(chalk.green(`🏝  JSON Feed built: ${outputFilePath}`))
   })
+}
+
+function documentTemplate ({
+  stylesHTML,
+  bodyHTML,
+  helmet,
+  clientBundlePath
+}) {
+  return `<!doctype html>
+<html ${helmet.htmlAttributes.toString()}>
+  <head>
+    ${helmet.title.toString()}
+    ${helmet.meta.toString()}
+    ${helmet.link.toString()}
+    ${stylesHTML}
+  </head>
+  <body ${helmet.bodyAttributes.toString()}>
+    ${bodyHTML}
+    <script src='${clientBundlePath}'></script>
+  </body>
+</html>
+  `
 }

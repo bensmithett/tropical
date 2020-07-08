@@ -25,7 +25,7 @@ export function asIsland (componentName, Component, {
   return Hoc
 }
 
-export function rehydrateIslands (islands, felaRenderer) {
+export function hydrateIslands (islands, felaRenderer) {
   document.querySelectorAll('[data-sanblas-hydrate-as]').forEach(island => {
     const Component = islands[island.dataset.sanblasHydrateAs]
     const componentProps = JSON.parse(island.dataset.sanblasHydrateWith)

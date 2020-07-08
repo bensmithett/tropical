@@ -11,4 +11,4 @@ Welcome to your new [San Blas](https://sanblas.netlify.com/) site!
 - Install dependencies: `yarn` or `npm install`
 - `yarn start` or `npm start` & visit http://localhost:5000
 
-[Read the docs](https://sanblas.netlify.com/) for more.
+Explore the `app` folder or [read the docs](https://sanblas.netlify.com/) for more.

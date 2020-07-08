@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useFela } from 'react-fela'
 import island from '../../images/island.jpg'
-import {asIsland} from '../../isomorphic_helpers'
+import {asIsland} from '../../hydration_helpers'
 
 const styles = {
   root: {
