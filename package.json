@@ -1,6 +1,6 @@
 {
   "name": "sanblas",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "scripts": {
     "start": "concurrently \"node ./app/build.js development\" \"serve\" --kill-others --prefix-colors=yellow.dim,cyan.dim",
     "build": "node ./app/build.js production",

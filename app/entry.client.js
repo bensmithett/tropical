@@ -10,25 +10,27 @@ Analytics snippets, ReactDOM.render(), fancy graphs, etc...
 
 /*
 ⚛️ Optional:
-Rehydrate prerendered React/Fela components using San Blas isomorphic helpers.
+Hydrate prerendered React/Fela components using San Blas hydration helpers.
 
-If you use asIsland() to render components in your pages, the following code
-will rehydrate those components with the same props.
+If you wrap components in your pages with the asIsland() HOC, the following code
+will hydrate those components with the same props they were rendered with.
 
-If you remove this code, the prerendered component HTML won't be rehydrated.
+All components requiring hydration must be explicitly imported and passed to hydrateIslands().
+
+If you remove the following code, the prerendered component won't be hydrated.
 */ 
 
 import { createRenderer } from 'fela'
 import { rehydrate } from 'fela-dom'
-import { rehydrateIslands } from './isomorphic_helpers'
+import { hydrateIslands } from './hydration_helpers'
 
-// Rehydrate Fela styles
+// Hydrate Fela styles
 const felaRenderer = createRenderer()
 rehydrate(felaRenderer)
 
-// Rehydrate San Blas islands
+// Hydrate San Blas islands
 import WelcomeBanner from './components/welcome_banner/welcome_banner'
 
-rehydrateIslands({
+hydrateIslands({
   WelcomeBanner
 }, felaRenderer)
