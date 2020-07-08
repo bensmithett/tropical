@@ -36,9 +36,9 @@ export default function WelcomeBanner ({ alertMessage }) {
   return (
     <div className={css(styles.root)}>
       <p>
-        Welcome to your <a href='https://github.com/bensmithett/sanblas/'>San Blas</a> site!
+        Welcome to your <a href='https://github.com/bensmithett/tropical/'>Tropical</a> site!
       </p>
-      <img src={island} alt='San Blas islands' className={css(styles.img)} />
+      <img src={island} alt='Guna Yala, Panama' className={css(styles.img)} />
       <p>
         <button
           className={css(styles.button)}

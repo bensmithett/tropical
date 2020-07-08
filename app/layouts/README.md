@@ -7,7 +7,7 @@ This could include things like:
 - Tags for your `<head>`
 - "Wrapper" divs, or a shared header, footer or sidebar
 
-Unlike Rails, you don't need to directly template your layout's `html`, `head` or `body` tags. Instead, manage those tags with `Helmet` and the San Blas prerender function will put everything in the right place in the final rendered HTML document.
+Unlike Rails, you don't need to directly template your layout's `html`, `head` or `body` tags. Instead, manage those tags with `Helmet` and the Tropical prerender function will put everything in the right place in the final rendered HTML document.
 
 ## Layout props
 

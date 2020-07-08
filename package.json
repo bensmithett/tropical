@@ -1,6 +1,6 @@
 {
-  "name": "sanblas",
-  "version": "4.0.0",
+  "name": "tropical",
+  "version": "5.0.0",
   "scripts": {
     "start": "concurrently \"node ./app/build.js development\" \"serve\" --kill-others --prefix-colors=yellow.dim,cyan.dim",
     "build": "node ./app/build.js production",
@@ -30,8 +30,8 @@
     "webpack": "^4.41.6",
     "webpack-manifest-plugin": "^2.2.0"
   },
-  "sanblas": {
-    "feedTitle": "Blog Posts on another San Blas site",
+  "tropical": {
+    "feedTitle": "Blog Posts on another Tropical site",
     "siteURL": ""
   }
 }
