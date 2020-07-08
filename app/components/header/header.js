@@ -13,7 +13,7 @@ export default function Header () {
       <a className={linkClass} href='/docs'>
         Docs
       </a>
-      <a className={linkClass} href='https://github.com/bensmithett/sanblas'>
+      <a className={linkClass} href='https://github.com/bensmithett/tropical'>
         GitHub
       </a>
     </nav>

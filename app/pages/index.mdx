@@ -1,7 +1,7 @@
 import { Feature } from '../components/markdown/markdown'
 
 export const meta = {
-  title: 'San Blas',
+  title: 'Tropical',
   description: 'A flexible, component-first static site generator. Use modern tools to build fast, mostly-just-HTML websites with islands of rich client-side behaviour.'
 }
 
@@ -15,13 +15,13 @@ export const meta = {
 - **[React Helmet](https://github.com/nfl/react-helmet)** for `<head>` management
 - Independent **client** and **prerender** entrypoints:
   - **Prerender (**aka **server-render** aka **snapshot):** Build HTML files and other static assets
-  - **Client:** Progressively enhance prerendered HTML. Mix and match React components (isomorphic or client-only) with vanilla JS and other libraries
+  - **Client:** Progressively enhance prerendered HTML. Mix and match React components (universal or client-only) with vanilla JS and other libraries
 - Everything you need for a **blog:** 
   - Collections
   - A **[JSON Feed](https://jsonfeed.org/)**
   - **[MDX](https://mdxjs.com/)** for superpowered Markdown
 
-San Blas is just a [template repo](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/). Not feeling these defaults? **Change them!**
+Tropical is just a [template repo](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/). Not feeling these defaults? **Change them!**
 
 ## What you don't get
 
@@ -30,7 +30,7 @@ San Blas is just a [template repo](https://github.blog/2019-06-06-generate-new-r
 - [lazy loading](https://www.bensmithett.com/an-argument-against-lazy-loading/) 🙅‍♀️
 - "instant" client side route transitions 🙅‍♀️ <small>([Ryan is right](https://twitter.com/ryanflorence/status/1186515553285857280))</small>
 - Progressive Web App™ 🙅‍♀️
-- isomorphic 🙅‍♀️ <small>(not the [automatic full-page kind](https://github.com/bensmithett/sanblas/blob/docs/decisions/003_dont_default_to_full_page_isomophic_react.md) you're used to anyway)</small>
+- universal/isomorphic JS 🙅‍♀️ <small>(not the [automatic full-page kind](https://github.com/bensmithett/tropical/blob/docs/decisions/003_dont_default_to_full_page_react_hydration.md) you're used to anyway)</small>
 - graphql 🙅‍♀️
 - workers 🙅‍♀️
 - types 🙅‍♀️
@@ -38,13 +38,13 @@ San Blas is just a [template repo](https://github.blog/2019-06-06-generate-new-r
 
 ## Why?
 
-Those things are great for some projects. San Blas just has different priorities.
+Those things are great for some projects. Tropical just has different priorities.
 
 <Feature>🚀 Great performance can be simple.</Feature>
 
 Complex performance optimisations can be useful for some sites and benchmarks, but have their own tradeoffs. Usually the basics are good enough.
 
-<Feature>♻️ Rethink isomorphic JS.</Feature>
+<Feature>♻️ Rethink universal JS.</Feature>
 
 Prerendering and rehydration are valuable, but mostly-content websites usually don't need to re-load and re-render the entire page on the client.
 
@@ -62,11 +62,11 @@ Avoid a configurable black box framework or plugin system. Keep it simple enough
 
 ### Architecture decisions
 
-Read more detailed rationale for San Blas' architecture in the [architecture decision records](https://github.com/bensmithett/sanblas/tree/docs/decisions).
+Read more detailed rationale for Tropical' architecture in the [architecture decision records](https://github.com/bensmithett/tropical/tree/docs/decisions).
 
 ## Get started
 
-[**Read the docs**](/docs) or [**get the template repo on GitHub**](https://github.com/bensmithett/sanblas)
+[**Read the docs**](/docs) or [**get the template repo on GitHub**](https://github.com/bensmithett/tropical)
 
 #### Who built this?
 

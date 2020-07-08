@@ -1,26 +1,26 @@
 import DocsLayout from '../layouts/docs_layout'
 
 export const meta = {
-  title: 'Documentation | San Blas',
-  description: 'Documentation for San Blas - a flexible, component-first static site generator.',
+  title: 'Documentation | Tropical',
+  description: 'Documentation for Tropical - a flexible, component-first static site generator.',
   Layout: DocsLayout
 }
 
-# San Blas Documentation
+# Tropical Documentation
 
-San Blas is a [template repo](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/), not a library you `npm install` into your existing project.
+Tropical is a [template repo](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/), not a library you `npm install` into your existing project.
 
-At its core, San Blas is just [four files](#core-files).
+At its core, Tropical is just [four files](#core-files).
 
 Because they're not hidden away in `node_modules`, you're free to read, understand, hack and extend your project if you want to change anything.
 
 ## Getting started
 
-Click the green *Use this template* button [on GitHub](https://github.com/bensmithett/sanblas) and clone your new repo.
+Click the green *Use this template* button [on GitHub](https://github.com/bensmithett/tropical) and clone your new repo.
 
 Install dependencies: `yarn` (or `npm install`)
 
-San Blas comes with 3 package scripts:
+Tropical comes with 3 package scripts:
 
 - `yarn storybook` starts Storybook at http://localhost:9000
 - `yarn start` builds the site in `development` mode and serves it at http://localhost:5000
@@ -30,7 +30,7 @@ Start Storybook to build and style your `components`, then use them in MDX or JS
 
 ## Global configuration
 
-There are 2 config options in the `sanblas` field in `package.json`:
+There are 2 config options in the `tropical` field in `package.json`:
 
 - `feedTitle`: the title of your [JSON Feed](https://jsonfeed.org/)
 - `siteURL`: your site's root URL, e.g. `https://example.org`
@@ -55,20 +55,20 @@ Each page should export:
 
 The React components you build pages with, styled with [Fela](https://fela.js.org/)
 
-**By default, components used in pages are only prerendered.** Any client-side behaviour in your component (e.g. event handlers, timers, `useEffect` hooks or lifecycle methods) will not work in the browser until you [`rehydrate`](https://reactjs.org/docs/react-dom.html#hydrate) the prerendered component.
+**By default, components used in pages are only prerendered.** Any client-side behaviour in your component (e.g. event handlers, timers, `useEffect` hooks or lifecycle methods) will not work in the browser until you [`hydrate`](https://reactjs.org/docs/react-dom.html#hydrate) the prerendered component.
 
-You can do this with the provided `isomorphic_helpers.js` or DIY manually in `entry.client.js`.
+You can do this with the provided `hydration_helpers.js` or DIY manually in `entry.client.js`.
 
-**Isomorphic React is totally optional!** You can add behaviour to your prerendered HTML using vanilla JS, other libraries, or by manually mounting client-only React components.
+**Hydrating React is totally optional!** You can add behaviour to your prerendered HTML using vanilla JS, other libraries, or by manually mounting client-only React components.
 
 ## Core files
 
-These 4 small files in the `app` directory are the heart of San Blas. They're heavily commented, so I encourage you to read them, understand what's happening and make changes to suit your needs!
+These 4 small files in the `app` directory are the heart of Tropical. They're heavily commented, so I encourage you to read them, understand what's happening and make changes to suit your needs!
 
 - `build.js`
 - `entry.client.js`
 - `entry.prerender.js`
-- `isomorphic_helpers.js`
+- `hydration_helpers.js`
 
 ### `build.js`
 
@@ -80,42 +80,42 @@ The browser JS bundle loaded by a `<script>` tag on your pages. It enhances your
 
 It does the following by default:
 
-- **Rehydrate Fela styles:** If you use Fela in your client bundle (including in any components), you need to [rehydrate](https://fela.js.org/docs/api/fela-dom/rehydrate.html) fela-dom's cache from prerendered styles.
-- **Import and rehydrate prerendered components:** See `isomorphic_helpers.js`
+- **Rehydrate Fela styles:** If you use Fela in your client bundle (including in any components), you need to [hydrate](https://fela.js.org/docs/api/fela-dom/rehydrate.html) fela-dom's cache from prerendered styles.
+- **Import and hydrate prerendered components:** See `hydration_helpers.js`
 
 ### `entry.prerender.js`
 
 This file's default exported function is called by `build.js` in Node to build your site's HTML files and other static assets.
 
-### `isomorphic_helpers.js`
+### `hydration_helpers.js`
 
 Exports 2 functions:
 
 #### `asIsland`
 
-A [higher-order component](https://reactjs.org/docs/higher-order-components.html) for prerendering components in your pages that will later be rehydrated with the same props on the client.
+A [higher-order component](https://reactjs.org/docs/higher-order-components.html) for prerendering components in your pages that will later be hydrated with the same props on the client.
 
 ```js
 asIsland(componentName, Component, options)
 ```
 
-- `componentName`: the name of the component as passed to `rehydrateIslands` *(string, required)*
+- `componentName`: the name of the component as passed to `hydrateIslands` *(string, required)*
 - `Component`: any React component whose props can be serialised with `JSON.stringify` *(React component, required)*
 - `options`: *(object)*
   - `islandTag`: the HTML element to wrap the component with *(string, default: 'div')*
   - `islandProps`: any props to be passed to the island element *(object, default: {})*
 
-#### `rehydrateIslands`
+#### `hydrateIslands`
 
-Used by the browser JS bundle to [rehydrate](https://reactjs.org/docs/react-dom.html#hydrate) any components that were prerendered using the `asIsland` higher-order component.
+Used by the browser JS bundle to [hydrate](https://reactjs.org/docs/react-dom.html#hydrate) any components that were prerendered using the `asIsland` higher-order component.
 
 ```js
-rehydrateIslands(components)
+hydrateIslands(components)
 ```
 
-- `components`: an object containing the components to be rehydrated, keyed by the `componentName` values used in `asIsland` *(object, required)*
+- `components`: an object containing the components to be hydrated, keyed by the `componentName` values used in `asIsland` *(object, required)*
 
-#### Example usage of isomorphic helpers
+#### Example usage of hydration helpers
 
 Export a version of your component wrapped with the `asIsland` higher-order component:
 
@@ -138,22 +138,22 @@ export default function MyPage () {
 }
 ```
 
-Finally, ensure the original component is imported into `entry.client.js` and passed to `rehydrateIslands`:
+Finally, ensure the original component is imported into `entry.client.js` and passed to `hydrateIslands`:
 
 ```js
 import WelcomeBanner from '../components/welcome_banner/welcome_banner'
-rehydrateIslands({ WelcomeBanner })
+hydrateIslands({ WelcomeBanner })
 ```
 
 Your component will appear inside a wrapper tag in your prerendered HTML:
 
 ```html
 <div
-  data-sanblas-hydrate-as='WelcomeBanner'
-  data-sanblas-hydrate-with='{\"alertMessage\":\"hi\"}'
+  data-tropical-hydrate-as='WelcomeBanner'
+  data-tropical-hydrate-with='{\"alertMessage\":\"hi\"}'
 >
   ...
 </div>
 ```
 
-This element will be detected by `rehydrateIslands` and your component will be rehydrated with its original props.
+This element will be detected by `hydrateIslands` and your component will be hydrated with its original props.

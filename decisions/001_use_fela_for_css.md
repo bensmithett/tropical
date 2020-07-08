@@ -12,7 +12,7 @@ So I've been enamoured with the idea of auto-generated, single-purpose CSS class
 
 A major benefit of the approach taken by these libraries is that the [growth of your app's CSS tapers off over time](https://ryantsao.com/blog/virtual-css-with-styletron#non-growing-stylesheets), rather than growing linearly as you add more styles, because it becomes more likely that a property/value combination can be reused.
 
-For many kinds of site, this approach means the CSS needed for an entire page is negligible enough that it can be inlined in the `<head>`. For example, the [San Blas homepage](https://sanblas.netlify.com/) currently has around 3kb of inline `<style>` tags. After gzip, we're talking about roughly **1kb difference** to HTML payload size with the bonus of **zero network requests for CSS**.
+For many kinds of site, this approach means the CSS needed for an entire page is negligible enough that it can be inlined in the `<head>`. For example, the [Tropical homepage](https://tropicaljs.netlify.app/) currently has around 3kb of inline `<style>` tags. After gzip, we're talking about roughly **1kb difference** to HTML payload size with the bonus of **zero network requests for CSS**.
 
 Choosing to inline a page's atomic CSS allows me to sidestep extra build complexity ([CSS file extraction](https://webpack.js.org/plugins/mini-css-extract-plugin/)) and other popular but complex optimisations ([Critical CSS](https://www.smashingmagazine.com/2015/08/understanding-critical-css/), [splitting CSS into chunks](https://webpack.js.org/guides/code-splitting/)).
 

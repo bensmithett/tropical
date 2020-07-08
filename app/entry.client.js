@@ -1,10 +1,10 @@
 import { createRenderer } from 'fela'
 import { rehydrate } from 'fela-dom'
-import { rehydrateIslands } from './isomorphic_helpers'
+import { hydrateIslands } from './hydration_helpers'
 
-// Rehydrate Fela styles
+// Hydrate Fela styles
 const felaRenderer = createRenderer()
 rehydrate(felaRenderer)
 
-// Rehydrate San Blas islands
-rehydrateIslands({}, felaRenderer)
+// Hydrate Tropical islands
+hydrateIslands({}, felaRenderer)

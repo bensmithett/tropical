@@ -69,7 +69,7 @@ export default function DocsLayout ({ children }) {
               </li>
 
               <li>
-                <a href='#isomorphic_helpersjs'><code>ismorphic_helpers.js</code></a>
+                <a href='#hydration_helpersjs'><code>hydration_helpers.js</code></a>
 
                 <ul className={list}>
                   <li>
@@ -77,11 +77,11 @@ export default function DocsLayout ({ children }) {
                   </li>
 
                   <li>
-                    <a href='#rehydrateislands'><code>rehydrateIslands</code></a>
+                    <a href='#hydrateislands'><code>hydrateIslands</code></a>
                   </li>
 
                   <li>
-                    <a href='#example-usage-of-isomorphic-helpers'>Example usage</a>
+                    <a href='#example-usage-of-hydration-helpers'>Example usage</a>
                   </li>
                 </ul>
               </li>

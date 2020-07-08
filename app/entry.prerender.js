@@ -7,7 +7,7 @@ This one...
 - creates a JSON Feed
 - sets up Fela and Helmet so they can be used in pages and components
 
-...but San Blas doesn't care *how* you generate your HTML files. Change this at your leisure!
+...but Tropical doesn't care *how* you generate your HTML files. Change this at your leisure!
 */
 
 import packageJSON from '../package.json'
@@ -21,7 +21,6 @@ import { RendererProvider } from 'react-fela'
 import { renderToMarkup } from 'fela-dom'
 import { Helmet } from 'react-helmet'
 import { cssReset } from './components/global_css'
-import documentTemplate from './layouts/document_template'
 import DefaultLayout from './layouts/default_layout'
 
 export default function prerender (manifest, mode) {
@@ -132,7 +131,7 @@ function cleanURLPathForPage (sourceFile) {
 }
 
 function buildJSONFeedFile (pageProps) {
-  const { siteURL, feedTitle } = packageJSON.sanblas
+  const { siteURL, feedTitle } = packageJSON.tropical
   const { posts } = pageProps
 
   // A minimal JSON Feed (see https://jsonfeed.org/version/1)
@@ -162,4 +161,26 @@ function buildJSONFeedFile (pageProps) {
     if (err) throw err
     console.log(chalk.green(`🏝  JSON Feed built: ${outputFilePath}`))
   })
+}
+
+function documentTemplate ({
+  stylesHTML,
+  bodyHTML,
+  helmet,
+  clientBundlePath
+}) {
+  return `<!doctype html>
+<html ${helmet.htmlAttributes.toString()}>
+  <head>
+    ${helmet.title.toString()}
+    ${helmet.meta.toString()}
+    ${helmet.link.toString()}
+    ${stylesHTML}
+  </head>
+  <body ${helmet.bodyAttributes.toString()}>
+    ${bodyHTML}
+    <script src='${clientBundlePath}'></script>
+  </body>
+</html>
+  `
 }

@@ -6,7 +6,7 @@ export default function Banner () {
 
   return (
     <div className={css(styles.root)}>
-      <h1 className={css(styles.heading)}>🏝 San Blas</h1>
+      <h1 className={css(styles.heading)}>🏝 Tropical</h1>
       <p className={css(styles.subheading)}>
         A flexible, component-first static site generator.
       </p>
@@ -25,7 +25,7 @@ export default function Banner () {
 
       <nav className={css(styles.nav)}>
         <a className={css(styles.link)} href='/docs'>Docs</a>
-        <a className={css(styles.link)} href='https://github.com/bensmithett/sanblas'>GitHub</a>
+        <a className={css(styles.link)} href='https://github.com/bensmithett/tropical'>GitHub</a>
       </nav>
     </div>
   )
