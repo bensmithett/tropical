@@ -13,8 +13,8 @@ export function asIsland (componentName, Component, {
 
     return (
       <Island
-        data-sanblas-hydrate-as={componentName}
-        data-sanblas-hydrate-with={hydrationData}
+        data-tropical-hydrate-as={componentName}
+        data-tropical-hydrate-with={hydrationData}
         {...islandProps}
       >
         <Component {...props} />
@@ -26,9 +26,9 @@ export function asIsland (componentName, Component, {
 }
 
 export function hydrateIslands (islands, felaRenderer) {
-  document.querySelectorAll('[data-sanblas-hydrate-as]').forEach(island => {
-    const Component = islands[island.dataset.sanblasHydrateAs]
-    const componentProps = JSON.parse(island.dataset.sanblasHydrateWith)
+  document.querySelectorAll('[data-tropical-hydrate-as]').forEach(island => {
+    const Component = islands[island.dataset.tropicalHydrateAs]
+    const componentProps = JSON.parse(island.dataset.tropicalHydrateWith)
     const element = (
       <RendererProvider renderer={felaRenderer}>
         <Component {...componentProps} />

@@ -1,7 +1,7 @@
 /*
 This is the JS file loaded in the browser by all static pages.
 
-⚠️ Client-side JS is totally optional in San Blas! ⚠️
+⚠️ Client-side JS is totally optional in Tropical! ⚠️
 You can delete everything in here if you don't need it.
 
 Or you can run whatever client-side JS you do need:
@@ -10,7 +10,7 @@ Analytics snippets, ReactDOM.render(), fancy graphs, etc...
 
 /*
 ⚛️ Optional:
-Hydrate prerendered React/Fela components using San Blas hydration helpers.
+Hydrate prerendered React/Fela components using Tropical hydration helpers.
 
 If you wrap components in your pages with the asIsland() HOC, the following code
 will hydrate those components with the same props they were rendered with.
@@ -28,7 +28,7 @@ import { hydrateIslands } from './hydration_helpers'
 const felaRenderer = createRenderer()
 rehydrate(felaRenderer)
 
-// Hydrate San Blas islands
+// Hydrate Tropical islands
 import WelcomeBanner from './components/welcome_banner/welcome_banner'
 
 hydrateIslands({

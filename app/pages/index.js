@@ -2,7 +2,7 @@
 
 // Every page should export a `meta` object with at least a title and description.
 export const meta = {
-  title: 'Your San Blas site',
+  title: 'Your Tropical site',
   description: ''
 }
 
@@ -21,7 +21,7 @@ import { WelcomeBannerIsland } from '../components/welcome_banner/welcome_banner
 export default function IndexPage ({ posts }) {
   return (
     <>
-      <WelcomeBannerIsland alertMessage='An yeel itoe' />
+      <WelcomeBannerIsland alertMessage='Hello!' />
       <PostList posts={posts} />
     </>
   )

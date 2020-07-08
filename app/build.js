@@ -32,7 +32,7 @@ const shared = {
       loader: 'file-loader',
       options: {
         name: '[path][name].[contenthash].[ext]',
-        publicPath: `${mode === 'production' ? packageJSON.sanblas.siteURL : ''}/`
+        publicPath: `${mode === 'production' ? packageJSON.tropical.siteURL : ''}/`
       }
     }),
 

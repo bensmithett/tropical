@@ -7,7 +7,7 @@ This one...
 - creates a JSON Feed
 - sets up Fela and Helmet so they can be used in pages and components
 
-...but San Blas doesn't care *how* you generate your HTML files. Change this at your leisure!
+...but Tropical doesn't care *how* you generate your HTML files. Change this at your leisure!
 */
 
 import packageJSON from '../package.json'
@@ -131,7 +131,7 @@ function cleanURLPathForPage (sourceFile) {
 }
 
 function buildJSONFeedFile (pageProps) {
-  const { siteURL, feedTitle } = packageJSON.sanblas
+  const { siteURL, feedTitle } = packageJSON.tropical
   const { posts } = pageProps
 
   // A minimal JSON Feed (see https://jsonfeed.org/version/1)
