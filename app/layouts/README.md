@@ -1,11 +1,11 @@
 # Layouts
 
-Layouts, a concept borrowed from [Rails](https://api.rubyonrails.org/classes/ActionView/Layouts.html), allow you to template the HTML _around_ your page content.
+Layouts allow you to template the HTML _around_ your page content (concept borrowed from [Rails](https://api.rubyonrails.org/classes/ActionView/Layouts.html)).
 
 This could include things like:
 
 - Tags for your `<head>`
-- "Wrapper" divs, or a shared header, footer or sidebar
+- A shared header, footer or sidebar
 
 Unlike Rails, you don't need to directly template your layout's `html`, `head` or `body` tags. Instead, manage those tags with `Helmet` and the Tropical prerender function will put everything in the right place in the final rendered HTML document.
 

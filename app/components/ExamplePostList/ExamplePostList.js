@@ -1,7 +1,7 @@
 import React from 'react'
 import { useFela } from 'react-fela'
 
-export default function PostList ({ posts }) {
+export default function ExamplePostList ({ posts }) {
   const { css } = useFela()
 
   return (

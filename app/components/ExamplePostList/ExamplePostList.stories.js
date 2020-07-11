@@ -1,10 +1,10 @@
 import React from 'react'
-import PostList from './post_list'
+import ExamplePostList from './ExamplePostList'
 
-export default { title: 'PostList' }
+export default { title: 'ExamplePostList' }
 
 export const basic = () => (
-  <PostList
+  <ExamplePostList
     posts={[
       {
         urlPath: 'post-1',

@@ -20,8 +20,8 @@ import { createRenderer } from 'fela'
 import { RendererProvider } from 'react-fela'
 import { renderToMarkup } from 'fela-dom'
 import { Helmet } from 'react-helmet'
-import { cssReset } from './components/global_css'
-import DefaultLayout from './layouts/default_layout'
+import cssReset from './components/cssReset'
+import DefaultLayout from './layouts/DefaultLayout'
 
 export default function prerender (manifest, mode) {
   /*

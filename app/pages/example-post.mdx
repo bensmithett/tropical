@@ -19,10 +19,10 @@ If you remove the `collection` and `date` from this file's `meta`, this will jus
 
 MDX lets you render JSX alongside your Markdown, so you can include custom HTML...
 
-import island from '../images/island.jpg'
+import image from '../components/ExampleComponent/gunayala.jpg'
 
 <figure>
-  <img src={island} alt='An island' width={400} />
+  <img src={image} alt='Guna Yala, Panama' width={400} />
   <figcaption>MDX is pretty cool...</figcaption>
 </figure>
 
@@ -30,22 +30,22 @@ import island from '../images/island.jpg'
 
 ... as well as reuse existing components. Note that every page receives the `posts` collection as a prop.
 
-import PostList from '../components/post_list/post_list'
+import ExamplePostList from '../components/ExamplePostList/ExamplePostList'
 
-<PostList posts={props.posts} />
+<ExamplePostList posts={props.posts} />
 
 ---
 
 Remember, components are only prerendered by default.
 
-If you want to automatically rehydrate on the client (aka isomorphic/universal) you'll need to import a component wrapped with the `asIsland` higher order component.
+If you want to automatically [hydrate](https://reactjs.org/docs/react-dom.html#hydrate) a component on the client, you'll need to import a component wrapped with the `asIsland` higher order component.
 
-import WelcomeBanner, { WelcomeBannerIsland } from '../components/welcome_banner/welcome_banner'
+import ExampleComponent, { ExampleComponentIsland } from '../components/ExampleComponent/ExampleComponent'
 
 ## Prerendered only
 
-<WelcomeBanner alertMessage='An yeel itoe' />
+<ExampleComponent alertMessage="This component isn't hydrated, so this alert will never be seen" />
 
 ## Rehydrated
 
-<WelcomeBannerIsland alertMessage='An yeel itoe' />
+<ExampleComponentIsland alertMessage="This component is hydrated, so this alert will be seen" />

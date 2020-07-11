@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useFela } from 'react-fela'
-import island from '../../images/island.jpg'
-import {asIsland} from '../../hydration_helpers'
+import image from './gunayala.jpg'
 
 const styles = {
   root: {
@@ -27,7 +26,7 @@ const styles = {
   }
 }
 
-export default function WelcomeBanner ({ alertMessage }) {
+export default function ExampleComponent ({ alertMessage }) {
   const { css } = useFela()
   const [ isMounted, setMounted ] = useState(false)
 
@@ -36,9 +35,9 @@ export default function WelcomeBanner ({ alertMessage }) {
   return (
     <div className={css(styles.root)}>
       <p>
-        Welcome to your <a href='https://github.com/bensmithett/tropical/'>Tropical</a> site!
+        Welcome to your <a href='https://tropical.js.org'>Tropical</a> site!
       </p>
-      <img src={island} alt='Guna Yala, Panama' className={css(styles.img)} />
+      <img src={image} alt='Guna Yala, Panama' className={css(styles.img)} />
       <p>
         <button
           className={css(styles.button)}
@@ -52,4 +51,7 @@ export default function WelcomeBanner ({ alertMessage }) {
   )
 }
 
-export const WelcomeBannerIsland = asIsland('WelcomeBanner', WelcomeBanner)
+// Remember, by default a component is only prerendered.
+// Use a version wrapped with the asIsland() helper to enable hydration in the browser.
+import { asIsland } from '../../hydrationHelpers'
+export const ExampleComponentIsland = asIsland('ExampleComponent', ExampleComponent)
