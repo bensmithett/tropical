@@ -1,4 +1,4 @@
-export function cssReset (felaRenderer) {
+export default function cssReset (felaRenderer) {
   felaRenderer.renderStatic({
     fontSize: '16px',
     fontFamily: 'sans-serif',

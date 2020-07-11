@@ -1,15 +1,15 @@
 # Components
 
-Components are the building blocks that make up your pages and layouts. They're where you define HTML, CSS and (optionally) client-side JS behaviour. Build them quickly in Storybook, then compose them into pages.
+Components are the building blocks that make up your pages and layouts. They're where you define HTML, CSS and (optionally) client-side JS behaviour. Build them quickly in Storybook then compose them into pages.
 
 Tropical components are built with 2 opinionated conventions:
 
-- Style with Fela
+- Style with [Fela](https://fela.js.org/)
 - Opt-in client-side JS
 
 ## Style with Fela
 
-Tropical uses [Fela](https://fela.js.org/) for styling components. See the Fela docs and provided examples, but essentially you write CSS-in-JS that looks like inline styles, which Fela translates into optimised atomic classes:
+Tropical uses [Fela](https://fela.js.org/) for styling components. See the [Fela docs](https://fela.js.org/) for more info, but essentially you write CSS-in-JS that looks like inline styles, which Fela translates into optimised atomic classes:
 
 ```js
 <button className={css({
@@ -24,7 +24,7 @@ Tropical uses [Fela](https://fela.js.org/) for styling components. See the Fela 
 
 By default, Tropical components are **only prerendered** and have **no client-side JS behaviour**.
 
-For example, by default this button will appear in the page's prerendered HTML, but nothing will happen when it's clicked.
+For example, this button will appear in the page's prerendered HTML, but by default nothing will happen when it's clicked.
 
 ```js
 const HiButton = () => (
@@ -36,7 +36,7 @@ const HiButton = () => (
 
 ### Progressive enhancement
 
-Prerendered component HTML can be [progressively enhanced](https://en.wikipedia.org/wiki/Progressive_enhancement) in the browser by any client-side JS added to `entry.client.js`.
+Your prerendered HTML can be [progressively enhanced](https://en.wikipedia.org/wiki/Progressive_enhancement) in the browser by any client-side JS added to `client.js`.
 
 ### React component hydration
 
@@ -49,4 +49,4 @@ In many React-based frameworks, the top-level page component is hydrated along w
 
 By contrast, Tropical requires you to **opt specific components in** to hydration (you may of course choose to hydrate your top-level component).
 
-Helpers are provided in `hydration_helpers.js` simplify hydration (though you may hydrate manually in `entry.client.js`).
+Helpers are provided in `hydrationHelpers.js` simplify hydration (though you may hydrate manually in `client.js`).

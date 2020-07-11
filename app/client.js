@@ -22,15 +22,15 @@ If you remove the following code, the prerendered component won't be hydrated.
 
 import { createRenderer } from 'fela'
 import { rehydrate } from 'fela-dom'
-import { hydrateIslands } from './hydration_helpers'
+import { hydrateIslands } from './hydrationHelpers'
 
 // Hydrate Fela styles
 const felaRenderer = createRenderer()
 rehydrate(felaRenderer)
 
 // Hydrate Tropical islands
-import WelcomeBanner from './components/welcome_banner/welcome_banner'
+import ExampleComponent from './components/ExampleComponent/ExampleComponent'
 
 hydrateIslands({
-  WelcomeBanner
+  ExampleComponent
 }, felaRenderer)
