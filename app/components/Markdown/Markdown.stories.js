@@ -9,7 +9,7 @@ export const normal = () => (
     <Markdown>
       <h2>Heading level 2</h2>
       <p>
-        Some text <code>some inline code</code> with <a href='https://en.wikipedia.org/wiki/Guna_Yala'>a link</a>.
+        Some text <code>some inline code</code> with a <a href='https://en.wikipedia.org/wiki/Guna_Yala'>link</a>.
       </p>
 
       <ul>
