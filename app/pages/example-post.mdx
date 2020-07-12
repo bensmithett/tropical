@@ -1,0 +1,51 @@
+<!--
+Example of a page written in Markdown (MDX) in a .mdx file.
+
+Every page should export a `meta` object with at least a `title` and `description`.
+This one also exports a `collection` and `date` to signify it's part of the "posts" collection.
+-->
+export const meta = {
+  title: 'Example Post',
+  description: 'An example post written in MDX',
+  collection: 'posts',
+  date: '2020-11-04'
+}
+
+# Your example blog post
+
+You can write your posts and pages in either MDX or JS.
+
+If you remove the `collection` and `date` from this file's `meta`, this will just be a standalone page rather than part of your `posts` collection.
+
+MDX lets you render JSX alongside your Markdown, so you can include custom HTML...
+
+import image from '../components/ExampleComponent/gunayala.jpg'
+
+<figure>
+  <img src={image} alt='Guna Yala, Panama' width={400} />
+  <figcaption>MDX is pretty cool...</figcaption>
+</figure>
+
+----
+
+... as well as reuse existing components. Note that every page receives the `posts` collection as a prop.
+
+import ExamplePostList from '../components/ExamplePostList/ExamplePostList'
+
+<ExamplePostList posts={props.posts} />
+
+---
+
+Remember, components are only prerendered by default.
+
+If you want to automatically [hydrate](https://reactjs.org/docs/react-dom.html#hydrate) a component on the client, you'll need to import a component wrapped with the `asIsland` higher order component.
+
+import ExampleComponent, { ExampleComponentIsland } from '../components/ExampleComponent/ExampleComponent'
+
+## Prerendered only
+
+<ExampleComponent alertMessage="This component isn't hydrated, so this alert will never be seen" />
+
+## Rehydrated
+
+<ExampleComponentIsland alertMessage="This component is hydrated, so this alert will be seen" />
