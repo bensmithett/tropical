@@ -9,6 +9,7 @@ This is a [template repo](https://github.blog/2019-06-06-generate-new-repositori
 Welcome to your new [Tropical](https://tropical.js.org/) site!
 
 - Install dependencies: `yarn` or `npm install`
-- `yarn start` or `npm start` & visit http://localhost:5000
+- Start [Storybook](https://storybook.js.org/): `yarn storybook` or `npm run storybook`
+- Start the preview server: `yarn start` or `npm start` & visit http://localhost:5000
 
 Explore the `app` folder or [read the docs](https://tropical.js.org/) for more.
