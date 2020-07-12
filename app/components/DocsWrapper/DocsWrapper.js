@@ -1,7 +1,7 @@
 import React from 'react'
 import { useFela } from 'react-fela'
 
-export default function DocsLayout ({ children }) {
+export default function DocsWrapper ({ children }) {
   const { css } = useFela()
 
   const list = css({

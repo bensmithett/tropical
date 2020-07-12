@@ -1,12 +1,12 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import Background from '../components/background/background'
-import DocsLayout from '../components/docs_layout/docs_layout'
-import Header from '../components/header/header'
-import Markdown from '../components/markdown/markdown'
-import favicon from '../images/favicon.png'
+import Background from '../components/Background/Background'
+import DocsWrapper from '../components/DocsWrapper/DocsWrapper'
+import Header from '../components/Header/Header'
+import Markdown from '../components/Markdown/Markdown'
+import favicon from './favicon.png'
 
-export default function DefaultLayout ({ meta, children }) {
+export default function DocsLayout ({ meta, children }) {
   return (
     <Background wide>
       <Helmet>
@@ -18,11 +18,11 @@ export default function DefaultLayout ({ meta, children }) {
       </Helmet>
 
       <Header />
-      <DocsLayout>
+      <DocsWrapper>
         <Markdown>
           {children}
         </Markdown>
-      </DocsLayout>
+      </DocsWrapper>
     </Background>
   )
 }
