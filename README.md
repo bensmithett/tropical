@@ -1,4 +1,4 @@
-# [Tropical](https://tropicaljs.netlify.app/) 🏝
+# [Tropical](https://tropical.js.org/) 🏝
 
 This is a [template repo](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/). Click the green "Use this template" button 👆 to get started, or [read the docs](https://tropical.js.org/) to find out more about building static sites with Tropical.
 
