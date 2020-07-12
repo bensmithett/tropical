@@ -1,9 +1,9 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import Background from '../components/background/background'
-import Banner from '../components/banner/banner'
-import Markdown from '../components/markdown/markdown'
-import favicon from '../images/favicon.png'
+import Background from '../components/Background/Background'
+import Banner from '../components/Banner/Banner'
+import Markdown from '../components/Markdown/Markdown'
+import favicon from './favicon.png'
 
 export default function DefaultLayout ({ meta, children }) {
   return (

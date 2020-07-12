@@ -64,7 +64,7 @@ Client JS bundle Webpack config
 const clientConfig = mode => {
   return {
     entry: {
-      client: path.join(__dirname, './entry.client.js')
+      client: path.join(__dirname, './client.js')
     },
     mode,
     module: {
@@ -92,7 +92,7 @@ Prerender JS bundle Webpack config
 const prerenderConfig = (mode) => {
   return {
     entry: {
-      prerender: path.join(__dirname, './entry.prerender.js')
+      prerender: path.join(__dirname, './prerender.js')
     },
     target: 'node',
     node: {

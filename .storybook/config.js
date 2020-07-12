@@ -2,7 +2,7 @@ import { configure, addDecorator, addParameters } from '@storybook/react'
 import React from 'react'
 import {createRenderer} from 'fela'
 import {RendererProvider} from 'react-fela'
-import {cssReset} from '../app/components/global_css'
+import cssReset from '../app/components/cssReset'
 
 // Setup Fela client runtime
 const renderer = createRenderer({devMode: true})
