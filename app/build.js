@@ -38,7 +38,7 @@ const shared = {
 
     // Transform MDX files into React components.
     mdx: {
-      test: /\.mdx$/,
+      test: /\.mdx?$/,
       use: [
         'babel-loader',
         {

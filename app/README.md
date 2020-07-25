@@ -1,4 +1,4 @@
-# Tropical's 4 core files
+# Core files
 
 ## `build.js`
 
@@ -45,3 +45,24 @@ Hydrates any components in the browser that were prerendered using `asIsland`.
 #### Props
 
 - `components`: an object containing the components to be hydrated *(object, required)*
+
+### Example
+
+Tropical comes with an [`ExampleComponent`](https://github.com/bensmithett/tropical/blob/master/app/components/ExampleComponent/ExampleComponent.js) that uses the hydration helpers:
+
+1. [Wrap your component in this `asIsland` higher order component](https://github.com/bensmithett/tropical/blob/master/app/components/ExampleComponent/ExampleComponent.js#L54-L57).
+2. [Use that wrapped version](https://github.com/bensmithett/tropical/blob/master/app/pages/index.js#L12-L13) when using your component in other components or pages, exactly as you would if using the original.
+3. [Import the component in `client.js`](https://github.com/bensmithett/tropical/blob/master/app/client.js#L31-L36) and pass it to `hydrateIslands()`.
+
+Your component will be prerendered inside a wrapper tag in your HTML:
+
+```html
+<div
+  data-tropical-hydrate-as='ExampleComponent'
+  data-tropical-hydrate-with='{\"alertMessage\":\"hi\"}'
+>
+  ...
+</div>
+```
+
+This element will be detected by the `hydrateIslands()` call in `client.js` and your component will be hydrated with the props you originally passed it.

@@ -1,0 +1,21 @@
+import DocsLayout from '../../layouts/DocsLayout'
+
+export const meta = {
+  title: 'Quick start | Tropical',
+  description: '',
+  Layout: DocsLayout
+}
+
+# Quick start
+
+Click the green *Use this template* button [on GitHub](https://github.com/bensmithett/tropical) and clone your new repo.
+
+Install dependencies: `yarn` (or `npm install`)
+
+Tropical comes with 3 package scripts:
+
+- `yarn storybook` starts Storybook at http://localhost:9000
+- `yarn start` builds the site in `development` mode and serves it at http://localhost:5000
+- `yarn build` builds the site in `production` mode into the `output` directory
+
+Start Storybook to build and style your `components`, then use them in MDX or JS files in `pages`. When you're ready, `yarn build` and deploy the `output` folder to your favourite static host!

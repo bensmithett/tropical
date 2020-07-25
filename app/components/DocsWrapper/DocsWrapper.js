@@ -1,6 +1,16 @@
 import React from 'react'
 import { useFela } from 'react-fela'
 
+const pages = {
+  'Tropical Documentation': '/docs',
+  'Quick start': '/docs/quick-start',
+  'Global configuration': '/docs/global-configuration',
+  'Pages': '/docs/pages',
+  'Components': '/docs/components',
+  'Layouts': '/docs/layouts',
+  'Core Files': '/docs/core-files'
+}
+
 export default function DocsWrapper ({ children }) {
   const { css } = useFela()
 
@@ -36,57 +46,9 @@ export default function DocsWrapper ({ children }) {
         })}
       >
         <ul className={list}>
-          <li>
-            <a href='#getting-started'>Getting started</a>
-          </li>
-
-          <li>
-            <a href='#global-configuration'>Global configuration</a>
-          </li>
-
-          <li>
-            <a href='#pages'>Pages</a>
-          </li>
-
-          <li>
-            <a href='#components'>Components</a>
-          </li>
-
-          <li>
-            <a href='#core-files'>Core files</a>
-
-            <ul className={list}>
-              <li>
-                <a href='#buildjs'><code>build.js</code></a>
-              </li>
-
-              <li>
-                <a href='#entryclientjs'><code>entry.client.js</code></a>
-              </li>
-
-              <li>
-                <a href='#entryprerenderjs'><code>entry.prerender.js</code></a>
-              </li>
-
-              <li>
-                <a href='#hydration_helpersjs'><code>hydration_helpers.js</code></a>
-
-                <ul className={list}>
-                  <li>
-                    <a href='#asisland'><code>asIsland</code></a>
-                  </li>
-
-                  <li>
-                    <a href='#hydrateislands'><code>hydrateIslands</code></a>
-                  </li>
-
-                  <li>
-                    <a href='#example-usage-of-hydration-helpers'>Example usage</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
+          {
+            Object.keys(pages).map((title) => <li key={title}><a href={pages[title]}>{title}</a></li>)
+          }
         </ul>
       </nav>
 

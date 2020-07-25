@@ -1,0 +1,26 @@
+import DocsLayout from '../../layouts/DocsLayout'
+
+export const meta = {
+  title: 'Pages | Tropical',
+  description: '',
+  Layout: DocsLayout
+}
+
+# Pages
+
+Each JS and MDX file in the `pages` directory is compiled into a HTML file by `prerender.js`.
+
+Each page should export:
+
+- `default`: a React component (JS pages only; MDX pages export this automatically)
+- `meta`: *(object, required)*
+  - `title` *(string, required)*
+  - `description` *(string, required)*
+  - `collection` *(string, optional)*
+    - `'posts'` is the only value supported by default, but you could extend Tropical to handle multiple collection types.
+  - `date`: any date string parsable by JS `new Date()` *(string, required if `collection: 'posts'` is set)*
+  - `Layout`: [layout](/docs/layouts) component (optional, default: [`DefaultLayout`](https://github.com/bensmithett/tropical/blob/master/app/layouts/DefaultLayout.js))
+
+## Example
+
+Check out the [source for this page!](https://github.com/bensmithett/tropical/blob/docs/app/pages/docs/pages.mdx)
