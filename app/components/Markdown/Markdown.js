@@ -121,6 +121,13 @@ const styles = {
     maxWidth: '100%',
     overflow: 'auto',
     padding: '10px'
+  },
+
+  '& hr': {
+    background: 'rgba(255, 255, 255, 0.3)',
+    border: 0,
+    height: '1px',
+    margin: '2rem 0'
   }
 }
 

@@ -1,8 +1,7 @@
 import React from 'react'
 import { useFela } from 'react-fela'
 
-const pages = {
-  'Tropical Documentation': '/docs',
+export const pages = {
   'Quick start': '/docs/quick-start',
   'Global configuration': '/docs/global-configuration',
   'Pages': '/docs/pages',
