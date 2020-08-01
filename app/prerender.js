@@ -20,17 +20,19 @@ import { createRenderer } from 'fela'
 import { RendererProvider } from 'react-fela'
 import { renderToMarkup } from 'fela-dom'
 import { Helmet } from 'react-helmet'
+import { MDXProvider } from '@mdx-js/react'
 import cssReset from './components/cssReset'
 import DefaultLayout from './layouts/DefaultLayout'
+import CodeBlock from './components/CodeBlock/CodeBlock'
 
-export default function prerender (manifest, mode) {
+export default function prerender(manifest, mode) {
   /*
   1. Require every JS and MDX file in the `pages` directory and create a useful collection of 'page' objects.
   (uses Webpack's context module API, see https://webpack.js.org/guides/dependency-management/)
   */
   const pages = []
   const req = require.context('./pages', true, /^(?!.*\/_).*(js|mdx)$/)
-  req.keys().forEach(sourceFilePath => {
+  req.keys().forEach((sourceFilePath) => {
     const pageModule = req(sourceFilePath)
     const sourceFile = path.parse(sourceFilePath)
 
@@ -52,7 +54,6 @@ export default function prerender (manifest, mode) {
   const pageProps = { posts }
   buildJSONFeedFile(pageProps)
 
-
   /*
   3. Build a HTML file for each page
   */
@@ -68,20 +69,13 @@ export default function prerender (manifest, mode) {
   })
 }
 
-function collectPosts (pages) {
+function collectPosts(pages) {
   return pages
     .filter((page) => page.meta && page.meta.collection === 'posts')
     .sort((a, b) => new Date(b.meta.date) - new Date(a.meta.date))
 }
 
-function buildPageFile ({
-  PageComponent,
-  meta,
-  urlPath,
-  manifest,
-  mode,
-  pageProps = {}
-}) {
+function buildPageFile({ PageComponent, meta, urlPath, manifest, mode, pageProps = {} }) {
   // 1. Create a Fela renderer to be provided for components in the page
   const felaRenderer = createRenderer({
     devMode: mode === 'development'
@@ -93,9 +87,16 @@ function buildPageFile ({
   const Layout = meta.Layout || DefaultLayout
   const bodyHTML = ReactDOMServer.renderToString(
     <RendererProvider renderer={felaRenderer}>
-      <Layout meta={meta}>
-        <PageComponent {...pageProps} />
-      </Layout>
+      <MDXProvider
+        components={{
+          pre: (props) => <div {...props} />,
+          code: CodeBlock
+        }}
+      >
+        <Layout meta={meta}>
+          <PageComponent {...pageProps} />
+        </Layout>
+      </MDXProvider>
     </RendererProvider>
   )
 
@@ -114,7 +115,7 @@ function buildPageFile ({
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true })
   const outputFilePath = `${outputDir}/index.html`
 
-  fs.writeFile(outputFilePath, renderedDocument, err => {
+  fs.writeFile(outputFilePath, renderedDocument, (err) => {
     if (err) throw err
     console.log(chalk.green(`🏝  Page built: ${outputFilePath}`))
   })
@@ -122,15 +123,11 @@ function buildPageFile ({
 
 // Get clean URLs by naming all HTML files `index.html` in a folder with the same name as the source file.
 // (except source files called `index` - they can be output in place)
-function cleanURLPathForPage (sourceFile) {
-  return path.join(
-    '/',
-    sourceFile.dir,
-    sourceFile.name === 'index' ? '' : sourceFile.name
-  )
+function cleanURLPathForPage(sourceFile) {
+  return path.join('/', sourceFile.dir, sourceFile.name === 'index' ? '' : sourceFile.name)
 }
 
-function buildJSONFeedFile (pageProps) {
+function buildJSONFeedFile(pageProps) {
   const { siteURL, feedTitle } = packageJSON.tropical
   const { posts } = pageProps
 
@@ -157,18 +154,13 @@ function buildJSONFeedFile (pageProps) {
 
   const outputFilePath = path.resolve(__dirname, '../output/feed.json')
 
-  fs.writeFile(outputFilePath, JSON.stringify(feed), err => {
+  fs.writeFile(outputFilePath, JSON.stringify(feed), (err) => {
     if (err) throw err
     console.log(chalk.green(`🏝  JSON Feed built: ${outputFilePath}`))
   })
 }
 
-function documentTemplate ({
-  stylesHTML,
-  bodyHTML,
-  helmet,
-  clientBundlePath
-}) {
+function documentTemplate({ stylesHTML, bodyHTML, helmet, clientBundlePath }) {
   return `<!doctype html>
 <html ${helmet.htmlAttributes.toString()}>
   <head>
@@ -184,3 +176,10 @@ function documentTemplate ({
 </html>
   `
 }
+
+// By default prism-react-renderer only includes a subset of the languages Prism supports
+// https://github.com/FormidableLabs/prism-react-renderer#faq
+// Uncomment this to enable syntax highlighting for additional languages;
+// import Prism from 'prism-react-renderer/prism'
+// ;(typeof global !== 'undefined' ? global : window).Prism = Prism
+// require('prismjs/components/prism-ruby')
