@@ -1,9 +1,8 @@
 // Example of a page written as a React component in a .js file.
 
-// Every page should export a `meta` object with at least a title and description.
+// Every page should export a `meta` object with at least a title.
 export const meta = {
-  title: 'Your Tropical site',
-  description: ''
+  title: 'Your Tropical site'
 }
 
 import React from 'react'

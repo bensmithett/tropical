@@ -1,8 +1,12 @@
 <!--
 Example of a page written in Markdown (MDX) in a .mdx file.
 
-Every page should export a `meta` object with at least a `title` and `description`.
-This one also exports a `collection` and `date` to signify it's part of the "posts" collection.
+Every page should export a `meta` object with at least a `title`.
+This one also exports:
+
+- `description` (used in the meta description tag)
+- `collection` with a value of 'posts' (so its included in the built-in 'posts' collection. You can create other collections too!)
+- `date` (used to order the 'posts' collection)
 -->
 export const meta = {
   title: 'Example Post',
