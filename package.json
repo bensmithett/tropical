@@ -35,7 +35,7 @@
   },
   "tropical": {
     "feedCollection": "posts",
-    "feedTitle": "Blog Posts on another Tropical site",
-    "siteURL": "https://example.org"
+    "feedTitle": "Tropical",
+    "siteURL": "https://tropical.js.org"
   }
 }

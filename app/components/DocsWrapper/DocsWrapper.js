@@ -5,6 +5,7 @@ export const pages = {
   'Quick start': '/docs/quick-start',
   'Global configuration': '/docs/global-configuration',
   'Pages': '/docs/pages',
+  'Collections': '/docs/collections',
   'Components': '/docs/components',
   'Layouts': '/docs/layouts',
   'Core Files': '/docs/core-files'
