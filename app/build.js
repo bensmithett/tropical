@@ -184,7 +184,7 @@ rimraf(path.resolve(__dirname, '../output/*'), err => {
         prerender(manifest, mode)
       } catch (err) {
         console.error(chalk.red('🏝  Error in prerender function...'))
-        console.error(chalk.red(err))
+        console.error(chalk.red(err.stack))
       }
     }
 

@@ -75,13 +75,25 @@ Read on to understand (or change!) some of the details involved in each step.
 */
 
 function gatherCollections(pages) {
-  return pages.reduce((collections, page) => {
+  const collections = pages.reduce((acc, page) => {
     if (page.meta.collection) {
-      if (!collections[page.meta.collection]) collections[page.meta.collection] = []
-      collections[page.meta.collection].push(page)
+      if (!acc[page.meta.collection]) acc[page.meta.collection] = []
+      acc[page.meta.collection].push(page)
     }
-    return collections
+    return acc
   }, {})
+
+  Object.keys(collections).forEach((collection) => {
+    collections[collection].sort((a, b) => {
+      if (a.meta.date && b.meta.date) {
+        return dayjs(a.meta.date).isSameOrBefore(b.meta.date) ? 1 : -1
+      } else {
+        return 0
+      }
+    })
+  })
+
+  return collections
 }
 
 function buildPageFile({ PageComponent, meta, urlPath, manifest, mode, pageProps = {} }) {
@@ -140,7 +152,7 @@ function cleanURLPathForPage(sourceFile) {
 
 function buildJSONFeedFile(pageProps) {
   const { siteURL, feedTitle, feedCollection } = packageJSON.tropical
-  const items = sortByDate(pageProps.collections[feedCollection])
+  const items = pageProps.collections[feedCollection]
 
   // A minimal JSON Feed (see https://jsonfeed.org/version/1)
   const feed = {
@@ -168,16 +180,6 @@ function buildJSONFeedFile(pageProps) {
   fs.writeFile(outputFilePath, JSON.stringify(feed), (err) => {
     if (err) throw err
     console.log(chalk.green(`🏝  JSON Feed built: ${outputFilePath}`))
-  })
-}
-
-function sortByDate(collection) {
-  return collection.sort((a, b) => {
-    if (a.meta.date && b.meta.date) {
-      return dayjs(a.meta.date).isSameOrBefore(b.meta.date) ? 1 : -1
-    } else {
-      return 0
-    }
   })
 }
 

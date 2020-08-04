@@ -11,11 +11,11 @@ import ExamplePostList from '../components/ExamplePostList/ExamplePostList'
 // Note we're importing ExampleComponent wrapped in asIsland, so it will be hydrated in the browser.
 import { ExampleComponentIsland } from '../components/ExampleComponent/ExampleComponent'
 
-export default function IndexPage ({ posts }) {
+export default function IndexPage ({ collections }) {
   return (
     <>
       <ExampleComponentIsland alertMessage='Hello!' />
-      <ExamplePostList posts={posts} />
+      <ExamplePostList posts={collections.posts} />
     </>
   )
 }
