@@ -152,7 +152,7 @@ function cleanURLPathForPage(sourceFile) {
 
 function buildJSONFeedFile(pageProps) {
   const { siteURL, feedTitle, feedCollection } = packageJSON.tropical
-  const items = pageProps.collections[feedCollection]
+  const items = pageProps.collections[feedCollection] || []
 
   // A minimal JSON Feed (see https://jsonfeed.org/version/1)
   const feed = {
