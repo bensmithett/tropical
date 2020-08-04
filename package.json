@@ -1,6 +1,6 @@
 {
   "name": "tropical",
-  "version": "6.1.0",
+  "version": "7.0.0",
   "scripts": {
     "start": "concurrently \"node ./app/build.js development\" \"serve\" --kill-others --prefix-colors=yellow.dim,cyan.dim",
     "build": "node ./app/build.js production",
@@ -18,6 +18,7 @@
     "babel-loader": "^8.0.6",
     "chalk": "^4.1.0",
     "concurrently": "^5.1.0",
+    "dayjs": "^1.8.31",
     "fela": "^11.1.2",
     "fela-dom": "^11.1.2",
     "file-loader": "^6.0.0",
@@ -33,7 +34,8 @@
     "webpack-manifest-plugin": "^2.2.0"
   },
   "tropical": {
+    "feedCollection": "posts",
     "feedTitle": "Blog Posts on another Tropical site",
-    "siteURL": ""
+    "siteURL": "https://example.org"
   }
 }
