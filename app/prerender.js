@@ -44,7 +44,7 @@ export default function prerender(manifest, mode) {
 
   /*
   2. Gather collections based on the meta.collection exported by each page.
-  We'll pass these collections to each page in step 4 below (so you can do things like list every blog post).
+  We'll pass these collections to each page in step 4 below (so you can do things like list your blog posts).
   */
   const collections = gatherCollections(pages)
   const pageProps = { collections }
