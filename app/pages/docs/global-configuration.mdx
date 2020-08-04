@@ -11,7 +11,7 @@ export const meta = {
 There are 2 config options in the `tropical` field in `package.json`:
 
 - `feedTitle`: the title of your [JSON Feed](https://jsonfeed.org/)
-- `feedCollection`: the collection to feature in your JSON Feed
+- `feedCollection`: the [collection](/docs/collections) to feature in your JSON Feed
 - `siteURL`: your site's root URL, e.g. `https://example.org`
   - Ensures images have absolute paths so they work in feed readers. It can be left blank if you're not publishing a feed, or if your content doesn't contain images.
   - For the curious: this is just used as [file-loader's `publicPath`](https://webpack.js.org/loaders/file-loader/#publicpath) by the Webpack config
