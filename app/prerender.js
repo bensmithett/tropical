@@ -1,13 +1,9 @@
 /*
-This module's default export (a function called `prerender`) is responsible for creating your HTML files.
-
-This one...
-
-- loops through JS and MDX files in the `pages` directory and renders a HTML file for each.
-- creates a JSON Feed
-- sets up Fela and Helmet so they can be used in pages and components
-
-...but Tropical doesn't care *how* you generate your HTML files. Change this at your leisure!
+The prerender function exported by this module builds your static site from the source in `pages`.
+Make it your own! You could alter this function to:
+- Generate a sitemap or XML RSS feed
+- Remove the JSON Feed if you don't need it
+- Build new pages based on different metadata (e.g. tag or date-based archive pages)
 */
 
 import packageJSON from '../package.json'
@@ -21,6 +17,9 @@ import { RendererProvider } from 'react-fela'
 import { renderToMarkup } from 'fela-dom'
 import { Helmet } from 'react-helmet'
 import { MDXProvider } from '@mdx-js/react'
+import dayjs from 'dayjs'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+dayjs.extend(isSameOrBefore)
 import cssReset from './components/cssReset'
 import DefaultLayout from './layouts/DefaultLayout'
 import CodeBlock from './components/CodeBlock/CodeBlock'
@@ -44,18 +43,19 @@ export default function prerender(manifest, mode) {
   })
 
   /*
-  2. Create a collection of blog posts (if you're not building a blog you can ignore this step!)
-  A blog must distinguish "posts" from other non-post pages, like your homepage.
-
-  By default we look for a `meta` export like this: { collection: 'posts', date: '2020-11-30' }
-  but you could determine "posts" however you like (e.g. they all live in a `posts` directory, etc)
+  2. Gather collections based on the meta.collection exported by each page.
+  We'll pass these collections to each page in step 4 below (so you can do things like list your blog posts).
   */
-  const posts = collectPosts(pages)
-  const pageProps = { posts }
+  const collections = gatherCollections(pages)
+  const pageProps = { collections }
+
+  /*
+  3. Build a JSON Feed for the feedCollection specified package.json.
+  */
   buildJSONFeedFile(pageProps)
 
   /*
-  3. Build a HTML file for each page
+  4. Build a HTML file for each page
   */
   pages.forEach(({ PageComponent, meta, urlPath }) => {
     buildPageFile({
@@ -69,10 +69,31 @@ export default function prerender(manifest, mode) {
   })
 }
 
-function collectPosts(pages) {
-  return pages
-    .filter((page) => page.meta && page.meta.collection === 'posts')
-    .sort((a, b) => new Date(b.meta.date) - new Date(a.meta.date))
+/*
+That's the gist of your prerender function!
+Read on to understand (or change!) some of the details involved in each step.
+*/
+
+function gatherCollections(pages) {
+  const collections = pages.reduce((acc, page) => {
+    if (page.meta.collection) {
+      if (!acc[page.meta.collection]) acc[page.meta.collection] = []
+      acc[page.meta.collection].push(page)
+    }
+    return acc
+  }, {})
+
+  Object.keys(collections).forEach((collection) => {
+    collections[collection].sort((a, b) => {
+      if (a.meta.date && b.meta.date) {
+        return dayjs(a.meta.date).isSameOrBefore(b.meta.date) ? 1 : -1
+      } else {
+        return 0
+      }
+    })
+  })
+
+  return collections
 }
 
 function buildPageFile({ PageComponent, meta, urlPath, manifest, mode, pageProps = {} }) {
@@ -82,7 +103,9 @@ function buildPageFile({ PageComponent, meta, urlPath, manifest, mode, pageProps
   })
   cssReset(felaRenderer)
 
-  // 2. Render the page body HTML
+  // 2. Render the page body HTML, wrapped in provider components that provide:
+  //    - Fela renderer
+  //    - Custom MDX component to add syntax highlighting to fenced code blocks
   if (!meta) throw new Error(`Page ${urlPath} does not export a meta object`)
   const Layout = meta.Layout || DefaultLayout
   const bodyHTML = ReactDOMServer.renderToString(
@@ -121,15 +144,15 @@ function buildPageFile({ PageComponent, meta, urlPath, manifest, mode, pageProps
   })
 }
 
-// Get clean URLs by naming all HTML files `index.html` in a folder with the same name as the source file.
-// (except source files called `index` - they can be output in place)
 function cleanURLPathForPage(sourceFile) {
+  // Get clean URLs by naming all HTML files `index.html` in a folder with the same name as the source file.
+  // (except source files called `index` - they can be output in place)
   return path.join('/', sourceFile.dir, sourceFile.name === 'index' ? '' : sourceFile.name)
 }
 
 function buildJSONFeedFile(pageProps) {
-  const { siteURL, feedTitle } = packageJSON.tropical
-  const { posts } = pageProps
+  const { siteURL, feedTitle, feedCollection } = packageJSON.tropical
+  const items = pageProps.collections[feedCollection]
 
   // A minimal JSON Feed (see https://jsonfeed.org/version/1)
   const feed = {
@@ -137,7 +160,7 @@ function buildJSONFeedFile(pageProps) {
     title: feedTitle,
     home_page_url: siteURL,
     feed_url: `${siteURL}/feed.json`,
-    items: posts.map(({ PageComponent, urlPath, meta }) => ({
+    items: items.map(({ PageComponent, urlPath, meta }) => ({
       id: urlPath,
       url: `${siteURL}${urlPath}`,
       title: meta.title,

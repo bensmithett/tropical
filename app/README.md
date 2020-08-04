@@ -1,5 +1,9 @@
 # Core files
 
+These four files are the "framework" part of Tropical (if you can call it that), but I encourage you to experiment and change them to suit your needs!
+
+Each [new Tropical version released](https://github.com/bensmithett/tropical/releases) comes with [upgrade instructions](https://github.com/bensmithett/tropical/blob/fde7ad64f181f21abc13d23879b94473af573d03/app/decisions/004_provide_upgrade_instructions-with-new-version-releases.md) so you can selectively bring new features into your site even if you've changed these files.
+
 ## `build.js`
 
 A script run in Node.js that:
@@ -21,8 +25,8 @@ Optional helpers for enabling targeted component [hydration](https://reactjs.org
 
 Prerenders your static site:
 
-- Builds a HTML file from every `.js` or `.mdx` page in `pages`
-- Builds a [JSON Feed](https://www.jsonfeed.org/) containing every page with `collection: 'posts'` in its metadata
+- Builds a HTML file from every `.js`, `.md` or `.mdx` page in `pages`
+- Builds a [JSON Feed](https://www.jsonfeed.org/) for the collection specified in `tropical.feedCollection` in package.json
 
 ## Hydration helpers
 
