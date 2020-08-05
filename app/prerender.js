@@ -160,19 +160,21 @@ function buildJSONFeedFile(pageProps) {
     title: feedTitle,
     home_page_url: siteURL,
     feed_url: `${siteURL}/feed.json`,
-    items: items.map(({ PageComponent, urlPath, meta }) => ({
-      id: urlPath,
-      url: `${siteURL}${urlPath}`,
-      title: meta.title,
-      date_published: new Date(meta.date).toISOString(),
-      content_text: ReactDOMServer.renderToStaticMarkup(
-        // Render with Fela, just in case any components in the page require it
-        // We don't need to do anything with the results though, because we only want the CSS-free body HTML for our feed
-        <RendererProvider renderer={createRenderer()}>
-          <PageComponent {...pageProps} />
-        </RendererProvider>
-      )
-    }))
+    items: items
+      .filter(({ meta }) => meta.date && dayjs(meta.date).isValid())
+      .map(({ PageComponent, urlPath, meta }) => ({
+        id: urlPath,
+        url: `${siteURL}${urlPath}`,
+        title: meta.title,
+        date_published: dayjs(meta.date).toISOString(),
+        content_text: ReactDOMServer.renderToStaticMarkup(
+          // Render with Fela, just in case any components in the page require it
+          // We don't need to do anything with the results though, because we only want the CSS-free body HTML for our feed
+          <RendererProvider renderer={createRenderer()}>
+            <PageComponent {...pageProps} />
+          </RendererProvider>
+        )
+      }))
   }
 
   const outputFilePath = path.resolve(__dirname, '../output/feed.json')
