@@ -195,6 +195,7 @@ function documentTemplate({ stylesHTML, bodyHTML, helmet, clientBundlePath }) {
   <body ${helmet.bodyAttributes.toString()}>
     ${bodyHTML}
     <script src='${clientBundlePath}'></script>
+    <script data-goatcounter="https://tropical.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   </body>
 </html>
   `
