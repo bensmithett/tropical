@@ -1,6 +1,6 @@
 {
   "name": "tropical",
-  "version": "7.0.3",
+  "version": "7.1.0",
   "scripts": {
     "start": "concurrently \"node ./app/build.js development\" \"serve\" --kill-others --prefix-colors=yellow.dim,cyan.dim",
     "build": "node ./app/build.js production",
