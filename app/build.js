@@ -26,15 +26,12 @@ const shared = {
       loader: 'babel-loader'
     },
 
-    // Transform static file imports into URL strings
-    staticFiles: (mode) => ({
+    // Transform static file imports into URL strings using Webpack 5 Asset Modules
+    // https://webpack.js.org/guides/asset-modules/
+    staticFiles: {
       test: /\.(png|jpe?g|gif|svg|woff2?|mp3|mp4|webm|webp)$/,
-      loader: 'file-loader',
-      options: {
-        name: '[path][name].[contenthash].[ext]',
-        publicPath: `${mode === 'production' ? packageJSON.tropical.siteURL : ''}/`
-      }
-    }),
+      type: 'asset/resource'
+    },
 
     // Transform MDX files into React components.
     mdx: {
@@ -52,10 +49,11 @@ const shared = {
     }
   },
 
-  output: {
+  output: (mode) => ({
     path: path.resolve(__dirname, '../output'),
-    publicPath: '/'
-  }
+    publicPath: `${mode === 'production' ? packageJSON.tropical.siteURL : ''}/`,
+    assetModuleFilename: 'assets/[name].[contenthash][ext]'
+  })
 }
 
 /*
@@ -70,12 +68,12 @@ const clientConfig = mode => {
     module: {
       rules: [
         shared.rules.js,
-        shared.rules.staticFiles(mode),
+        shared.rules.staticFiles,
         shared.rules.mdx
       ]
     },
     output: {
-      ...shared.output,
+      ...shared.output(mode),
       filename: mode === 'production' ? '[name].bundle.[contenthash].js' : '[name].bundle.js'
     },
     plugins: [
@@ -104,12 +102,12 @@ const prerenderConfig = (mode) => {
     module: {
       rules: [
         shared.rules.js,
-        shared.rules.staticFiles(mode),
+        shared.rules.staticFiles,
         shared.rules.mdx
       ]
     },
     output: {
-      ...shared.output,
+      ...shared.output(mode),
       filename: '[name].bundle.js',
       libraryExport: 'default',
       libraryTarget: 'commonjs2',
@@ -177,7 +175,7 @@ rimraf(path.resolve(__dirname, '../output/*'), err => {
       console.log(chalk.cyan('🏝  Clearing commonjs require cache...'))
       delete require.cache[require.resolve(prerenderModulePath)]
       console.log(chalk.cyan('🏝  Loading webpacked prerender module...'))
-      const prerender = require(prerenderModulePath)
+      const { prerender } = require(prerenderModulePath)
       console.log(chalk.cyan('🏝  Prerendering...'))
 
       try {
