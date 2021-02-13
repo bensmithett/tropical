@@ -21,7 +21,6 @@
     "dayjs": "^1.8.31",
     "fela": "^11.1.2",
     "fela-dom": "^11.1.2",
-    "file-loader": "^6.0.0",
     "prism-react-renderer": "^1.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
