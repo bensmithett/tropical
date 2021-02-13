@@ -31,7 +31,7 @@
     "rimraf": "^3.0.2",
     "serve": "^11.3.0",
     "webpack": "^4.41.6",
-    "webpack-manifest-plugin": "^2.2.0"
+    "webpack-manifest-plugin": "^3.0.0"
   },
   "tropical": {
     "feedCollection": "posts",

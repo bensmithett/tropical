@@ -10,7 +10,7 @@ const path = require('path')
 const rimraf = require('rimraf')
 const chalk = require('chalk')
 const webpack = require('webpack')
-const ManifestPlugin = require('webpack-manifest-plugin')
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 const rehypeSlugPlugin = require('rehype-slug')
 const packageJSON = require('../package.json')
 
@@ -79,7 +79,7 @@ const clientConfig = mode => {
       filename: mode === 'production' ? '[name].bundle.[contenthash].js' : '[name].bundle.js'
     },
     plugins: [
-      new ManifestPlugin({
+      new WebpackManifestPlugin({
         fileName: 'manifest.client.json'
       })
     ]
@@ -116,7 +116,7 @@ const prerenderConfig = (mode) => {
       library: 'prerender'
     },
     plugins: [
-      new ManifestPlugin({
+      new WebpackManifestPlugin({
         fileName: 'manifest.prerender.json'
       })
     ]
