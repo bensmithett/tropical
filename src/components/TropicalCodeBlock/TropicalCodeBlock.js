@@ -1,7 +1,7 @@
 import React from 'react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 
-export default function CodeBlock({ children, className }) {
+export default function TropicalCodeBlock({ children, className }) {
   const language = className.replace(/language-/, '')
 
   return (

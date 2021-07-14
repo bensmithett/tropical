@@ -1,22 +1,22 @@
 import React from 'react'
-import CodeBlock from './CodeBlock'
+import TropicalCodeBlock from './TropicalCodeBlock'
 
-export default { title: 'CodeBlock' }
+export default { title: 'TropicalCodeBlock' }
 
 export const JS = () => (
-  <CodeBlock className='language-javascript'>
+  <TropicalCodeBlock className='language-javascript'>
 {`const a = doSomething()
 const b = new Thing([
   a, b, c
 ])`}
-  </CodeBlock>
+  </TropicalCodeBlock>
 )
 
 export const CSS = () => (
-  <CodeBlock className='language-css'>
+  <TropicalCodeBlock className='language-css'>
 {`.foo {
   color: red;
   background: url('blah.jpg')
 }`}
-  </CodeBlock>
+  </TropicalCodeBlock>
 )
