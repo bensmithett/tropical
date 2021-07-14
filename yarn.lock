@@ -3955,6 +3955,13 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
+css-in-js-utils@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/css-in-js-utils/-/css-in-js-utils-3.1.0.tgz#640ae6a33646d401fc720c54fc61c42cd76ae2bb"
+  integrity sha512-fJAcud6B3rRu+KHYk+Bwf+WFL2MDCJJ1XG9x137tJQ0xYxor7XziQtuGFbWNdqrvF4Tk26O3H73nfVqXt/fW1A==
+  dependencies:
+    hyphenate-style-name "^1.0.3"
+
 css-loader@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-3.6.0.tgz#2e4b2c7e6e2d27f8c8f28f61bffcd2e6c91ef645"
@@ -4000,7 +4007,7 @@ csstype@^2.5.7:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.17.tgz#4cf30eb87e1d1a005d8b6510f95292413f6a1c0e"
   integrity sha512-u1wmTI1jJGzCJzWndZo8mk4wnPTZd1eOIYTYvuEyOQGfmDl3TrabCCfKnOC86FZwW/9djqTl933UF/cS425i9A==
 
-csstype@^3.0.2:
+csstype@^3.0.2, csstype@^3.0.5:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.8.tgz#d2266a792729fb227cd216fb572f43728e1ad340"
   integrity sha512-jXKhWqXPmlUeoQnF/EhTtTl4C9SnrxSH/jZUih3jmO6lBKr99rP3/+FmrMj4EFpOXzMtXHAZkd3x0E6h6Fgflw==
@@ -4708,6 +4715,11 @@ fast-levenshtein@~2.0.6:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
+fast-loops@^1.0.0, fast-loops@^1.0.1:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/fast-loops/-/fast-loops-1.1.3.tgz#ce96adb86d07e7bf9b4822ab9c6fac9964981f75"
+  integrity sha512-8EZzEP0eKkEEVX+drtd9mtuQ+/QrlfW/5MlwcwK5Nds6EkZ/tRzEexkzUY2mIssnAyVLT+TKHuRXmFNNXYUd6g==
+
 fastq@^1.6.0:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/fastq/-/fastq-1.11.1.tgz#5d8175aae17db61947f8b162cfc7f63264d22807"
@@ -4728,6 +4740,56 @@ fb-watchman@^2.0.0:
   integrity sha512-DkPJKQeY6kKwmuMretBhr7G6Vodr7bFwDYTXIkfG1gjvNpaxBTQV3PbXg6bR1c1UP4jPOX0jHUbbHANL9vRjVg==
   dependencies:
     bser "2.1.1"
+
+fela-bindings@^11.6.1:
+  version "11.6.1"
+  resolved "https://registry.yarnpkg.com/fela-bindings/-/fela-bindings-11.6.1.tgz#80bc6d4dcde459b1bf9e8144eedb2ab838923d44"
+  integrity sha512-tvNBT5FIpfSFfdnXuDlQLHJww+q/D28john/km6A4FsUZ1iYZEYSpTcchGS8BV4Jhs7UtKLet3a4PsNYMRT1Rw==
+  dependencies:
+    fast-loops "^1.0.0"
+    fela-dom "^11.6.1"
+    fela-tools "^11.6.1"
+    react-addons-shallow-compare "^15.6.2"
+    shallow-equal "^1.0.0"
+
+fela-dom@^11.6.1:
+  version "11.6.1"
+  resolved "https://registry.yarnpkg.com/fela-dom/-/fela-dom-11.6.1.tgz#a6906a6075261f6916566051457c909367730ded"
+  integrity sha512-0mWM7q3z1HuQh0MbzITY0g/5k1rMfMB9G9jyC1gaTMyjNCt0TP9tkmUksF+a831t0ztfHpJOI0+l/dVdS0evHA==
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    fast-loops "^1.0.1"
+    fela-utils "^11.6.1"
+    sort-css-media-queries "^1.4.3"
+
+fela-tools@^11.6.1:
+  version "11.6.1"
+  resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-11.6.1.tgz#51c880d12525a091c16cb47aa51445f7b04a144a"
+  integrity sha512-vmVC4YwxR1hfmJc7wvVAADUjWbGClerL5z4iew1Ej2aa8t1KtDLNdtINd7HPx4NAcmEcTnySVUqjiTGVjBbXXQ==
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    fast-loops "^1.0.0"
+    fela "^11.6.1"
+    fela-utils "^11.6.1"
+
+fela-utils@^11.6.1:
+  version "11.6.1"
+  resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-11.6.1.tgz#5e16663bb9f095b5e6d9cfff29c0bd249ac9030c"
+  integrity sha512-4w0C6QxVQRklBRcT3uuHYnpo4Q+a4rXfrJbdi9UtTzcVIEQfZTivFUsqeXWHaMFrn5gEW3oxBOzwXsoNHxKgDw==
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    fast-loops "^1.0.0"
+
+fela@^11.6.1:
+  version "11.6.1"
+  resolved "https://registry.yarnpkg.com/fela/-/fela-11.6.1.tgz#1f88881ad20922e64a8b2b0e80e5e2025b9c2d2b"
+  integrity sha512-UYZ4HijoVbSm16mYrGszC8RObjYTop4rGh+AjzL9ICLymhEFNuaSSLzTSzW8az9VYY6M/RlQin+Qi5rQmayJtA==
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    csstype "^3.0.5"
+    fast-loops "^1.0.0"
+    fela-utils "^11.6.1"
+    isobject "^3.0.1"
 
 figgy-pudding@^3.5.1:
   version "3.5.2"
@@ -5508,6 +5570,11 @@ https-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
+
+hyphenate-style-name@^1.0.3:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
+  integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
 
 iconv-lite@0.4.24:
   version "0.4.24"
@@ -7509,7 +7576,7 @@ prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.0.0, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.0.0, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -7665,6 +7732,13 @@ raw-loader@^4.0.2:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
+react-addons-shallow-compare@^15.6.2:
+  version "15.6.3"
+  resolved "https://registry.yarnpkg.com/react-addons-shallow-compare/-/react-addons-shallow-compare-15.6.3.tgz#28a94b0dfee71530852c66a69053d59a1baf04cb"
+  integrity sha512-EDJbgKTtGRLhr3wiGDXK/+AEJ59yqGS+tKE6mue0aNXT6ZMR7VJbbzIiT6akotmHg1BLj46ElJSb+NBMp80XBg==
+  dependencies:
+    object-assign "^4.1.0"
+
 react-colorful@^5.1.2:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/react-colorful/-/react-colorful-5.3.0.tgz#bcbae49c1affa9ab9a3c8063398c5948419296bd"
@@ -7755,6 +7829,15 @@ react-fast-compare@^3.0.1, react-fast-compare@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
+
+react-fela@^11.6.1:
+  version "11.6.1"
+  resolved "https://registry.yarnpkg.com/react-fela/-/react-fela-11.6.1.tgz#0e0d91873d04067de49a9c316d52ce7efb9e5a70"
+  integrity sha512-A6AIRsCQA9RZEYuwfXX5UncGZB3R56zcGlosJLSeJ/kZQTM6cDhdZqU0w0/26+b89YpTfYbW+HvujXtqSRQvzQ==
+  dependencies:
+    fela-bindings "^11.6.1"
+    fela-dom "^11.6.1"
+    prop-types "^15.5.8"
 
 react-helmet-async@^1.0.7:
   version "1.0.9"
@@ -8380,6 +8463,11 @@ shallow-clone@^3.0.0:
   dependencies:
     kind-of "^6.0.2"
 
+shallow-equal@^1.0.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.2.1.tgz#4c16abfa56043aa20d050324efa68940b0da79da"
+  integrity sha512-S4vJDjHHMBaiZuT9NPb616CSmLf618jawtv3sufLl6ivK8WocjAo58cXwbRV1cgqxH0Qbv+iUt6m05eqEa2IRA==
+
 shallowequal@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
@@ -8472,6 +8560,11 @@ snapdragon@^0.8.1:
     source-map "^0.5.6"
     source-map-resolve "^0.5.0"
     use "^3.1.0"
+
+sort-css-media-queries@^1.4.3:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/sort-css-media-queries/-/sort-css-media-queries-1.5.4.tgz#24182b12002a13d01ba943ddf74f5098d7c244ce"
+  integrity sha512-YP5W/h4Sid/YP7Lp87ejJ5jP13/Mtqt2vx33XyhO+IAugKlufRPbOrPlIiEUuxmpNBSBd3EeeQpFhdu3RfI2Ag==
 
 source-list-map@^2.0.0:
   version "2.0.1"
