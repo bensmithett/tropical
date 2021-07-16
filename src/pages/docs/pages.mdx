@@ -13,7 +13,7 @@ Every page receives two props:
 
 You can author pages as a plain React component. That component should be the `default` export.
 
-```js
+```jsx
 export const meta = {
   title: 'My page title'
 }
@@ -92,7 +92,7 @@ Tags are flexible, but one obvious use is creating collections of pages — for 
 
 Tropical provides a `pagesWithTag` helper for this common scenario.
 
-```javascript
+```jsx
 import { pagesWithTag } from '../utils'
 
 const blogPosts = pagesWithTag(props.pages, 'post')

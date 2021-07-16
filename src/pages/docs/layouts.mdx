@@ -28,10 +28,11 @@ export const meta = {
 
 ## Layout props
 
-Layout components are rendered with 2 props:
+Layout components are rendered with 3 props:
 
-- `meta` *(object)* — the page's `meta` object
-- `children` *(React Element)* — the page content
+- `pages` *(object)* — an object containing all of the site's page components, keyed by pathname
+- `meta` *(object)* — the current page's `meta` object
+- `children` *(React Element)* — the current page content
 
 ---
 

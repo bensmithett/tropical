@@ -10,7 +10,7 @@ By default, Tropical uses [Fela](https://fela.js.org/) for styling components. Y
 
 See the [Fela docs](https://fela.js.org/) for more info, but essentially you just write CSS-in-JS that looks like inline styles, which Fela translates into optimised atomic classes:
 
-```js
+```jsx
 <div className={css({
   background: 'green',
   borderRadius: 5
@@ -20,10 +20,8 @@ See the [Fela docs](https://fela.js.org/) for more info, but essentially you jus
   borderRadius: 7
 })} />
 
-/*
-<div class='a b'></div>
-<div class='a c'></div>
-*/
+// <div class='a b'></div>
+// <div class='a c'></div>
 ```
 
 This results in tiny, atomic CSS that can be inlined in a server-rendered `<style>` in each page's `<head>`.

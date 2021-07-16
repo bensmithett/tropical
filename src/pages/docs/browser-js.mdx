@@ -14,9 +14,13 @@ const HiButton = ({ name }) => (
 
 The component is not automatically included in the browser JS bundle (`src/entry-client.jsx`), nor is the server-rendered HTML [hydrated]([hydration](https://reactjs.org/docs/react-dom.html#hydrate).
 
-## Hydrating "islands" of client-side JS
+You can hydrate or [progressively enhance](https://en.wikipedia.org/wiki/Progressive_enhancement) server-rendered HTML in Tropical however you wish, even **without using React in the browser!** 
 
-You can hydrate or [progressively enhance](https://en.wikipedia.org/wiki/Progressive_enhancement) server-rendered HTML in Tropical however you wish, even without using React in the browser. Manually add event listeners with vanilla JS, or use a library like [Stimulus](https://stimulus.hotwired.dev/) or [viewloader](https://github.com/icelab/viewloader) for a more structured approach.
+You can manually add event listeners with vanilla JS, or use a library like [Stimulus](https://stimulus.hotwired.dev/) or [viewloader](https://github.com/icelab/viewloader) for a more structured approach.
+
+Of course, there are advantages to using React in the browser, regardless of whether you're hydrating server-rendered HTML or doing something purely client-side.
+
+## Hydrating "islands" of client-side JS
 
 Tropical encourages an [Islands architecture](https://jasonformat.com/islands-architecture/) for taking full advantage of React. In React terms, it means we only want to hydrate the specific parts of the page (aka [partial hydration](https://markus.oberlehner.net/blog/partial-hydration-concepts-lazy-and-active/)) rather than hydrating the single root "page" component.
 
@@ -24,18 +28,18 @@ You can do this with the included [tropical-islands](https://github.com/bensmith
 
 Use `<Island>` in your server-rendered pages and components:
 
-```javascript
+```jsx
 import { Island } from 'tropical-islands'
 
-export function MyPage() {
-  ;<>
+export const MyPage = () => (
+  <>
     <StaticThing />
     <Island componentName='HiButton'>
       <HiButton name='Debbie' />
     </Island>
     <AnotherStaticThing />
   </>
-}
+)
 ```
 
 Then use `hydrateComponents` in the browser JS bundle `src/entry-client.jsx`:
