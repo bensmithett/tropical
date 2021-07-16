@@ -1,12 +1,11 @@
 import { defineConfig } from 'vite'
-import reactRefresh from '@vitejs/plugin-react-refresh'
-import mdx from 'vite-plugin-mdx'
 import path from 'path'
+import { config } from './vite.config.server'
 
 export default defineConfig({
-  plugins: [reactRefresh(), mdx()],
+  plugins: config.plugins,
   build: {
-    assetsInlineLimit: 0,
+    ...config.build,
     rollupOptions: {
       input: {
         client: path.resolve(__dirname, 'index.html'),

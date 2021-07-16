@@ -21,6 +21,7 @@
     "react-dom": "^17.0.0",
     "react-fela": "^11.6.1",
     "react-head": "^3.4.0",
+    "rehype-slug": "^4.0.1",
     "storybook-builder-vite": "^0.0.12",
     "tropical-islands": "^0.1.2",
     "tropical-scaffold": "^0.1.1",
