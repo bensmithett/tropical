@@ -1,0 +1,38 @@
+export const meta = {
+  title: `Layouts`
+}
+
+Layouts are React components that allow you to template the HTML _around_ your page content (a concept [borrowed from Rails](https://api.rubyonrails.org/classes/ActionView/Layouts.html)).
+
+This could include things like:
+
+- Tags for your `<head>`
+- Shared header, footer or sidebar
+
+Unlike Rails, you don't need to directly template your layout's `<head>` tags in place. Instead, manage those tags with [react-head](https://github.com/tizmagik/react-head) and Tropical will put everything in the right place in the final rendered HTML document.
+
+## Default and alternative layouts
+
+Pages use `src/layouts/DefaultLayout.jsx` by default. You can safely edit the `DefaultLayout` provided by Tropical.
+
+To specify a different layout for a page, provide a component to the page's `meta.Layout`:
+
+```js
+import DifferentLayout from '../layouts/different_layout'
+
+export const meta = {
+  title: 'Page with different layout',
+  Layout: DifferentLayout
+}
+```
+
+## Layout props
+
+Layout components are rendered with 2 props:
+
+- `meta` *(object)* — the page's `meta` object
+- `children` *(React Element)* — the page content
+
+---
+
+Next: [**JSON Feed**](/docs/json-feed)

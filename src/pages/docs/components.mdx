@@ -1,0 +1,41 @@
+export const meta = {
+  title: `Components`
+}
+
+Components are the building blocks that make up your pages and layouts. They're where you define HTML, CSS and (optionally) client-side JS behaviour. Build them quickly in Storybook, then compose them your pages.
+
+## Style with Fela
+
+By default, Tropical uses [Fela](https://fela.js.org/) for styling components. You can opt for another of [Vite's CSS options](https://vitejs.dev/guide/features.html#css) if you prefer.
+
+See the [Fela docs](https://fela.js.org/) for more info, but essentially you just write CSS-in-JS that looks like inline styles, which Fela translates into optimised atomic classes:
+
+```js
+<div className={css({
+  background: 'green',
+  borderRadius: 5
+})} />
+<div className={css({
+  background: 'green',
+  borderRadius: 7
+})} />
+
+/*
+<div class='a b'></div>
+<div class='a c'></div>
+*/
+```
+
+This results in tiny, atomic CSS that can be inlined in a server-rendered `<style>` in each page's `<head>`.
+
+```html
+<head>
+  <style>.a{background:green}.b{border-radius:5}.b{border-radius:7}</style>
+</head>
+```
+
+No CSS files, unused CSS, no client-side JS runtime required.
+
+---
+
+Next: [**Browser JS**](/docs/browser-js) and the Islands architecture

@@ -1,0 +1,13 @@
+export const meta = {
+  title: `JSON Feed`
+}
+
+Tropical comes with one [JSON Feed](https://jsonfeed.org/) defined in `src/feeds/posts.jsx`. It contains any page that has `'post'` as one of its `meta.tags`.
+
+You can edit this feed or create additional feeds. Any feeds defined in `src/feeds` will have an appropriate `<link>` rendered into the site's `<head>`.
+
+## Configuring `siteHost` in `package.json`
+
+Feeds by their nature need your site's public URL, both for a homepage link and links to individual items.
+
+For the default feed, this is defined in `package.json` under `tropical.siteHost`. The default value of `https://www.example.org` will trigger a warning upon `yarn build`.

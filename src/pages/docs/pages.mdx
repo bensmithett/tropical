@@ -1,0 +1,111 @@
+export const meta = {
+  title: `Pages`
+}
+
+Pages live in `src/pages` and are either `.mdx` or `.jsx` files. Both options can export a `meta` object.
+
+Every page receives two props:
+
+- `meta`: the page's own `meta` object
+- `pages`: an object containing all of the site's page components, keyed by pathname
+
+## JSX pages
+
+You can author pages as a plain React component. That component should be the `default` export.
+
+```js
+export const meta = {
+  title: 'My page title'
+}
+
+export default function MyPage () {
+  return <div>Hello world</div>
+}
+```
+
+## MDX pages
+
+See the [MDX docs](https://mdxjs.com/) for the syntax you can use in `.mdx` files.
+
+```
+export const meta = {
+  title: 'My page title',
+  description: 'Description for search engines',
+  tags: ['post'],
+  date: '2021-04-01'
+}
+
+# Hello world
+
+Ahoy there.
+```
+
+### Syntax highlighting
+
+Tropical extends MDX using [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) and the provided `<TropicalCodeBlock>` component, as per MDX's [guide](https://mdxjs.com/guides/syntax-highlighting).
+
+Change code block styles in `<TropicalCodeBlock>` either by styling it as you would any other component, or by taking advantage of prism-react-renderer's [themes](https://github.com/FormidableLabs/prism-react-renderer#theming).
+
+### Image references in MDX
+
+Markdown-style image references won't result in [importing the asset as a URL](https://vitejs.dev/guide/assets.html#importing-asset-as-url).
+
+```markdown
+![this doesn't work](./photo.jpg)
+```
+
+You can either use [Vite's public directory](https://vitejs.dev/guide/assets.html#the-public-directory):
+
+```markdown
+![This works!](/photo.jpg)
+
+- assumes image is in public/photo.jpg
+- image filename isn't hashed for production
+```
+
+or (because MDX lets you use JSX) you can just use a regular `import` and `<img>` like you would in a React component:
+
+```
+# Hello world
+
+I am Markdown
+
+import photo from './photo.jpg'
+
+</img src={photo} />
+```
+
+## Page `meta`
+
+The optionally exported `meta` object can contain any properties you wish or none at all.
+
+If present, the following properties will be used by Tropical (but you're free to use them too).
+
+- `title` *(string)* — used for the page's `<title>` and the JSON Feed item's `title` (if the page appears in the feed)
+- `description` *(string)* — used for the page's `<meta name='description'>`
+- `tags` *(array of strings)* — the default JSON Feed (`src/feeds/posts.jsx`) only includes pages that include a `'post'` tag
+- `Layout` *(component)* — alternative [layout component](/docs/layouts)
+
+### Working with `meta.tags`
+
+Tags are flexible, but one obvious use is creating collections of pages — for example, a date-ordered collection that includes blog posts but not your homepage or "About Us" page.
+
+Tropical provides a `pagesWithTag` helper for this common scenario.
+
+```javascript
+import { pagesWithTag } from '../utils'
+
+const blogPosts = pagesWithTag(props.pages, 'post')
+
+<ul>
+  {blogPosts.map(({ meta, urlPath }) => (
+    <li>
+      <a href={urlPath}>{meta.title}</a>
+    </li>
+  ))}
+</ul>
+```
+
+---
+
+Next: [**Components**](/docs/components) and using Fela for CSS
