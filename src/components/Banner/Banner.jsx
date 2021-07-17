@@ -89,6 +89,7 @@ const styles = {
   heading: {
     fontWeight: 100,
     fontFamily: '"Lost Island", system-ui, sans-serif',
+    fontDisplay: 'block',
     lineHeight: 1,
     
     textShadow,

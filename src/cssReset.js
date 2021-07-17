@@ -1,4 +1,4 @@
-import lostIsland from './fonts/LostIsland.woff'
+import lostIsland from './fonts/LostIsland.woff2'
 
 export default function cssReset (felaRenderer) {
   felaRenderer.renderStatic({
