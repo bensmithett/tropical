@@ -1,6 +1,6 @@
 # [Tropical](https://tropical.js.org/) 🏝
 
-This is a [template repo](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/). Click the green "Use this template" button 👆 to get started, or [read the docs](https://tropical.js.org/) to find out more about building static sites with Tropical.
+This is a [template repo](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-repository-from-a-template). Click the green "Use this template" button 👆 to get started, or [read the docs](https://tropical.js.org/) to find out more about building static sites with Tropical.
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/bensmithett/tropical)
 
@@ -8,8 +8,14 @@ This is a [template repo](https://github.blog/2019-06-06-generate-new-repositori
 
 Welcome to your new [Tropical](https://tropical.js.org/) site!
 
-- Install dependencies: `yarn` or `npm install`
-- Start [Storybook](https://storybook.js.org/): `yarn storybook` or `npm run storybook`
-- Start the preview server: `yarn start` or `npm start` & visit http://localhost:5000
+Install dependencies with `yarn`, then...
 
-Explore the `app` folder or [read the docs](https://tropical.js.org/) for more.
+- **`yarn dev`** starts a dev server at [localhost:5000](http://localhost:5000/)
+- **`yarn build`** builds the static site into `dist/static`
+- **`yarn storybook`** starts [Storybook](https://storybook.js.org/)
+- **`yarn page my-new-page`** scaffolds a file for a new page
+- **`yarn component MyNewComponent`** scaffolds files for a new component
+
+(`npm` equivalients to `yarn` commands should work too)
+
+Check out [the docs](https://tropical.js.org) or dive in and explore the `src` directory.

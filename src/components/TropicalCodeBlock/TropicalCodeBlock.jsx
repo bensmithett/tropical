@@ -1,13 +1,13 @@
 import React from 'react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 
-export default function CodeBlock({ children, className }) {
-  const language = className.replace(/language-/, '')
+export function TropicalCodeBlock({ children, className }) {
+  const language = className?.replace(/language-/, '')
 
   return (
     <Highlight {...defaultProps} code={children.trim()} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={{ ...style, padding: '20px' }}>
+        <pre className={className} style={{ ...style, padding: '20px', fontSize: '0.9rem', overflow: 'auto' }}>
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (

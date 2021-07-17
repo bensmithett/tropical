@@ -1,0 +1,51 @@
+export const meta = {
+  title: `Welcome to Tropical`,
+  description: `The world's newest Tropical website!`
+}
+
+# Welcome to your new Tropical website 🏝😎🍹
+
+## Quick start
+
+- **`yarn dev`** starts a dev server at [localhost:3000](http://localhost:3000/)
+- **`yarn build`** builds the static site into `dist/static`
+- **`yarn storybook`** starts [Storybook](https://storybook.js.org/)
+- **`yarn page my-new-page`** scaffolds a file for a new page
+- **`yarn component MyNewComponent`** scaffolds files for a new component
+
+## Pages
+
+This is your homepage. Pages live in `src/pages` and are either `.mdx` files (like this one) or plain old React components in `.jsx` files (like the [404](/404/) example).
+
+## Metadata
+
+Pages can have tags, dates, and all kinds of other metadata. That lets you do stuff like render a date-ordered list all pages with the 'post' tag:
+
+import { pagesWithTag } from '../utils'
+import dayjs from 'dayjs'
+
+<ul>
+  {pagesWithTag(props.pages, 'post').map(({ meta, urlPath }) => (
+    <li key={urlPath}>
+      <a href={urlPath}>{meta.title}</a>{' '}
+      <small>written on a {dayjs(meta.date).format('dddd in MMMM ’YY')}</small>
+    </li>
+  ))}
+</ul>
+
+## Islands & client-side JS
+
+Tropical pages are **only server rendered by default.** To progressively enhance you'll need to sprinkle on some client-side JS, or opt components into hydration with Tropical Islands.
+
+import { Island } from 'tropical-islands'
+import { TropicalPhotoButton } from '../components/TropicalPhotoButton'
+
+<Island componentName='TropicalPhotoButton' islandTag='span'>
+  <TropicalPhotoButton alertMessage='😎'>Hydrated</TropicalPhotoButton>
+</Island>
+
+<TropicalPhotoButton alertMessage='😢'>Not hydrated</TropicalPhotoButton>
+
+## And much more!
+
+Check out [the docs](https://tropical.js.org) or dive in and explore the `src` directory.

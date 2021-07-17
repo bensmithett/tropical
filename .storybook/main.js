@@ -1,3 +1,13 @@
 module.exports = {
-  stories: ['../app/components/**/*.stories.@(js|mdx)']
+  "stories": [
+    "../src/**/*.stories.mdx",
+    "../src/**/*.stories.@(js|jsx|ts|tsx)"
+  ],
+  "addons": [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials"
+  ],
+  "core": {
+    "builder": "storybook-builder-vite"
+  }
 }
