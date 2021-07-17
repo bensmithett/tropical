@@ -17,19 +17,12 @@ export function Background({ children }) {
         ].join(',')}), url('${image}')`,
         backgroundPosition: 'center center',
         backgroundSize: 'cover',
+        display: 'flow-root',
         minHeight: '100vh',
-        paddingBottom: '30px'
+        padding: '0 1rem'
       })}
     >
-      <div
-        className={css({
-          margin: '0 auto',
-          maxWidth: '42rem',
-          padding: '0 1rem'
-        })}
-      >
-        {children}
-      </div>
+      {children}
     </div>
   )
 }

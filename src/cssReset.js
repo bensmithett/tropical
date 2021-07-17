@@ -1,3 +1,5 @@
+import lostIsland from './fonts/LostIsland.woff'
+
 export default function cssReset (felaRenderer) {
   felaRenderer.renderStatic({
     boxSizing: 'border-box',
@@ -14,4 +16,6 @@ export default function cssReset (felaRenderer) {
   felaRenderer.renderStatic({
     margin: 0
   }, 'body')
+
+  felaRenderer.renderFont('Lost Island', [lostIsland])
 }

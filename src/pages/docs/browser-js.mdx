@@ -2,21 +2,23 @@ export const meta = {
   title: `Browser JS`
 }
 
-Tropical pages, and the React components they're composed of, are **only server-rendered** by default.
+Tropical pages (and the React components you use to build them) are <u><b>only server-rendered</b></u> by default.
 
-For example, this `<HiButton>` component would render a button into your page's HTML, but the click handler won't work.
+For example, this component would render a button in your page's prerendered HTML, but the click handler won't automatically work.
 
-```js
+```jsx
 const HiButton = ({ name }) => (
-  <button onClick={() => alert(`hi ${name}`)}>Hi</button>
+  <button onClick={() => alert(`hi ${name}`)}>
+    Hi
+  </button>
 )
 ```
 
-The component is not automatically included in the browser JS bundle (`src/entry-client.jsx`), nor is the server-rendered HTML [hydrated]([hydration](https://reactjs.org/docs/react-dom.html#hydrate).
+By default, the component isn't included in the browser JS bundle (`src/entry-client.jsx`), nor is the server-rendered HTML [hydrated](https://reactjs.org/docs/react-dom.html#hydrate).
 
 You can hydrate or [progressively enhance](https://en.wikipedia.org/wiki/Progressive_enhancement) server-rendered HTML in Tropical however you wish, even **without using React in the browser!** 
 
-You can manually add event listeners with vanilla JS, or use a library like [Stimulus](https://stimulus.hotwired.dev/) or [viewloader](https://github.com/icelab/viewloader) for a more structured approach.
+In `src/entry-client.jsx` you can manually add event listeners with vanilla JS, or use a library like [Stimulus](https://stimulus.hotwired.dev/) or [viewloader](https://github.com/icelab/viewloader) for a more structured approach.
 
 Of course, there are advantages to using React in the browser, regardless of whether you're hydrating server-rendered HTML or doing something purely client-side.
 

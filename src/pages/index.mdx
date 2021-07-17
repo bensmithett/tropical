@@ -1,47 +1,44 @@
+import { HomeLayout } from '../layouts/HomeLayout'
+
 export const meta = {
   title: 'Tropical — static site generator for the JAMStack',
-  description: 'A sensible static site generator for the JAMStack age. Use modern tools to build fast, mostly-just-HTML websites with islands of client-side JS.'
+  description: 'A sensible static site generator for the JAMStack age. Use modern tools to build fast, mostly-just-HTML websites with islands of client-side JS.',
+  Layout: HomeLayout
 }
 
-# Tropical
+## Features 🍹
 
-A sensible static site generator for the [JAMStack](https://jamstack.org/) age.
-
-Modern static sites without the magic. Tropical is just [Vite](https://vitejs.dev/) with a layer of familiar, industry-standard tools & conventions for building *fast*, mostly-just-HTML websites with [islands](https://jasonformat.com/islands-architecture/) of client-side JS.
-
-## Features
-
-- **[React](https://reactjs.org/)**
-- **[MDX](https://mdxjs.com/)** for superpowered, [syntax-highlighted](https://prismjs.com/) Markdown
-- **[Storybook](https://storybook.js.org/)** component development environment
-- **[Fela](http://fela.js.org/)** for atomic, *fast*, component-based CSS
-- **[Vite's](https://vitejs.dev/)** outrageously fast **[esbuild](https://esbuild.github.io/)**-powered dev server (with **Hot Module Replacement** and **Live Reload**) and **[Rollup](https://rollupjs.org/)** build
-- **SSR first:**
-  - Server-rendered HTML pages by default
-  - Optionally sprinkle on browser JS, or adopt the **[Islands Architecture](https://jasonformat.com/islands-architecture/)** using [tropical-islands](https://github.com/bensmithett/tropical-utils/tree/main/packages/tropical-islands) for [partial React hydration](https://markus.oberlehner.net/blog/partial-hydration-concepts-lazy-and-active/)
+- [React](https://reactjs.org/)
+- [MDX](https://mdxjs.com/) for Markdown with [Prism](https://prismjs.com/) syntax highlighting
+- [Storybook](https://storybook.js.org/)
+- [Fela](http://fela.js.org/) for atomic, *fast* component-based CSS
+- [Vite's](https://vitejs.dev/) outrageously fast [esbuild](https://esbuild.github.io/)-powered dev server (with **Hot Module Replacement** and **Live Reload**) and [Rollup](https://rollupjs.org/) build
+- **First class prerendering (SSR)**
+  - Prerendered HTML pages by default
+  - *Optionally* sprinkle on browser JS, or adopt the [Islands Architecture](https://jasonformat.com/islands-architecture/) using [tropical-islands](https://github.com/bensmithett/tropical-utils/tree/main/packages/tropical-islands) for [partial React hydration](https://markus.oberlehner.net/blog/partial-hydration-concepts-lazy-and-active/)
 - All the conventions you need to build a real site or blog: **pages**, **layouts**, and **metadata** like tags and dates
-- A **[JSON Feed](https://jsonfeed.org/)**
+- A [JSON Feed](https://jsonfeed.org/)
 
-## Trade-offs
+**Tropical is just a [template repo](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-repository-from-a-template)**. There's no library to install or configure. You're not stuck with these features. If [Vite can do it](https://vitejs.dev/guide/features.html), so can your Tropical site.
 
-Plain old HTML is 🚀 **blazing fast™**. Tropical lets you use all the powerful, flexible, modern JS tooling you love to build old-fashioned HTML pages with minimal browser JS.
+## Non-features 🙅‍♀️
 
-This approach comes with some trade-offs. [All Vite features](https://vitejs.dev/guide/features.html) are available, and of course you can add libraries and as much browser JS as you need, but by default Tropical doesn't force you to adopt:
+Good old-fashioned HTML is 🚀 **blazing fast™**. Tropical lets you build static HTML pages, with minimal browser JS, using all the powerful, flexible and modern JS tooling you love.
 
-- [client-side route transitions](https://twitter.com/ryanflorence/status/1186515553285857280) 🙅‍♀️
-- [lazy loading](https://www.bensmithett.com/an-argument-against-lazy-loading/) 🙅‍♀️
-- code splitting 🙅‍♀️
-- Progressive Web App™ and service workers 🙅‍♀️
-- [full page hydration](https://github.com/bensmithett/tropical/blob/docs/app/decisions/003_dont_default_to_full_page_react_hydration.md) 🙅‍♀️
-- TypeScript 🙅‍♀️
-- GraphQL 🙅‍♀️
+Because it's built on Vite (using Vite's [React preset](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) and following Vite's guides) [all Vite features](https://vitejs.dev/guide/features.html) are available. Of course you can add any libraries and as much browser JS as you wish, but Tropical doesn't *force* you to adopt:
 
-Read detailed rationale for Tropical' architecture decisions in the [architecture decision records](https://github.com/bensmithett/tropical/tree/docs/decisions).
+- [client-side route transitions](https://twitter.com/ryanflorence/status/1186515553285857280)
+- [lazy loading](https://www.bensmithett.com/an-argument-against-lazy-loading/)
+- code splitting
+- Progressive Web App™ and service workers
+- [full page hydration](https://github.com/bensmithett/tropical/blob/docs/app/decisions/003_dont_default_to_full_page_react_hydration.md)
+- TypeScript
+- GraphQL
 
 ## Get started
 
-[**Read the docs**](/docs) or [**get the template repo on GitHub**](https://github.com/bensmithett/tropical)
+[Read the docs](/docs) or [get the template repo on GitHub](https://github.com/bensmithett/tropical)
 
-#### Who built this?
+## Who built this?
 
 Hi there! I'm [Ben](https://www.bensmithett.com/), I've been building websites for a while now. I've worked on industrial-strength static site tooling at [Envato](https://envato.com/) & have experienced enough 💩🐌 internet connections around the world to have opinions about web performance strategies.
