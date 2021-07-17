@@ -19,8 +19,8 @@ export function Banner() {
         <div className={css(styles.intro)}>
           <p className={css(styles.introP)}>
             <strong>
-              A modern static site generator for the <a href='https://jamstack.org/'>JAMStack</a>{' '}
-              age without all the complex magic.
+              A modern static site generator for the <a href='https://jamstack.org/'>Jamstack</a>{' '}
+              without all the complex magic.
             </strong>
           </p>
           <p className={css(styles.introP)}>
