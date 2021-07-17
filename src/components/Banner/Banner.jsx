@@ -9,7 +9,8 @@ export function Banner() {
     <div className={css(styles.root)}>
       <h1 className={css(styles.heading)}>Tropical</h1>
       <p className={css(styles.tagline)}>
-        Fun, <u>fast</u> static sites <br className={css(styles.br)} /> for the <a href='https://jamstack.org/'>JAMStack</a> age.
+        Fast, mostly-just-HTML static sites <br className={css(styles.br)} />
+        with <a href='https://jasonformat.com/islands-architecture/'>islands</a> of client-side JS.
       </p>
 
       <div className={css(styles.middle)}>
@@ -17,13 +18,16 @@ export function Banner() {
 
         <div className={css(styles.intro)}>
           <p className={css(styles.introP)}>
-            <strong>A modern static site generator without complex magic.</strong>
+            <strong>
+              A modern static site generator for the <a href='https://jamstack.org/'>JAMStack</a>{' '}
+              age without all the complex magic.
+            </strong>
           </p>
           <p className={css(styles.introP)}>
-            Tropical is just <a href='https://vitejs.dev/'>Vite</a> plus a layer of{' '}
+            Tropical is just <a href='https://vitejs.dev/'>Vite</a> plus a flexible layer of{' '}
             <strong>familiar, industry-standard tools & conventions</strong> for building{' '}
-            <u>fast</u>, mostly-just-HTML websites with{' '}
-            <a href='https://jasonformat.com/islands-architecture/'>islands</a> of client-side JS.
+            fast, component-based static websites with{' '}
+            targeted <a href='https://jasonformat.com/islands-architecture/'>islands</a> of client-side JS.
           </p>
 
           <nav className={css(styles.nav)}>
@@ -91,7 +95,7 @@ const styles = {
     fontFamily: '"Lost Island", system-ui, sans-serif',
     fontDisplay: 'block',
     lineHeight: 1,
-    
+
     textShadow,
 
     '::before': {
@@ -100,7 +104,7 @@ const styles = {
     },
 
     '@media (max-width: 599px)': {
-      fontSize: '3.2rem',
+      fontSize: '3.2rem'
     },
 
     '@media (min-width: 600px)': {
@@ -142,15 +146,15 @@ const styles = {
       gap: '40px',
       gridTemplateColumns: '200px 1fr',
       maxWidth: '800px',
-      padding: '40px 0 0',
-    },
+      padding: '40px 0 0'
+    }
   },
 
   intro: {
     display: 'flex',
     flexDirection: 'column',
     gap: '1rem',
-    
+
     '@media (min-width: 600px)': {
       justifyContent: 'center',
       gap: '1.25rem',
@@ -165,7 +169,7 @@ const styles = {
     ...links,
 
     '@media (min-width: 600px)': {
-      fontSize: '1.3rem',
+      fontSize: '1.3rem'
     }
   },
 
