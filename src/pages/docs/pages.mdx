@@ -31,9 +31,9 @@ export default function MyPage () {
 
 ## MDX pages
 
-See the [MDX docs](https://mdxjs.com/) for the syntax you can use in `.mdx` files.
+See the [MDX docs](https://mdxjs.com/) for the Markdown + JSX syntax you can use in `.mdx` files.
 
-```
+```mdx
 export const meta = {
   title: 'My page title',
   description: 'Description for search engines',
@@ -43,7 +43,14 @@ export const meta = {
 
 # Hello world
 
-Ahoy there.
+Mix JSX into your Markdown.
+
+import Select from 'react-select'
+
+<Select options={[
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' }
+]} />
 ```
 
 ### Syntax highlighting
@@ -74,11 +81,9 @@ or (because MDX lets you use JSX) you can just use a regular `import` and `<img>
 ```
 # Hello world
 
-I am Markdown
-
 import photo from './photo.jpg'
 
-</img src={photo} />
+<img src={photo} />
 ```
 
 ## Page `meta`
