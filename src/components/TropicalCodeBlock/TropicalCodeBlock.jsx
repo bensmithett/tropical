@@ -1,6 +1,15 @@
 import React from 'react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
-import dracula from 'prism-react-renderer/themes/dracula';
+import dracula from 'prism-react-renderer/themes/dracula'
+
+/* 
+To add language support outside the subset that comes with prism-react-renderer
+https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/vendor/prism/includeLangs.js
+
+import Prism from 'prism-react-renderer/prism';
+;(typeof global !== 'undefined' ? global : window).Prism = Prism
+import 'prismjs/components/prism-ruby'
+*/
 
 export function TropicalCodeBlock({ children, className }) {
   const language = className?.replace(/language-/, '')
