@@ -51,7 +51,7 @@ export class Renderer {
           <MDXProvider
             components={{
               pre: (props) => <div {...props} />,
-              code: TropicalCodeBlock
+              code: ({ className, ...props }) => <TropicalCodeBlock language={className?.replace(/language-/, '')} {...props}/>
             }}
           >
             {Object.entries(this.feeds).map(([pathname, { type }]) => (
