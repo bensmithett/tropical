@@ -114,6 +114,7 @@ export function DocsLayout({ nav, page, title }) {
       </nav>
       <main
         className={css({
+          maxWidth: '60rem',
           padding: '0 20px',
           position: 'relative',
           zIndex: 1,
