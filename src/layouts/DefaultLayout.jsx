@@ -20,7 +20,8 @@ export function DefaultLayout({ meta, pages, children }) {
               '/docs/components/',
               '/docs/browser-js/',
               '/docs/layouts/',
-              '/docs/json-feed/'
+              '/docs/json-feed/',
+              '/docs/comparisons/'
             ].map((url) => {
               const { meta } = pages[url]
               return (

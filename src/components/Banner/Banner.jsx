@@ -7,7 +7,7 @@ export function Banner() {
 
   return (
     <div className={css(styles.root)}>
-      <h1 className={css(styles.heading)}>Tropical</h1>
+      <h1 className={css(styles.heading)} v-bind:title='hello'>Tropical</h1>
       <p className={css(styles.tagline)}>
         Fast, mostly-just-HTML static sites <br className={css(styles.br)} />
         with <a href='https://jasonformat.com/islands-architecture/'>islands</a> of client-side JS.
@@ -17,19 +17,6 @@ export function Banner() {
         <Phone className={css(styles.svg)} />
 
         <div className={css(styles.intro)}>
-          <p className={css(styles.introP)}>
-            <strong>
-              A modern static site generator for the <a href='https://jamstack.org/'>Jamstack</a>{' '}
-              without all the complex magic.
-            </strong>
-          </p>
-          <p className={css(styles.introP)}>
-            Tropical is just <a href='https://vitejs.dev/'>Vite</a> plus a flexible layer of{' '}
-            <strong>familiar, industry-standard tools & conventions</strong> for building{' '}
-            fast, component-based static websites with{' '}
-            targeted <a href='https://jasonformat.com/islands-architecture/'>islands</a> of client-side JS.
-          </p>
-
           <nav className={css(styles.nav)}>
             <a className={css(styles.link)} href='/docs'>
               Docs
@@ -38,6 +25,18 @@ export function Banner() {
               GitHub
             </a>
           </nav>
+
+          <p className={css(styles.introP)}>
+            Tropical is just <a href='https://vitejs.dev/'>Vite</a> plus a flexible layer of{' '}
+            <strong>familiar, industry-standard JS tools & conventions</strong> for building fast,
+            component-based static HTML sites with{' '}
+            <a href='https://jasonformat.com/islands-architecture/'>islands</a> of JS.
+          </p>
+
+          <p className={css(styles.introP)}>
+            Nothing to <code>init</code> or configure. Grab the{' '}
+            <a href='https://github.com/bensmithett/tropical'>template repo</a> and start building.
+          </p>
         </div>
       </div>
     </div>
@@ -170,6 +169,13 @@ const styles = {
 
     '@media (min-width: 600px)': {
       fontSize: '1.3rem'
+    },
+
+    '> code': {
+      background: 'rgba(255, 255, 255, 0.15)',
+      borderRadius: '4px',
+      fontSize: '0.9em',
+      padding: '4px'
     }
   },
 

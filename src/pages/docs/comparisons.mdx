@@ -1,0 +1,41 @@
+export const meta = {
+  title: `Comparisons`
+}
+
+Tropical vs…
+
+## [Astro](https://docs.astro.build/getting-started)
+
+Astro and Tropical have *very* similar aims and are built with the same approaches and [conventions](https://docs.astro.build/core-concepts/project-structure):
+
+- First-class prerendered HTML
+- Minimal client JS with [partial hydration](https://docs.astro.build/core-concepts/component-hydration)/islands
+- Components, pages, layouts, feeds… 🥱 told you Tropical's conventions were industry-standard!
+
+Astro is great! Here are the main differences to be aware of:
+
+### Astro is built on [Snowpack](https://www.snowpack.dev/), Tropical is built on [Vite](https://vitejs.dev/)
+
+Snowpack and Vite both great, and worthy successors to Webpack. They're neck-and-neck in terms of features, support and popularity.
+
+### Astro supports more component types on the server
+
+Astro supports React, Vue and Svelte components out of the box, plus its own [Astro Component format](https://docs.astro.build/core-concepts/astro-components). Tropical assumes you'll use React for your prerendered/SSR components.
+
+Both are flexible when it comes to client-side JS. Tropical [provides a way](/docs/browser-js/) to hydrate React components, while Astro [nudges you towards](https://docs.astro.build/core-concepts/component-hydration) hydrating your React, Vue or Svelte components. 
+
+Both options also let you ✨sprinkle✨ on some progressive enhancement with Vue, vanilla JS, Stimulus, Angular, jQuery — whatever. In Tropical, `entry-client.jsx` is your oyster for enhancing React-generated HTML, while those special [Astro Components](https://docs.astro.build/core-concepts/component-hydration#can-i-hydrate-astro-components) can have a `<script>` tag.
+
+### CSS
+
+Astro supports [many CSS approaches](https://docs.astro.build/guides/styling): plain old global CSS, scoped `<style>` tags in Astro Components, CSS Modules, Sass and Tailwind. 
+
+Tropical comes with [Fela](https://fela.js.org/), though because Tropical is just Vite, you can also use [Vite's supported CSS approaches](https://vitejs.dev/guide/features.html#css).
+
+There's one notable difference: **Tropical pages don't load a CSS file.** One of the benefits of Fela is that the generated atomic styles are tiny enough to just inline into a `<style>` in the page's `<head>`.
+
+### Astro is a library, Tropical is a template repo
+
+An Astro project depends on [`astro`](https://www.npmjs.com/package/astro), a framework that abstracts away all the underlying functionality.
+
+Tropical is intentionally a template repo, not a library. There's nothing to configure. The "framework" part of Tropical is just a couple of files — `entry-server.jsx`, `prerender.js` and `server.js` — right out there in the open, that you can tinker with and extend, or totally ignore.
