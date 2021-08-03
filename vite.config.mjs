@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
-import path from 'path'
-import { config } from './vite.config.server'
+import { fileURLToPath } from 'node:url'
+import { config } from './vite.config.server.mjs'
 
 export default defineConfig({
   plugins: config.plugins,
@@ -8,9 +8,9 @@ export default defineConfig({
     ...config.build,
     rollupOptions: {
       input: {
-        client: path.resolve(__dirname, 'index.html'),
+        client: fileURLToPath(new URL('index.html', import.meta.url)),
         // We'll never actually use this bundle, but need it to build assets that are only referenced by SSR pages
-        ssrAssetCollector: path.resolve(__dirname, 'src/entry-server.jsx')
+        ssrAssetCollector: fileURLToPath(new URL('src/entry-server.jsx', import.meta.url))
       }
     }
   }

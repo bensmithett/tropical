@@ -4,7 +4,7 @@ import mdx from 'vite-plugin-mdx'
 import rehypeSlug from 'rehype-slug'
 
 export const config = {
-  plugins: [reactRefresh(), mdx({ rehypePlugins: [rehypeSlug] })],
+  plugins: [reactRefresh(), mdx.default({ rehypePlugins: [rehypeSlug] })],
   build: {
     assetsInlineLimit: 0
   }
