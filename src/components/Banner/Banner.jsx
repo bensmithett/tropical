@@ -17,6 +17,11 @@ export function Banner() {
         <Phone className={css(styles.svg)} />
 
         <div className={css(styles.intro)}>
+          <p className={css(styles.introP)}>
+            Nothing to <code>init</code> or configure. Grab the{' '}
+            <a href='https://github.com/bensmithett/tropical'>template repo</a> and start building.
+          </p>
+
           <nav className={css(styles.nav)}>
             <a className={css(styles.link)} href='/docs'>
               Docs
@@ -31,11 +36,6 @@ export function Banner() {
             <strong>familiar, industry-standard JS tools & conventions</strong> for building fast,
             component-based static HTML sites with{' '}
             <a href='https://jasonformat.com/islands-architecture/'>islands</a> of JS.
-          </p>
-
-          <p className={css(styles.introP)}>
-            Nothing to <code>init</code> or configure. Grab the{' '}
-            <a href='https://github.com/bensmithett/tropical'>template repo</a> and start building.
           </p>
         </div>
       </div>
