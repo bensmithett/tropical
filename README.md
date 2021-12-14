@@ -10,7 +10,7 @@ Welcome to your new [Tropical](https://tropical.js.org/) site!
 
 Install dependencies with `yarn`, then...
 
-- **`yarn dev`** starts a dev server at [localhost:5000](http://localhost:5000/)
+- **`yarn dev`** starts a dev server at [localhost:3000](http://localhost:3000/)
 - **`yarn build`** builds the static site into `dist/static`
 - **`yarn storybook`** starts [Storybook](https://storybook.js.org/)
 - **`yarn page my-new-page`** scaffolds a file for a new page
