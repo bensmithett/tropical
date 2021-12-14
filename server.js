@@ -27,9 +27,9 @@ async function createServer() {
     }
   })
 
-  app.listen(5000)
+  app.listen(3000)
 
-  console.log('🏝   Your Tropical site is now being served at: http://localhost:5000')
+  console.log('🏝   Your Tropical site is now being served at: http://localhost:3000')
 }
 
 createServer()
