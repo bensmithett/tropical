@@ -7,7 +7,7 @@ export function Banner() {
 
   return (
     <div className={css(styles.root)}>
-      <h1 className={css(styles.heading)} v-bind:title='hello'>Tropical</h1>
+      <h1 className={css(styles.heading)}>Tropical</h1>
       <p className={css(styles.tagline)}>
         Fast, mostly-just-HTML static sites <br className={css(styles.br)} />
         built with React and <a href='https://jasonformat.com/islands-architecture/'>islands</a> of client-side JS.
