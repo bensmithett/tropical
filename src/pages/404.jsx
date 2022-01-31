@@ -2,7 +2,7 @@ export const meta = {
   title: '404 Not Found'
 }
 
-import React from 'react'
+
 import { useFela } from 'react-fela'
 
 export default function NotFoundPage ({ meta, pages }) {

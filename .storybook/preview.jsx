@@ -13,7 +13,7 @@ export const parameters = {
   }
 }
 
-import React from 'react'
+
 import { createRenderer } from 'fela'
 import { RendererProvider } from 'react-fela'
 import cssReset from '../src/cssReset'

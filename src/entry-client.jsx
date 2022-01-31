@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { createRenderer } from 'fela'
 import { RendererProvider } from 'react-fela'
 import { hydrateIslands } from 'tropical-islands'

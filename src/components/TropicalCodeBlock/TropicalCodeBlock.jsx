@@ -12,7 +12,7 @@ To add more languages, uncomment this and import the syntax you need: */
 // ;(typeof global !== 'undefined' ? global : window).Prism = Prism
 // import 'prismjs/components/prism-ruby'
 
-import React from 'react'
+
 import { useFela } from 'react-fela'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import dracula from 'prism-react-renderer/themes/dracula'

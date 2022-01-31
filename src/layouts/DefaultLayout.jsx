@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Title, Meta, Link } from 'react-head'
 import { useFela } from 'react-fela'
 import favicon from './favicon.png'
