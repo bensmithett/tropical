@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite'
-import reactRefresh from '@vitejs/plugin-react-refresh'
+import react from '@vitejs/plugin-react'
 import mdx from 'vite-plugin-mdx'
 import rehypeSlug from 'rehype-slug'
 
 export const config = {
-  plugins: [reactRefresh(), mdx({ rehypePlugins: [rehypeSlug] })],
+  plugins: [react(), mdx({ rehypePlugins: [rehypeSlug] })],
   build: {
     assetsInlineLimit: 0
   }

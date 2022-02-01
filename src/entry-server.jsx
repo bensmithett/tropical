@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { createRenderer as createFelaRenderer } from 'fela'
 import { RendererProvider } from 'react-fela'

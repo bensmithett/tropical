@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import dayjs from 'dayjs'
 import { RendererProvider } from 'react-fela'
@@ -10,7 +9,7 @@ const FEED_TITLE = 'Another Tropical site'
 const SITE_HOST = pkg.tropical.siteHost
 
 export default function renderFeed (pages) {
-  
+
   const posts = pagesWithTag(pages, 'post')
 
   return JSON.stringify({
