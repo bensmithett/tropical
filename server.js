@@ -1,7 +1,10 @@
-const fs = require('fs')
-const path = require('path')
-const express = require('express')
-const { createServer: createViteServer } = require('vite')
+import fse from 'fs-extra'
+import { dirname, resolve } from 'path'
+import { fileURLToPath } from 'url'
+import express from 'express'
+import { createServer as createViteServer } from 'vite'
+
+const dir = dirname(fileURLToPath(import.meta.url))
 
 async function createServer() {
   const app = express()
@@ -14,7 +17,7 @@ async function createServer() {
     const { pathname } = new URL(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
 
     try {
-      const template = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8')
+      const template = fse.readFileSync(resolve(dir, 'index.html'), 'utf-8')
       const transformedTemplate = await vite.transformIndexHtml(pathname, template)
       const { Renderer } = await vite.ssrLoadModule('/src/entry-server.jsx')
       const renderer = new Renderer(transformedTemplate)

@@ -5,6 +5,7 @@
     "@babel/core": "^7.14.6",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "@mdx-js/rollup": "^2.0.0-rc.1",
     "@storybook/addon-actions": "^6.4.8",
     "@storybook/addon-essentials": "^6.4.8",
     "@storybook/addon-links": "^6.4.8",
@@ -21,23 +22,22 @@
     "react-dom": "^17.0.0",
     "react-fela": "^11.6.1",
     "react-head": "^3.4.0",
-    "rehype-slug": "^4.0.1",
+    "rehype-slug": "^5.0.1",
     "storybook-builder-vite": "^0.1.10",
-    "tropical-islands": "^0.1.2",
-    "tropical-scaffold": "^0.1.1",
-    "vite": "^2.4.2",
-    "vite-plugin-mdx": "^3.5.6"
+    "tropical-islands": "^1.0.0",
+    "tropical-scaffold": "^1.0.0",
+    "vite": "^2.4.2"
   },
   "engines": {
     "node": ">=16"
   },
+  "type": "module",
   "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "node server",
-    "build": "yarn build:clientAssets && yarn build:server && node prerender",
+    "build": "yarn build:clientAssets && node prerender",
     "build:clientAssets": "vite build --outDir dist/static",
-    "build:server": "vite --config vite.config.server.js build --outDir dist/server --ssr src/entry-server.jsx",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "page": "tropical-scaffold --type=page",
