@@ -1,6 +1,6 @@
 {
   "name": "tropical",
-  "version": "9.2.0",
+  "version": "10.0.0",
   "dependencies": {
     "@babel/core": "^7.14.6",
     "@mdx-js/mdx": "^1.6.22",
