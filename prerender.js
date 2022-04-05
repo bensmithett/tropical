@@ -1,22 +1,14 @@
 import fse from 'fs-extra'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
-import { createServer as createViteServer } from 'vite'
 
 const dir = dirname(fileURLToPath(import.meta.url))
 
-const transformedTemplate = fse.readFileSync(
-  resolve(dir, 'dist/static/index.html'),
-  'utf-8'
-)
+const transformedTemplate = fse.readFileSync(resolve(dir, 'dist/static/index.html'), 'utf-8')
 
-async function prerender () {
-  const vite = await createViteServer({
-    server: { middlewareMode: 'ssr' }
-  })
-
+async function prerender() {
   try {
-    const { Renderer } = await vite.ssrLoadModule('/src/entry-server.jsx')
+    const { Renderer } = await import('./dist/server/entry-server.js')
     const renderer = new Renderer(transformedTemplate)
 
     Object.entries(renderer.pages).forEach(([pathname, page]) => {
@@ -35,14 +27,13 @@ async function prerender () {
 
     const pkg = JSON.parse(await fse.readFile('./package.json'))
     if (pkg.tropical.siteHost === 'https://www.example.org') {
-      console.log(`⚠️   Configure tropical.siteHost in package.json, otherwise links in your JSON Feed won't work!`)
+      console.log(
+        `⚠️   Configure tropical.siteHost in package.json, otherwise links in your JSON Feed won't work!`
+      )
     }
   } catch (e) {
-    vite.ssrFixStacktrace(e)
     console.error(e)
   }
-
-  await vite.close()
 }
 
 prerender()
