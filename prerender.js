@@ -32,11 +32,8 @@ async function prerender() {
       )
     }
   } catch (e) {
-    vite.ssrFixStacktrace(e)
     console.error(e)
   }
-
-  await vite.close()
 }
 
 prerender()
