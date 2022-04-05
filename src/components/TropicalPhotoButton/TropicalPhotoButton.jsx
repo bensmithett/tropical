@@ -8,7 +8,7 @@ This is a silly example component that demonstrates:
 Remember, Tropical pages are only server-rendered by default.
 If your component has client-side behaviour like this, you'll need to
 opt it (or a parent component) into hydration.
-See docs (TODO)
+See https://tropical.js.org/docs/browser-js
 */
 
 import React, { useState, useEffect } from 'react'
