@@ -28,7 +28,7 @@ See <a href='https://github.com/FormidableLabs/prism-react-renderer#theming'>pri
 <Story
   name='JS'
   args={{
-    children: `function relax() {
+    code: `function relax() {
   console.log('Welcome to Tropical')
 }`,
     language: 'javascript'
@@ -42,7 +42,7 @@ See <a href='https://github.com/FormidableLabs/prism-react-renderer#theming'>pri
 <Story
   name='JSX'
   args={{
-    children: `function Relax ({ drink = 'Singapore Sling' }) {
+    code: `function Relax ({ drink = 'Singapore Sling' }) {
   return (
     <div>
       <Cocktail drink={drink} />
@@ -54,3 +54,19 @@ See <a href='https://github.com/FormidableLabs/prism-react-renderer#theming'>pri
 >
   {Template.bind({})}
 </Story>
+
+### No language
+
+<Story
+  name='No language'
+  args={{
+    code: `This is
+      not
+  any particular
+        language
+}`
+  }}
+>
+  {Template.bind({})}
+</Story>
+

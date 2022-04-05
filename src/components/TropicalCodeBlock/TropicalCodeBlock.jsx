@@ -16,7 +16,7 @@ import { useFela } from 'react-fela'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import dracula from 'prism-react-renderer/themes/dracula'
 
-export function TropicalCodeBlock({ children, language }) {
+export function TropicalCodeBlock({ code, language }) {
   const { css } = useFela()
 
   // Tropical tweaks to the dracula theme
@@ -28,7 +28,7 @@ export function TropicalCodeBlock({ children, language }) {
   })
 
   return (
-    <Highlight {...defaultProps} code={children.trim()} language={language} theme={dracula}>
+    <Highlight {...defaultProps} code={code} language={language} theme={dracula}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre className={`${className} ${tropicalOverrideStyles}`} style={{ ...style }}>
           {tokens.map((line, i) => (

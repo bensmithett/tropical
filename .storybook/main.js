@@ -1,3 +1,5 @@
+const { dirname } = require("path");
+
 module.exports = {
   "stories": [
     "../src/**/*.stories.mdx",
@@ -7,6 +9,7 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials"
   ],
+  "framework": "@storybook/react",
   "core": {
     "builder": "storybook-builder-vite"
   }
