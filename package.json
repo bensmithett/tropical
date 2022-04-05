@@ -36,8 +36,9 @@
   "private": true,
   "scripts": {
     "dev": "node server",
-    "build": "yarn build:clientAssets && node prerender",
+    "build": "yarn build:clientAssets && yarn build:server && node --experimental-specifier-resolution=node prerender",
     "build:clientAssets": "vite build --outDir dist/static",
+    "build:server": "vite --config vite.config.server.js build --outDir dist/server --ssr src/entry-server.jsx",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "page": "tropical-scaffold --type=page",
