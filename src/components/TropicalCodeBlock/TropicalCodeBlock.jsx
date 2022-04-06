@@ -1,45 +1,22 @@
 /*
-This component is used to render MDX fenced code blocks (```)
-You can change it to suit your needs. For more info:
-https://mdxjs.com/guides/syntax-highlighting
-https://github.com/FormidableLabs/prism-react-renderer
+<TropicalCodeBlock> is used by <Renderer> (in entry-server.jsx) to render MDX fenced code blocks, e.g.
 
-⚠️ prism-react-renderer only highlights certain languages by default:
-https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/vendor/prism/includeLangs.js
+```js
+console.log('Hello world')
+```
 
-To add more languages, uncomment this and import the syntax you need: */
-// import Prism from 'prism-react-renderer/prism';
-// ;(typeof global !== 'undefined' ? global : window).Prism = Prism
-// import 'prismjs/components/prism-ruby'
+You can restyle it and change it to suit your needs. For more info:
+https://mdxjs.com/guides/syntax-highlighting (Tropical currently does "Runtime" syntax highlighting — though only during prerendering)
+https://github.com/react-syntax-highlighter/react-syntax-highlighter
+*/
 
-import { useFela } from 'react-fela'
-import Highlight, { defaultProps } from 'prism-react-renderer'
-import dracula from 'prism-react-renderer/themes/dracula'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
-export function TropicalCodeBlock({ children, language }) {
-  const { css } = useFela()
-
-  // Tropical tweaks to the dracula theme
-  const tropicalOverrideStyles = css({
-    borderRadius: '4px',
-    fontSize: '0.9rem',
-    overflow: 'auto',
-    padding: '15px'
-  })
-
+export function TropicalCodeBlock ({ children, language }) {
   return (
-    <Highlight {...defaultProps} code={children.trim()} language={language} theme={dracula}>
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={`${className} ${tropicalOverrideStyles}`} style={{ ...style }}>
-          {tokens.map((line, i) => (
-            <div key={i} {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
+    <SyntaxHighlighter language={language} style={dracula} customStyle={{ fontSize: '0.9rem' }}>
+      {children}
+    </SyntaxHighlighter>
   )
 }

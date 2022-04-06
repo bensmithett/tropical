@@ -54,3 +54,31 @@ See <a href='https://github.com/FormidableLabs/prism-react-renderer#theming'>pri
 >
   {Template.bind({})}
 </Story>
+
+### JSX
+
+<Story
+  name='Ruby'
+  args={{
+    children: `def relax (drink = 'Singapore Sling')
+  puts "Welcome to Tropical! Enjoy a #{drink}."
+end`,
+    language: 'ruby'
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### No language
+
+<Story
+  name='No language'
+  args={{
+    children: `This is
+      not
+  any particular
+        language`
+  }}
+>
+  {Template.bind({})}
+</Story>

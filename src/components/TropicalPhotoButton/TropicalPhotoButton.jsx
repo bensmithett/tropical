@@ -11,7 +11,7 @@ opt it (or a parent component) into hydration.
 See https://tropical.js.org/docs/browser-js
 */
 
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useFela } from 'react-fela'
 import image from './gunayala.jpg'
 

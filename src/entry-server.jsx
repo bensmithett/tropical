@@ -13,7 +13,7 @@ export class Renderer {
   feeds = null
   transformedTemplate = null
 
-  constructor (transformedTemplate) {
+  constructor(transformedTemplate) {
     this.pages = gatherPages()
     this.feeds = gatherFeeds()
     this.transformedTemplate = transformedTemplate
@@ -49,8 +49,11 @@ export class Renderer {
         <RendererProvider renderer={felaRenderer}>
           <MDXProvider
             components={{
-              pre: (props) => <div {...props} />,
-              code: ({ className, ...props }) => <TropicalCodeBlock language={className?.replace(/language-/, '')} {...props}/>
+              pre: ({ children }) => (
+                <TropicalCodeBlock language={children.props.className?.replace(/language-/, '')}>
+                  {children.props.children.trim()}
+                </TropicalCodeBlock>
+              )
             }}
           >
             {Object.entries(this.feeds).map(([pathname, { type }]) => (

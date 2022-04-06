@@ -8,7 +8,7 @@ import rehypeSlug from 'rehype-slug'
 const dir = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
-  plugins: [react(), mdx({ rehypePlugins: [rehypeSlug] })],
+  plugins: [react(), mdx({ rehypePlugins: [rehypeSlug], providerImportSource: '@mdx-js/react' })],
   build: {
     assetsInlineLimit: 0,
     rollupOptions: {
