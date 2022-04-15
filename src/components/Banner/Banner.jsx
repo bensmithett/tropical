@@ -103,7 +103,7 @@ const styles = {
     },
 
     '@media (max-width: 599px)': {
-      fontSize: '3.2rem'
+      fontSize: '3.6rem'
     },
 
     '@media (min-width: 600px)': {
@@ -131,14 +131,19 @@ const styles = {
   svg: {
     '@media (max-width: 599px)': {
       maxWidth: '50%'
+    },
+    '@media (min-width: 600px)': {
+      maxWidth: '100%'
     }
   },
 
   middle: {
-    alignItems: 'center',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '2rem',
+    '@media (max-width: 599px)': {
+      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '2rem',
+    },
 
     '@media (min-width: 600px)': {
       display: 'grid',

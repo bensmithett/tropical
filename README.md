@@ -19,3 +19,9 @@ Install dependencies with `yarn`, then...
 (`npm` equivalients to `yarn` commands should work too)
 
 Check out [the docs](https://tropical.js.org) or dive in and explore the `src` directory.
+
+---
+
+🐞 [**Issues**](https://github.com/bensmithett/tropical/issues) for bugs, ✨ [**discussions**](https://github.com/bensmithett/tropical/discussions) for questions, feature requests, or just to show off what you've built — I'd love to see it!
+
+
