@@ -13,7 +13,7 @@ See https://tropical.js.org/docs/browser-js
 
 import { useState, useEffect } from 'react'
 import { useFela } from 'react-fela'
-import image from './gunayala.jpg'
+import image from '../tropical/gunayala.jpg'
 
 export function TropicalPhotoButton({ children, alertMessage }) {
   const { css } = useFela()

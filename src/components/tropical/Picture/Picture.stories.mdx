@@ -1,0 +1,14 @@
+import { Meta, Story } from '@storybook/addon-docs'
+import { Picture } from './Picture'
+
+<Meta title='Picture' component={Picture} />
+
+export const Template = (args) => <Picture {...args} />
+
+# Picture
+
+import gunayala from '../gunayala.jpg?preset=example'
+
+## Stories
+
+<Story name='Default' args={{ sources: gunayala }} />
