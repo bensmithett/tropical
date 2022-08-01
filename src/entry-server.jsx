@@ -5,7 +5,7 @@ import { renderToMarkup } from 'fela-dom'
 import { MDXProvider } from '@mdx-js/react'
 import { HeadProvider, Link } from 'react-head'
 import { DefaultLayout } from './layouts/DefaultLayout'
-import { TropicalCodeBlock } from './components/TropicalCodeBlock'
+import { CodeBlock } from './components/tropical/CodeBlock'
 import cssReset from './cssReset'
 
 export class Renderer {
@@ -50,9 +50,9 @@ export class Renderer {
           <MDXProvider
             components={{
               pre: ({ children }) => (
-                <TropicalCodeBlock language={children.props.className?.replace(/language-/, '')}>
+                <CodeBlock language={children.props.className?.replace(/language-/, '')}>
                   {children.props.children.trim()}
-                </TropicalCodeBlock>
+                </CodeBlock>
               )
             }}
           >
