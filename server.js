@@ -9,7 +9,8 @@ const dir = dirname(fileURLToPath(import.meta.url))
 async function createServer() {
   const app = express()
   const vite = await createViteServer({
-    server: { middlewareMode: 'ssr' }
+    appType: 'custom',
+    server: { middlewareMode: true }
   })
   app.use(vite.middlewares)
 

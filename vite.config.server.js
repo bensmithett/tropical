@@ -1,18 +1,10 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import mdx from '@mdx-js/rollup'
-import rehypeSlug from 'rehype-slug'
+import { plugins, build } from './vite.config.js'
 
-export const config = {
-  plugins: [react(), mdx({ rehypePlugins: [rehypeSlug], providerImportSource: '@mdx-js/react' })],
-  build: {
-    assetsInlineLimit: 0,
-    rollupOptions: {
-      output: {
-        format: 'es'
-      }
-    }
+export default defineConfig({
+  plugins,
+  build,
+  ssr: {
+    noExternal: ['react-syntax-highlighter'] // TODO: Open an issue to explain this
   }
-}
-
-export default defineConfig(config)
+})
