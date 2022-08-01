@@ -9,7 +9,6 @@ const transformedTemplate = fse.readFileSync(resolve(dir, 'dist/static/index.htm
 async function prerender() {
   try {
     const { Renderer } = await import('./dist/server/entry-server.js')
-
     const renderer = new Renderer(transformedTemplate)
 
     Object.entries(renderer.pages).forEach(([pathname, page]) => {
