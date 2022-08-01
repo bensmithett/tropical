@@ -3762,10 +3762,10 @@ tropical-islands@^2.0.0:
   resolved "https://registry.yarnpkg.com/tropical-islands/-/tropical-islands-2.0.0.tgz#3559024f8c70899ef781a5e2e6fa072f086aa4e7"
   integrity sha512-rcbrmviXFNPk/H1XocI4GG4xP6Y2l6UW4BiDszm/nVx6J22BWMvSS/To/QfnADbBgRvJSPr2DdxjmKnErEunrw==
 
-tropical-scaffold@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/tropical-scaffold/-/tropical-scaffold-1.0.0.tgz#ed0630c8c172a5b498e7ddf15d848de66883f3e4"
-  integrity sha512-7GZhCqZMWTxyX6/kzeGCCS4D/9qlyUK1K0Kas8nsbaNb0mpdPCdkkvkrbKDJ4+K5bjimEGIlMkjt+uN3sd7idA==
+tropical-scaffold@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/tropical-scaffold/-/tropical-scaffold-2.0.0.tgz#116ac1aa15772182d832c5cafaeabba9571ef4d5"
+  integrity sha512-8P1SlL8RFgtTH5stpSYse8xz1PpeRcc2/5UzdJJa3FWM8d855zWz2DmMpsvsbitgedjefrHswPuaPs+NoZfCIw==
   dependencies:
     change-case "^4.1.2"
     fs-extra "^10.0.0"
