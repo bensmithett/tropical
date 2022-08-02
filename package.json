@@ -31,7 +31,7 @@
   "scripts": {
     "dev": "node server",
     "build": "yarn build:clientAssets && yarn build:server && node --experimental-specifier-resolution=node prerender",
-    "build:clientAssets": "vite build --outDir dist/static",
+    "build:clientAssets": "vite --config vite.config.client.js build --outDir dist/static",
     "build:server": "vite --config vite.config.server.js build --outDir dist/server --ssr src/entry-server.jsx",
     "stories": "ladle serve -p 6006",
     "page": "tropical-scaffold --type=page",
