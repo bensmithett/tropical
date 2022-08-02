@@ -13,7 +13,7 @@ yarn page path/to/my-new-page
 Every page receives two props:
 
 - `meta`: the page's own `meta` object
-- `pages`: an object containing all of the site's page components, keyed by pathname
+- `pages`: an object containing all pages, keyed by pathname
 
 ## JSX pages
 
@@ -24,7 +24,7 @@ export const meta = {
   title: 'My page title'
 }
 
-export default function MyPage () {
+export default function MyPage ({ meta, pages }) {
   return <div>Hello world</div>
 }
 ```
@@ -51,11 +51,13 @@ import Select from 'react-select'
   { value: 'chocolate', label: 'Chocolate' },
   { value: 'strawberry', label: 'Strawberry' }
 ]} />
+
+<strong>{props.page.description}</strong>
 ```
 
 ### Syntax highlighting
 
-Tropical extends MDX using [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) and the provided `<TropicalCodeBlock>` component (as per MDX's [guide](https://mdxjs.com/guides/syntax-highlighting))
+Tropical just follows MDX's [syntax highlighting guide](https://mdxjs.com/guides/syntax-highlighting). The provided `<CodeBlock>` component uses [react-syntax-highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter).
 
 ### Image references in MDX
 

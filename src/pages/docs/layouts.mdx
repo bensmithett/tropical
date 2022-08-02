@@ -9,7 +9,7 @@ This could include things like:
 - Tags for your `<head>`
 - Shared header, footer or sidebar
 
-Unlike Rails, you don't need to directly template your layout's `<head>` tags in place. Instead, manage those tags with [react-head](https://github.com/tizmagik/react-head) and Tropical will put everything in the right place in the final rendered HTML document.
+You don't need to directly template your layout's `<head>` tags in place. Instead, use [react-head](https://github.com/tizmagik/react-head) anywhere in the component hierarchy and Tropical will put everything in the right place in the final rendered HTML document.
 
 ## Default and alternative layouts
 
@@ -30,7 +30,7 @@ export const meta = {
 
 Layout components are rendered with 3 props:
 
-- `pages` *(object)* — an object containing all of the site's page components, keyed by pathname
+- `pages` *(object)* — an object containing all of the site's pages, keyed by pathname
 - `meta` *(object)* — the current page's `meta` object
 - `children` *(React Element)* — the current page content
 
