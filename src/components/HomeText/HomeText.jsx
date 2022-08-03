@@ -41,6 +41,12 @@ export function HomeText({ children }) {
           }
         },
 
+        '> hr': {
+          ...blockMargins,
+          border: 0,
+          borderTop: '2px solid rgba(255, 255, 255, 0.3)'
+        },
+
         '& a': {
           color: '#53ffd4',
           fontWeight: 700,

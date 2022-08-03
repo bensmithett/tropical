@@ -135,6 +135,13 @@ export function DocsLayout({ nav, page, title }) {
             padding: '3px'
           },
 
+          '& blockquote': {
+            fontStyle: 'italic',
+            borderLeft: '2px solid rgba(170, 51, 85, 0.3)',
+            marginLeft: 0,
+            paddingLeft: '1rem'
+          },
+
           '@media (min-width: 901px)': {
             marginLeft: navWidth
           }

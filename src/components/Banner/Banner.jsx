@@ -9,8 +9,8 @@ export function Banner() {
     <div className={css(styles.root)}>
       <h1 className={css(styles.heading)}>Tropical</h1>
       <p className={css(styles.tagline)}>
-        Fast, mostly-just-HTML static sites <br className={css(styles.br)} />
-        built with React and <a href='https://jasonformat.com/islands-architecture/'>islands</a> of client-side JS.
+        Fast static sites. Real HTML with <a href='https://jasonformat.com/islands-architecture/'>islands</a>. <br className={css(styles.br)} />
+        Built with React and Vite.
       </p>
 
       <div className={css(styles.middle)}>
