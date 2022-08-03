@@ -2,22 +2,23 @@ export const meta = {
   title: `Pages`
 }
 
-Pages live in `src/pages` and are either `.mdx` or `.jsx` files. Both options can export a `meta` object.
+Pages live in `src/pages` and are either `.mdx` or `.jsx` files.
 
-Create a new page from your terminal:
+Create a new page with the `yarn page` command:
 
 ```bash
-yarn page path/to/my-new-page
+$ yarn page path/to/my-new-page
+# 🖨 Created: src/pages/path/to/my-new-page.mdx
 ```
 
-Every page receives two props:
+Every page is a React component that receives two props:
 
 - `meta`: the page's own `meta` object
 - `pages`: an object containing all pages, keyed by pathname
 
 ## JSX pages
 
-You can author pages as a plain React component. That component should be the `default` export.
+You can author pages as a plain React component. The page component must be the `default` export.
 
 ```jsx
 export const meta = {
@@ -99,9 +100,9 @@ If present, the following properties will be used by Tropical (but you're free t
 
 ### Working with `meta.tags`
 
-Tags are flexible, but one obvious use is creating collections of pages — for example, a date-ordered collection that includes blog posts but not your homepage or "About Us" page.
+You can use `meta.tags` for anything.
 
-Tropical provides a `pagesWithTag` helper for this common scenario.
+One obvious use is creating collections of pages — for example, a date-ordered collection that includes blog posts but not your homepage page. Tropical provides a `pagesWithTag` helper for this common scenario.
 
 ```jsx
 import { pagesWithTag } from '../utils'

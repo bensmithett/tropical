@@ -124,6 +124,17 @@ export function DocsLayout({ nav, page, title }) {
             borderTop: '2px solid rgb(170, 51, 85)'
           },
 
+          '& a': {
+            color: 'rgb(170, 51, 85)'
+          },
+
+          '& code:not(pre > code)': {
+            background: '#eee',
+            borderRadius: '3px',
+            fontSize: '0.85em',
+            padding: '3px'
+          },
+
           '@media (min-width: 901px)': {
             marginLeft: navWidth
           }

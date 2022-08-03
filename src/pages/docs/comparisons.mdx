@@ -2,6 +2,72 @@ export const meta = {
   title: `Tropical vs…`
 }
 
+- [Astro](#astro)
+- [îles](#îles)
+- [vite-plugin-react-pages](#vite-plugin-react-pages)
+
+## [Astro](https://docs.astro.build/getting-started)
+
+Astro and Tropical have some very similar design principles and are built with a lot of the same approaches and [conventions](https://docs.astro.build/en/core-concepts/project-structure/):
+
+- First-class prerendered HTML
+- Minimal client JS via an [islands architecture](https://docs.astro.build/en/concepts/islands/)
+- Components, pages, layouts, feeds… 🥱 told you Tropical's conventions were industry-standard!
+
+I'm a big fan of Astro, it's a fine choice for your next project! Here are the differences:
+
+### Astro is a framework, Tropical is a template repo
+
+[`astro`](https://www.npmjs.com/package/astro) is a framework that abstracts away all the underlying functionality. All of that underlying functionality, including Vite's, is configured at a distance via [Astro configuration](https://docs.astro.build/en/reference/configuration-reference/).
+
+Tropical is intentionally a template repo, not a library or framework. It's just a Vite project. You directly configure Vite and edit the "framework" part of Tropical (really just some opinionated boilerplate for a Vite project).
+
+### Different component approaches
+
+Astro has [its own component format](https://docs.astro.build/en/core-concepts/astro-components/) which you can use to compose components from [lots of different component frameworks](https://docs.astro.build/en/core-concepts/framework-components/).
+
+Tropical just uses React components.
+
+### Different techniques for island hydration and browser JS
+
+Astro uses [*Client Directives*](https://docs.astro.build/en/reference/directives-reference/#client-directives) to hydrate components. Arbitrary browser JS is [included with a `<script>`](https://docs.astro.build/en/core-concepts/astro-components/#client-side-scripts) in Astro components.
+
+Tropical provides [tropical-islands](https://github.com/bensmithett/tropical-utils/tree/main/packages/tropical-islands) for basic React island hydration, and arbitrary browser JS is included and called however you like in your [client bundle](/docs/browser-js).
+
+### CSS
+
+Astro supports [many CSS approaches](https://docs.astro.build/en/guides/styling/): plain old global CSS, scoped `<style>` tags in Astro Components, CSS Modules, Sass and Tailwind. 
+
+Tropical uses [Fela](https://fela.js.org/) by default. Notably, **pages don't load CSS files** — generated atomic styles are just inline in the page's `<head>`. (But because Tropical is just Vite, you can use any of [Vite's supported CSS approaches](https://vitejs.dev/guide/features.html#css).)
+
+### Astro was originally built on [Snowpack](https://www.snowpack.dev/)
+
+Tropical originally used Webpack then switched to [Vite](https://vitejs.dev/). Astro switched to Vite in 2022.
+
+## [îles](https://iles.pages.dev/)
+
+I'm also a big fan of îles. We share an island-themed name 🏝 and have [very similar goals](https://iles.pages.dev/guide/introduction):
+
+> The goal of this project is to combine the ease of use and development experience of building a site with Vue, while effortlessly shipping a zero JS site as if you were using Jekyll or eleventy.
+
+If you replace Vue with React, Tropical has basically the same motivation.
+
+### îles uses Vue, Tropical uses React
+
+...but we're both big fans of [MDX](https://iles.pages.dev/guide/markdown)!
+
+### Different techniques for island hydration and browser JS
+
+Like Astro, îles uses [hydration directives](https://iles.pages.dev/guide/hydration) and arbitrary browser JS is included via [`<script>` tags](https://iles.pages.dev/guide/client-scripts) in components.
+
+Tropical provides [tropical-islands](https://github.com/bensmithett/tropical-utils/tree/main/packages/tropical-islands) for basic React island hydration, and arbitrary browser JS is included and called however you like in your [client bundle](/docs/browser-js).
+
+### îles has some optimisations and features that Tropical intentionally avoids
+
+Tropical will probably never come with [SPA navigation](https://iles.pages.dev/guide/turbo), [service workers](https://iles.pages.dev/guide/pwa) or [advanced routing features](https://iles.pages.dev/guide/routing#dynamic-routes) out of the box.
+
+But a Tropical site is just a Vite project, so you can add them if you wish!
+
 ## [vite-plugin-react-pages](https://github.com/vitejs/vite-plugin-react-pages)
 
 vite-plugin-react-pages wraps up similar features (React, MDX, prerendering, dev server) in a [Vite plugin](https://vitejs.dev/guide/api-plugin.html) that depends on some conventions around project folder structure and file naming.

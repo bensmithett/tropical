@@ -1,5 +1,5 @@
 export const meta = {
-  title: `Browser JS and Islands`
+  title: `Browser JS, islands & hydration`
 }
 
 Tropical pages (and the React components you use to build them) are <u><b>only server-rendered</b></u> by default.
@@ -22,9 +22,9 @@ In `src/entry-client.jsx` you can manually add event listeners with vanilla JS, 
 
 Of course, there are advantages to using React in the browser, regardless of whether you're hydrating server-rendered HTML or doing something purely client-side.
 
-## Hydrating "islands" of client-side JS
+## Islands and partial hydration
 
-Tropical encourages an [Islands architecture](https://jasonformat.com/islands-architecture/) for taking full advantage of React. In React terms, it means we only want to hydrate the specific parts of the page (aka [partial hydration](https://markus.oberlehner.net/blog/partial-hydration-concepts-lazy-and-active/)) rather than hydrating the single root "page" component.
+Tropical encourages an [Islands architecture](https://jasonformat.com/islands-architecture/) for taking full advantage of React. In React terms, it means we only want to hydrate specific parts of the page (aka [partial hydration](https://markus.oberlehner.net/blog/partial-hydration-concepts-lazy-and-active/)) rather than hydrating a single root "page" component and everything it contains.
 
 You can do this with the included [tropical-islands](https://github.com/bensmithett/tropical-utils/tree/main/packages/tropical-islands) package.
 

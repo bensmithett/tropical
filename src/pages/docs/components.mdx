@@ -2,14 +2,17 @@ export const meta = {
   title: `Components`
 }
 
-Components are the building blocks that make up your pages and layouts. They're where you define HTML, CSS and (optionally) client-side JS behaviour. Build them quickly in Ladle, then compose them into pages and layouts.
+Components are the building blocks that make up your pages and layouts. They're where you define HTML, CSS and (optionally) client-side JS behaviour. Build them quickly using Ladle stories, then compose them into pages and layouts.
 
-Components live in `src/components`.
+Components and their stories live in `src/components`.
 
-Create a new component with a sensible folder structure and Ladle stories from your terminal:
+Generate files for a new component with the `yarn component` command:
 
 ```bash
-yarn component MyNewComponent
+$ yarn component MyComponent
+# 🖨 Created: src/components/MyComponent/MyComponent.stories.jsx
+# 🖨 Created: src/components/MyComponent/MyComponent.jsx
+# 🖨 Created: src/components/MyComponent/index.js
 ```
 
 ## Style with Fela

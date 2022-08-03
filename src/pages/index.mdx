@@ -13,21 +13,19 @@ export const meta = {
 - [Vite](https://vitejs.dev/)
   - Outrageously fast [esbuild](https://esbuild.github.io/)-powered dev server with <abbr title='Hot Module Replacement'>HMR</abbr>
   - Optimised, tree-shaken [Rollup](https://rollupjs.org/) production build
-- [Ladle](https://ladle.dev/) component stories
+- [Ladle](https://ladle.dev/) component [stories](https://github.com/ComponentDriven/csf)
 - [MDX](https://mdxjs.com/) Markdown with [Prism](https://prismjs.com/) syntax highlighting
 - **First class prerendering (SSR)**
-  - Tiny, fast, static HTML pages by default
-  - *Optionally* sprinkle on browser JS, or use [tropical-islands](https://github.com/bensmithett/tropical-utils/tree/main/packages/tropical-islands) for [partial React hydration](https://markus.oberlehner.net/blog/partial-hydration-concepts-lazy-and-active/)
-- **Pages**, **layouts**, **tags**, **dates** — all the conventions and metadata you need to build a real site or blog
+  - Tiny, fast, static, real HTML pages
+  - *Optionally* hydrate [islands](https://jasonformat.com/islands-architecture/) with [tropical-islands](https://github.com/bensmithett/tropical-utils/tree/main/packages/tropical-islands), or sprinkle on any browser JS and progressive enhancements
+- **Pages**, **layouts**, **tags**, **collections** & **dates** — all the conventions and metadata you need to build a real site or blog
 - [JSON Feeds](https://jsonfeed.org/)
 
-**Tropical is just a [template repo](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-repository-from-a-template)**. You're not stuck with or limited to these features. If [Vite can do it](https://vitejs.dev/guide/features.html), so can your Tropical site!
+**Tropical is just a [template repo](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-repository-from-a-template)**. You're not stuck with these features. If [Vite can do it](https://vitejs.dev/guide/features.html), so can your Tropical site!
 
 ## Non-features 🙅‍♀️
 
-Old-fashioned HTML is 🚀 **blazing fast™**. Tropical builds static HTML pages with minimal browser JS, using all the powerful, flexible, modern JS tooling you love.
-
-Because it's built with Vite's [React preset](https://vitejs.dev/guide/#scaffolding-your-first-vite-project), all [Vite features](https://vitejs.dev/guide/features.html) are available. You can add libraries, techniques, types, and as much browser JS as you wish, but Tropical doesn't *force* you to adopt:
+Tropical starts from the idea that old-fashioned HTML with minimal browser JS is 🚀 **blazing fast™**, so it doesn't *force* you to adopt any of these:
 
 - [client-side route transitions](https://twitter.com/ryanflorence/status/1186515553285857280)
 - [lazy loading](https://www.bensmithett.com/an-argument-against-lazy-loading/)
@@ -37,10 +35,18 @@ Because it's built with Vite's [React preset](https://vitejs.dev/guide/#scaffold
 - TypeScript
 - GraphQL
 
+But if you want any of those, go nuts! Tropical is built from Vite's [React preset](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) so all [Vite features](https://vitejs.dev/guide/features.html) are available. It's also very light on abstraction, so you can easily make it your own without fighting the framework.
+
+## No painful API churn 🤕
+
+Once you mint a new site from the template repo, it's your [Vite](https://vitejs.dev/)/[React](https://reactjs.org/)/[Fela](http://fela.js.org/) project to make your own.
+
+You won't ever "upgrade" Tropical to a new version. Instead, [releases](https://github.com/bensmithett/tropical/releases) provide guides for upgrading dependencies in a Tropical-based project, at your own pace, without any Big Bang updates.
+
 ## Get started
 
 [Read the docs](/docs/) or [get the template repo on GitHub](https://github.com/bensmithett/tropical)
 
 ## Who built this?
 
-Hi there! I'm [Ben](https://www.bensmithett.com/), I've been building websites for a while now. I've worked on industrial-strength static site tooling at [Envato](https://envato.com/) & have used the internet in enough far flung places to have opinions about pragmatic web performance strategies.
+Hi there! I'm [Ben](https://www.bensmithett.com/), I've been building websites at scale and industrial-strength static site tooling for a while now. I've used the internet in enough far-flung places to have some pragmatic opinions about which web performance strategies really matter.

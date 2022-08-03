@@ -25,7 +25,9 @@ export function DefaultLayout({ meta, pages, children }) {
               const { meta } = pages[url]
               return (
                 <li key={url}>
-                  <a href={url}>{meta.title}</a>
+                  <a href={url} className={css({
+                    color: 'rgb(170, 51, 85)'
+                  })}>{meta.title}</a>
                 </li>
               )
             })}
