@@ -38,13 +38,13 @@ import dayjs from 'dayjs'
 Tropical pages are **only server rendered by default.** To progressively enhance you'll need to sprinkle on some client-side JS, or opt components into hydration with Tropical Islands.
 
 import { Island } from 'tropical-islands'
-import { TropicalPhotoButton } from '../components/TropicalPhotoButton'
+import { ExampleComponent } from '../components/ExampleComponent'
 
-<Island componentName='TropicalPhotoButton' islandTag='span'>
-  <TropicalPhotoButton alertMessage='😎'>Hydrated</TropicalPhotoButton>
+<Island componentName='ExampleComponent' islandTag='span'>
+  <ExampleComponent alertMessage='😎'>Hydrated</ExampleComponent>
 </Island>
 
-<TropicalPhotoButton alertMessage='😢'>Not hydrated</TropicalPhotoButton>
+<ExampleComponent alertMessage='😢'>Not hydrated</ExampleComponent>
 
 ## And much more!
 

@@ -1,12 +1,12 @@
 import { createRenderer } from 'fela'
 import { RendererProvider } from 'react-fela'
 import { hydrateIslands } from 'tropical-islands'
-import { TropicalPhotoButton } from './components/TropicalPhotoButton'
+import { ExampleComponent } from './components/ExampleComponent'
 
 function Providers({ children }) {
   return <RendererProvider renderer={createRenderer()}>{children}</RendererProvider>
 }
 
 console.log('hydrating...')
-hydrateIslands({ TropicalPhotoButton }, Providers)
+hydrateIslands({ ExampleComponent }, Providers)
 console.log('hydrated!')
