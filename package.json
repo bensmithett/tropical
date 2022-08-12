@@ -1,6 +1,6 @@
 {
   "name": "tropical",
-  "version": "11.0.0",
+  "version": "11.1.0",
   "dependencies": {
     "@ladle/react": "^2.0.2",
     "@mdx-js/mdx": "^2.1.2",
