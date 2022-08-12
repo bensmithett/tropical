@@ -1,6 +1,6 @@
 import { CodeBlock } from './CodeBlock'
 
-export default { title: 'CodeBlock' }
+export default { title: 'tropical/CodeBlock' }
 
 export const JS = () => (
   <CodeBlock language='javascript'>{`function relax() {
