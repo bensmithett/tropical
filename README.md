@@ -8,15 +8,13 @@ This is a [template repo](https://docs.github.com/en/github/creating-cloning-and
 
 Welcome to your new [Tropical](https://tropical.js.org/) site!
 
-Install dependencies with `yarn`, then...
+Using your choice of `npm`, `yarn` or `pnpm`, install dependencies then (using `yarn` as an example)...
 
 - **`yarn dev`** starts a dev server at [localhost:3000](http://localhost:3000/)
 - **`yarn build`** builds the static site into `dist/static`
 - **`yarn stories`** starts [Ladle](https://ladle.dev/)
 - **`yarn page my-new-page`** scaffolds a file for a new page
 - **`yarn component MyNewComponent`** scaffolds files for a new component
-
-(`npm` equivalients to `yarn` commands should work too)
 
 Check out [the docs](https://tropical.js.org) or dive in and explore the `src` directory.
 
