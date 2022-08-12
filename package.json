@@ -32,7 +32,7 @@
   "private": true,
   "scripts": {
     "dev": "node server",
-    "build": "yarpm build:clientAssets && yarpm build:server && node --experimental-specifier-resolution=node prerender",
+    "build": "yarpm run build:clientAssets && yarpm run build:server && node --experimental-specifier-resolution=node prerender",
     "build:clientAssets": "vite --config vite.config.client.js build --outDir dist/static",
     "build:server": "vite --config vite.config.server.js build --outDir dist/server --ssr src/entry-server.jsx",
     "stories": "ladle serve -p 6006",
