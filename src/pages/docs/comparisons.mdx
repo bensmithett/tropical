@@ -11,16 +11,22 @@ export const meta = {
 Astro and Tropical have some very similar design principles and are built with a lot of the same approaches and [conventions](https://docs.astro.build/en/core-concepts/project-structure/):
 
 - First-class prerendered HTML
-- Minimal client JS via an [islands architecture](https://docs.astro.build/en/concepts/islands/)
+- Minimal client JS via an [islands architecture](https://docs.astro.build/en/concepts/islands/) (though Astro is taking a *little* too much credit for pioneering the islands architecture — something [Tropical](https://github.com/bensmithett/tropical/blob/docs/app/decisions/003_dont_default_to_full_page_react_hydration.md) and [others](https://jasonformat.com/islands-architecture/) have been doing since 2019)
 - Components, pages, layouts, feeds… 🥱 told you Tropical's conventions were industry-standard!
 
-I'm a big fan of Astro, it's a fine choice for your next project! Here are the differences:
+I'm a fan of Astro, it's a fine choice for your next project! Here are the differences:
 
 ### Astro is a framework, Tropical is a template repo
 
 [`astro`](https://www.npmjs.com/package/astro) is a framework that abstracts away all the underlying functionality. All of that underlying functionality, including Vite's, is configured at a distance via [Astro configuration](https://docs.astro.build/en/reference/configuration-reference/).
 
 Tropical is intentionally a template repo, not a library or framework. It's just a Vite project. You directly configure Vite and edit the "framework" part of Tropical (really just some opinionated boilerplate for a Vite project).
+
+### Astro is aiming big
+
+Like [Gatsby](https://www.gatsbyjs.com/) before them, Astro is a [VC funded company](https://astro.build/blog/the-astro-technology-company/) with grand ambitions. They'll need to support a big, varied feature set to satisfy a big, varied audience.
+
+Tropical isn't chasing a massive user base. I make it for me and hope a few of you find it useful!
 
 ### Different component approaches
 

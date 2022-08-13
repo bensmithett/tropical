@@ -62,20 +62,21 @@ Tropical just follows MDX's [syntax highlighting guide](https://mdxjs.com/guides
 
 ## Page `meta`
 
-The optionally exported `meta` object can contain any properties you wish or none at all.
+The optionally exported `meta` object can contain any properties you wish, or none at all.
 
 If present, the following properties will be used by Tropical (but you're free to use them too).
 
 - `title` *(string)* — used for the page's `<title>` and the JSON Feed item's `title` (if the page appears in the feed)
 - `description` *(string)* — used for the page's `<meta name='description'>`
-- `tags` *(array of strings)* — the default JSON Feed (`src/feeds/posts.jsx`) only includes pages that include a `'post'` tag
+- `tags` *(array of strings)* — the default JSON feed ([`src/feeds/posts.jsx`](https://github.com/bensmithett/tropical/blob/HEAD/src/feeds/posts.jsx)) only includes pages that include a `'post'` tag
 - `Layout` *(component)* — alternative [layout component](/docs/layouts)
+- `date` *(string parsable by [day.js](https://day.js.org/))* — default sorting mechanism for [`pagesWithTag`](https://github.com/bensmithett/tropical/blob/HEAD/src/utils.js) (see below)
 
 ### Working with `meta.tags`
 
 You can use `meta.tags` for anything.
 
-One obvious use is creating collections of pages — for example, a date-ordered collection that includes blog posts but not your homepage page. Tropical provides a `pagesWithTag` helper for this common scenario.
+One obvious use is creating collections of pages — for example, a date-ordered collection that includes blog posts but not your homepage page. Tropical provides [`pagesWithTag`](https://github.com/bensmithett/tropical/blob/HEAD/src/utils.js) for this common scenario.
 
 ```jsx
 import { pagesWithTag } from '../utils'

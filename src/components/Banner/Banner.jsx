@@ -9,27 +9,25 @@ export function Banner() {
     <div className={css(styles.root)}>
       <h1 className={css(styles.heading)}>Tropical</h1>
       <p className={css(styles.tagline)}>
-        Fast static sites. Real HTML with <a href='https://jasonformat.com/islands-architecture/'>islands</a>. <br className={css(styles.br)} />
-        Built with React and Vite.
+        Fast static sites. Real HTML with <a href='https://jasonformat.com/islands-architecture/'>islands</a>. Built with React and Vite.
       </p>
+
+      <nav className={css(styles.nav)}>
+        <a className={css(styles.link)} href='/docs'>
+          Docs
+        </a>
+        <a className={css(styles.link)} href='https://github.com/bensmithett/tropical'>
+          GitHub
+        </a>
+      </nav>
 
       <div className={css(styles.middle)}>
         <Phone className={css(styles.svg)} />
 
         <div className={css(styles.intro)}>
           <p className={css(styles.introP)}>
-            Nothing to <code>init</code> or configure. Grab the{' '}
-            <a href='https://github.com/bensmithett/tropical'>template repo</a> and start building.
+            Nothing to <code>init</code> or configure. Just grab the <a href='https://github.com/bensmithett/tropical'>template repo</a> and start building.
           </p>
-
-          <nav className={css(styles.nav)}>
-            <a className={css(styles.link)} href='/docs'>
-              Docs
-            </a>
-            <a className={css(styles.link)} href='https://github.com/bensmithett/tropical'>
-              GitHub
-            </a>
-          </nav>
 
           <p className={css(styles.introP)}>
             Tropical is just <a href='https://vitejs.dev/'>Vite</a> plus a flexible layer of{' '}
@@ -84,7 +82,7 @@ const styles = {
     },
 
     '@media (min-width: 600px)': {
-      minHeight: '600px',
+      minHeight: '700px',
       maxHeight: '800px'
     }
   },
@@ -94,7 +92,7 @@ const styles = {
     fontFamily: '"Lost Island", system-ui, sans-serif',
     fontDisplay: 'block',
     lineHeight: 1,
-
+    margin: '0 0 2.2rem',
     textShadow,
 
     '::before': {
@@ -107,25 +105,20 @@ const styles = {
     },
 
     '@media (min-width: 600px)': {
-      fontSize: '7rem',
-      margin: '0 0 2.2rem'
+      fontSize: '7rem'
     }
   },
 
   tagline: {
     fontSize: '1.1rem',
     fontWeight: 700,
-    margin: '0 0 2rem',
+    margin: '0 0 1rem',
     ...links,
 
     '@media (min-width: 600px)': {
       fontSize: '1.5rem',
-      margin: '0 0 1rem'
+      margin: '0 0 2rem'
     }
-  },
-
-  br: {
-    '@media (min-width: 600px)': { display: 'none' }
   },
 
   svg: {
@@ -150,7 +143,7 @@ const styles = {
       gap: '40px',
       gridTemplateColumns: '200px 1fr',
       maxWidth: '800px',
-      padding: '40px 0 0'
+      padding: '0.8rem 0 0'
     }
   },
 
@@ -187,6 +180,7 @@ const styles = {
   nav: {
     display: 'flex',
     gap: '20px',
+    margin: '0 0 1.5rem',
 
     '@media (max-width: 599px)': {
       justifyContent: 'center'
