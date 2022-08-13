@@ -1,0 +1,64 @@
+export const meta = {
+  title: `Images`
+}
+
+Images are [imported as modules](https://vitejs.dev/guide/assets.html#importing-asset-as-url):
+
+```jsx
+import example from './example.jpg'
+const Component = () => <img src={example} />
+```
+
+## Responsive images
+
+You can generate derived images from your source files, along with `srcset` and `<source>` data, using [named presets](https://github.com/ElMassimo/vite-plugin-image-presets) defined in [`src/imagePresets.js`](https://github.com/bensmithett/tropical/blob/HEAD/src/imagePresets.js).
+
+Tropical provides [`<Image>`](https://github.com/bensmithett/tropical/tree/HEAD/src/components/tropical/Image) and [`<Picture>`](https://github.com/bensmithett/tropical/tree/HEAD/src/components/tropical/Picture) components for use with imported preset images.
+
+```jsx
+import example from './example.jpg?preset=thumbnail'
+
+const Component = () => (
+  <>
+    <Image src={example} alt='My thumbnail' />
+
+    <Picture src={example}>
+      {(imgProps) => <img {...imgProps} alt='My thumbnail' />}
+    </Picture>
+  </>
+)
+```
+
+For more examples see the stories for [`<Image>`](https://github.com/bensmithett/tropical/tree/HEAD/src/components/tropical/Image) and [`<Picture>`](https://github.com/bensmithett/tropical/tree/HEAD/src/components/tropical/Picture).
+
+To understand when to use `<img>` and when to use `<picture>` see [MDN's Responsive Images docs](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+
+## Image references in MDX
+
+Markdown-style image references won't [importing the asset as a URL](https://vitejs.dev/guide/assets.html#importing-asset-as-url).
+
+```markdown
+![this doesn't work](./photo.jpg)
+```
+
+You can either use [Vite's public directory](https://vitejs.dev/guide/assets.html#the-public-directory):
+
+```markdown
+![This works!](/photo.jpg)
+
+- assumes image is in public/photo.jpg
+- image filename isn't hashed for production, so be careful with caching
+```
+
+or (because MDX lets you use JSX) you can just use a regular `import` and `<img>` like you would in a React component:
+
+```
+# Hello world
+
+import photo from './photo.jpg'
+<img src={photo} />
+```
+
+---
+
+Next: [**JSON Feed**](/docs/json-feed)
