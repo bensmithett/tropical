@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFela } from 'react-fela'
-import image from '../TropicalPhotoButton/gunayala.jpg'
+import image from '../tropical/gunayala.jpg'
 
 export function Background({ children }) {
   const { css } = useFela()
