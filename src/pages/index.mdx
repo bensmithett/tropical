@@ -8,17 +8,12 @@ export const meta = {
 
 ## Features 🍹
 
-- [React](https://reactjs.org/)
-- [Fela](http://fela.js.org/) for atomic, fileless & *fast* component-based CSS
-- [Vite](https://vitejs.dev/)
-  - Outrageously fast [esbuild](https://esbuild.github.io/)-powered dev server with <abbr title='Hot Module Replacement'>HMR</abbr>
-  - Optimised, tree-shaken [Rollup](https://rollupjs.org/) production build
+- [React](https://reactjs.org/) for prerendered HTML & *opt-in* [browser JS](/docs/browser-js) via [island hydration](https://github.com/bensmithett/tropical-utils/tree/main/packages/tropical-islands) or your own progressive enhancements
+- [Fela](http://fela.js.org/) for *fast* atomic component styles without CSS files
+- [Vite](https://vitejs.dev/) and everything that comes with it, including a fast [esbuild](https://esbuild.github.io/)-powered <abbr title='Hot Module Replacement'>HMR</abbr> dev server, and a tree-shaken [Rollup](https://rollupjs.org/) production build
 - [Ladle](https://ladle.dev/) component [stories](https://github.com/ComponentDriven/csf)
 - [Responsive images](/docs/images) and [sharp](https://github.com/lovell/sharp) transformations
-- [MDX](https://mdxjs.com/) Markdown with [Prism](https://prismjs.com/) syntax highlighting
-- **First class prerendering (SSR)**
-  - Tiny, fast, static, real HTML pages
-  - *Optional* browser JS with [tropical-islands](https://github.com/bensmithett/tropical-utils/tree/main/packages/tropical-islands) or your own progressive enhancements
+- [MDX](https://mdxjs.com/) Markdown ([GFM](https://github.github.com/gfm/)) with [Prism](https://prismjs.com/) syntax highlighting
 - [Pages](/docs/pages), [layouts](/docs/layouts), [tags](/docs/pages#page-meta), **collections** & **dates** — all the conventions and metadata you need to build a real site or blog
 - [JSON Feeds](https://jsonfeed.org/)
 
@@ -40,13 +35,13 @@ Tropical starts from the idea that old-fashioned HTML with minimal browser JS is
 - TypeScript
 - GraphQL
 
-If you do want those, go nuts! Tropical is based on Vite's [React preset](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) so all [Vite features](https://vitejs.dev/guide/features.html) are available. It's also very light on abstractions, so you can easily make it your own without fighting the framework.
+If you do want those things, go nuts! Tropical is based on Vite's [React preset](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) so all [Vite features](https://vitejs.dev/guide/features.html) are available. It's also very light on abstractions, so you can easily make it your own without fighting the framework.
 
 ## No painful API churn 🤕
 
 Once you mint a new site from the template repo, it's your project to make your own.
 
-You won't ever "upgrade" Tropical to a new version. Instead, [releases](https://github.com/bensmithett/tropical/releases) provide guides for updating dependencies and conventions in a Tropical-based project, at your own pace, without any Big Bang version upgrades.
+You won't ever "update" Tropical to a new version. Instead, [releases](https://github.com/bensmithett/tropical/releases) provide guides for updating dependencies and conventions at your own pace, without any Big Bang version upgrades that make you rewrite everything just to get that one new feature.
 
 ## Get started
 
@@ -54,4 +49,4 @@ You won't ever "upgrade" Tropical to a new version. Instead, [releases](https://
 
 ## Who built this?
 
-Hi there! I'm [Ben](https://www.bensmithett.com/), I've been building websites at scale and industrial-strength static site tooling for a while now. I've used the internet in enough far-flung places to have some pragmatic opinions about which web performance strategies really matter.
+Hi there! I'm [Ben](https://www.bensmithett.com/), I've been building websites and industrial-strength static site tooling for a while now. I've used the internet in enough far-flung places to have some pragmatic opinions about which web performance strategies really matter.

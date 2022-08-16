@@ -82,7 +82,7 @@ const styles = {
     },
 
     '@media (min-width: 600px)': {
-      minHeight: '700px',
+      minHeight: '600px',
       maxHeight: '800px'
     }
   },
