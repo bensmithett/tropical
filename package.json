@@ -18,6 +18,7 @@
     "react-head": "^3.4.0",
     "react-syntax-highlighter": "^15.5.0",
     "rehype-slug": "^5.0.1",
+    "remark-gfm": "^3.0.1",
     "rollup": "^2.77.2",
     "tropical-islands": "^2.0.0",
     "tropical-scaffold": "^2.0.0",
