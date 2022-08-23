@@ -6,6 +6,7 @@
     "@mdx-js/mdx": "^2.1.2",
     "@mdx-js/react": "^2.1.2",
     "@mdx-js/rollup": "^2.0.0-rc.1",
+    "@stefanprobst/rehype-extract-toc": "^2.2.0",
     "@vitejs/plugin-react": "^2.0.0",
     "dayjs": "^1.10.6",
     "express": "^4.17.1",
