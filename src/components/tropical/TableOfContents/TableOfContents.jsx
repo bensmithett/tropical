@@ -6,7 +6,7 @@ function List({ list }) {
   return (
     <ul>
       {list.map(({ value, id, children }) => (
-        <li>
+        <li key={id}>
           <a href={`#${id}`}>{value}</a>
           {children && <List list={children} />}
         </li>
