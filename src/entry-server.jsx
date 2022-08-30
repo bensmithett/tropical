@@ -41,7 +41,11 @@ export class Renderer {
     const headTags = []
     const felaRenderer = createFelaRenderer()
     cssReset(felaRenderer)
-    const { Component, meta = {} } = this.pages[pathname] || this.pages['/404/']
+    const {
+      Component,
+      meta = {},
+      tableOfContents = []
+    } = this.pages[pathname] || this.pages['/404/']
     const Layout = meta.Layout || DefaultLayout
 
     const html = ReactDOMServer.renderToString(
@@ -59,8 +63,8 @@ export class Renderer {
             {Object.entries(this.feeds).map(([pathname, { type }]) => (
               <Link rel='alternate' type={type} href={pathname} key={pathname} />
             ))}
-            <Layout meta={meta} pages={this.pages}>
-              <Component meta={meta} pages={this.pages} />
+            <Layout meta={meta} tableOfContents={tableOfContents} pages={this.pages}>
+              <Component meta={meta} tableOfContents={tableOfContents} pages={this.pages} />
             </Layout>
           </MDXProvider>
         </RendererProvider>
@@ -87,6 +91,7 @@ function gatherPages() {
     pages[urlPath] = {
       Component: page.default,
       meta: page.meta,
+      tableOfContents: page.tableOfContents,
       filePath,
       modulePath,
       urlPath
