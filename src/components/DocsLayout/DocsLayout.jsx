@@ -28,6 +28,7 @@ export function DocsLayout({ nav, page, title }) {
         {[
           ['/', '🏝'],
           ['/docs/', 'Docs'],
+          ['/blog/', 'Blog'],
           ['https://github.com/bensmithett/tropical', 'GitHub']
         ].map(([url, label]) => (
           <a
@@ -71,7 +72,8 @@ export function DocsLayout({ nav, page, title }) {
           {burger}
         </button>
       </nav>
-      <nav
+
+      {nav && <nav
         className={css({
           background: '#fff',
           padding: '20px',
@@ -111,10 +113,11 @@ export function DocsLayout({ nav, page, title }) {
         data-burger-target='closed'
       >
         {nav}
-      </nav>
+      </nav>}
+
       <main
         className={css({
-          maxWidth: '60rem',
+          maxWidth: nav ? '60rem' : '50rem',
           padding: '0 20px',
           position: 'relative',
           zIndex: 1,
@@ -143,7 +146,7 @@ export function DocsLayout({ nav, page, title }) {
           },
 
           '@media (min-width: 901px)': {
-            marginLeft: navWidth
+            margin: nav ? `0 0 50px ${navWidth}` : '0 auto 50px'
           }
         })}
       >

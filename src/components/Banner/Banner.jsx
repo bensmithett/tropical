@@ -16,6 +16,9 @@ export function Banner() {
         <a className={css(styles.link)} href='/docs'>
           Docs
         </a>
+        <a className={css(styles.link)} href='/blog'>
+          Blog
+        </a>
         <a className={css(styles.link)} href='https://github.com/bensmithett/tropical'>
           GitHub
         </a>

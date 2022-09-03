@@ -1,0 +1,135 @@
+import { BlogLayout } from '../../layouts/BlogLayout.jsx'
+
+export const meta = {
+  title: `Managing responsive image assets`,
+  description: `When, where & how to generate and serve files for responsive images.`,
+  tags: ['post'],
+  date: '2022-09-03',
+  Layout: BlogLayout
+}
+
+<small><i>September 3, 2022</i></small>
+
+Tropical [recently added build time image transformations](https://github.com/bensmithett/tropical/releases/tag/v11.2.0). The main intended use case — responsive images — presents some logistics questions that most responsive images [tutorials](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) and [examples](https://web.dev/learn/design/responsive-images/) gloss over:
+
+import { TableOfContents } from '../../components/tropical/TableOfContents'
+
+<TableOfContents tableOfContents={props.tableOfContents.slice(0, -1)} />
+
+Any combination of these options is valid and will depend on how many images you have, the types of transformations you want to perform, and your development workflow.
+
+## How will you generate different image sizes and formats?
+
+### Manually
+
+This isn't a very scalable option for most sites, unless you're only working with a couple of images and your page design will rarely change.
+
+### At build time
+
+Build tools like [Vite](https://vitejs.dev/) and [Webpack](https://webpack.js.org/) let you [`import` images as URLs](https://vitejs.dev/guide/assets.html#importing-asset-as-url)[^1] and emit cacheable [fingerprinted assets](https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark).
+
+[^1]: Other frameworks like Rails accomplish roughly the same thing by referencing images using [special template helpers](https://guides.rubyonrails.org/asset_pipeline.html#coding-links-to-assets)
+
+```jsx
+import logo from './logo.jpg'
+<img src={logo} />
+// <img src="/assets/logo.a778am2.jpg" />
+```
+
+That approach can be extended with tools like [vite-plugin-image-presets](https://github.com/ElMassimo/vite-plugin-image-presets) or [responsive-loader](https://github.com/dazuaz/responsive-loader) that do a couple of extra things:
+
+- Instead of just copying and renaming the asset, extra image formats and sizes are generated using [Sharp](https://sharp.pixelplumbing.com/).
+- Instead of the `import` returning a single URL string, it returns [more detailed data](https://github.com/ElMassimo/vite-plugin-image-presets#usage-) about those generated images (like `type`, `srcset` and dimensions) which you can use to create a responsive `<img>` or `<picture>` tag.
+
+This works well with the Git approaches below — keep one source image in your repo and refer to it from your code, while your build tooling (and a [clever `<Image>` or `<Picture>` component](/docs/images)) take care of the responsive image details.
+
+It can increase build times though, depending on both the number of source images, and the quantity and type of transformations you're performing.
+
+### Upon upload or ingestion
+
+A build time asset pipeline likely isn't suitable for images not directly referenced by view code (e.g. uploaded as user generated content, or added by staff to an ecommerce catalogue system).
+
+For these images, one approach is to generate the different versions at the time they're ingested into your production system. [WordPress does this](https://developer.wordpress.org/apis/handbook/responsive-images/).
+
+While freeing you from a runtime image transformation dependency, it's a somewhat wasteful approach — many of those generated sizes or formats may never actually be requested. It can also be restrictive:
+
+- The sizes and formats generated at upload time may not be *exactly* what your `<img>` tags need, but a "good enough" `srcset` for most needs.
+- If you want a different version in future, you'll need to reprocess every image ever uploaded.
+
+### On demand with a runtime image transformation service
+
+An image transformation service lets you use query parameters in `src` and `srcset` URLs to generate a specific version on demand, e.g.
+
+```html
+<img src='/images/logo.jpg?w=100&h=100&format=avif' type='image/avif' />
+```
+
+The original source image must be deployed somewhere accessible to the transformation service when that URL is requested, such as:
+
+- A dedicated media management and hosting platform, like [Imgix](https://imgix.com/) or [Cloudinary](https://cloudinary.com/)
+- A platform service in front of a static asset host, like [Netlify Large Media](https://docs.netlify.com/large-media/overview/), [AWS Serverless Image Handler](https://aws.amazon.com/solutions/implementations/serverless-image-handler/) or [Cloudflare Image Resizing](https://developers.cloudflare.com/images/image-resizing/)
+- Self-hosted open source service like [its](https://github.com/pbs/its) or [edgar-image](https://github.com/edgar-image/edgar-image)
+- DIY service with [Node.js and Sharp](https://www.digitalocean.com/community/tutorials/how-to-process-images-in-node-js-with-sharp)
+
+
+Most services will cache the result so the actual transformation only needs to happen once.
+
+This is a more flexible approach for those user-uploaded images than the WordPress method, but it does introduce a runtime dependency on an additional service, including for your non-production environments.
+
+## Where should you keep the original source image?
+
+### Git
+
+This simple approach is a good starting point.
+
+- You can `import` images [as URLs](https://vitejs.dev/guide/assets.html#importing-asset-as-url) (or as [more complex data structures](https://github.com/ElMassimo/vite-plugin-image-presets#usage-)) from JS
+- Aligns nicely with a benefit of static site builders, where both the source (a Git repo that contains all the data[^2] and assets required to build the site) and generated site (a single folder of static files) are self-contained, simplifying development and deployment.
+
+[^2]: Yes, some static site frameworks offer the ability to [fetch data at build time](https://docs.astro.build/en/guides/data-fetching/) from databases and APIs. In my experience, that quickly leads to ballooning complexity, ballooning build times (an issue that both [Next.js](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration) and [Gatsby](https://www.gatsbyjs.com/blog/re-introducing-gatsby-a-reactive-site-generator/) attempt to solve by adding more build complexity), and a realisation that runtime data fetching — either Jamstack-style from the client, or from a real server backend — would have been a better choice.
+
+But Git can be a troublesome choice if you have lots of images or large images (or both).
+
+A Git repo in the gigabytes can be a serious drag, depending on…
+
+- team size and development practices
+- build and deployment pipeline
+- [Git hosting limits](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github) (on GitHub it's 50MB for individual files, 100MB for pushes, and 5GB for repos).
+
+Git isn't an option for user-generated content. Those images are probably being uploaded to something like S3, with a reference stored in a production database.
+
+### Git LFS (Large File Storage)
+
+[Git LFS](https://git-lfs.github.com/) seems like it could solve some of Git's issues. In practice it doesn't change much.
+
+Git LFS mostly curtails repo size if you frequently *change* large files. But it doesn't change the total size of Git assets you (or your build pipeline) need to pull down. A 10MB Git repo + 990MB of Git LFS assets still equals a 1GB pull or fetch.
+
+You also start running into vendor limitations and incompatibilities pretty quickly.
+
+- Netlify won't pull and deploy files from [GitHub LFS](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage) — you need to use [Netlify Large Storage](https://docs.netlify.com/large-media/overview/) instead.
+  - But Netlify Large Storage assets [don't act like part of the repo](https://docs.netlify.com/large-media/requirements-and-limitations/#limitations) during a site build. They aren't cloned, so you can't access URLs via JS `import`. It's closer to a separate image hosting and transformation platform that you can magically `git push` to.
+- GitHub's free LFS has [storage (1GB) and bandwidth (1GB/month) limits](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-storage-and-bandwidth-usage).
+  - The bandwidth limit applies even if you're building with GitHub actions.
+  - If you hit the storage limit once, the only way out is to [delete the entire repo!](https://docs.github.com/en/repositories/working-with-files/managing-large-files/removing-files-from-git-large-file-storage#git-lfs-objects-in-your-repository) 😱
+  - Storage and bandwidth limits apply at the account level, so accidentally hitting them on one repo can break another repo's build pipeline
+- If you want to migrate LFS storage from one provider to another, that's… uh… [a process…](https://answers.netlify.com/t/support-guide-are-there-extra-steps-required-when-moving-from-another-git-lfs-provider-to-netlify-large-media/852)
+
+If you can deal with large pulls and fetches, it's less trouble to just commit source images to Git. I haven't hit a 5GB repo limit or 100MB push limit yet (though you do need to be aware of those limits).
+
+### `.gitignore`, but still adjacent to code and available to `import`
+
+You could have an `external_images` folder in your `.gitignore` and fetch your images from somewhere else manually or via a script (e.g. S3, a USB drive, the Flickr API…)
+
+Since the images are located alongside your code you can still `import` as URLs from JS, without the downsides of the Git approaches.
+
+But this approach complicates dev environment setup, content management, and deployment pipelines, as Git alone isn't enough to get your entire site from one place to another.
+
+### External to the codebase
+
+Whether your images are somewhere on your application server, a separate asset host like S3, or a dedicated media management and hosting platform like [Imgix](https://imgix.com/) or [Cloudinary](https://cloudinary.com/), the implications for working with and deploying your code are generally the same:
+
+- No `import`, which means no build time generation of derived image versions, which means:
+  - You must reference public image paths directly. Those paths might be manually copy/pasted, or come from a database or manifest file.
+  - Images won't be [fingerprinted](https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark) by your site's build pipeline. The caching strategy for those "content" images becomes a separate concern.
+- Your local development environment will probably reference live images from the internet, which may have [CORS implications](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image) (and be annoying if you do a lot of work from airplanes)
+
+This is the only realistic option if you have user-generated content, or more images than the other approaches can handle.

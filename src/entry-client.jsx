@@ -5,3 +5,7 @@ control && control.addEventListener(
   'click',
   () => (menu.dataset.burgerTarget = menu.dataset.burgerTarget === 'closed' ? 'open' : 'closed')
 )
+
+import { littlefoot } from 'littlefoot'
+import css from 'littlefoot/dist/littlefoot.css'
+littlefoot()

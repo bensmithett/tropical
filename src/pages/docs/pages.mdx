@@ -4,7 +4,7 @@ export const meta = {
 
 Pages live in `src/pages` and are either `.mdx` or `.jsx` files.
 
-Create a new page with the `yarn page` command:
+Create a new page with the `page` package script:
 
 ```bash
 $ yarn page path/to/my-new-page
@@ -46,6 +46,8 @@ export const meta = {
 
 Mix JSX into your Markdown.
 
+<p>{props.meta.description}</p>
+
 import Select from 'react-select'
 
 <Select options={[
@@ -70,7 +72,7 @@ If present, the following properties will be used by Tropical (but you're free t
 - `description` *(string)* — used for the page's `<meta name='description'>`
 - `tags` *(array of strings)* — the default JSON feed ([`src/feeds/posts.jsx`](https://github.com/bensmithett/tropical/blob/HEAD/src/feeds/posts.jsx)) only includes pages that include a `'post'` tag
 - `Layout` *(component)* — alternative [layout component](/docs/layouts)
-- `date` *(string parsable by [day.js](https://day.js.org/))* — default sorting mechanism for [`pagesWithTag`](https://github.com/bensmithett/tropical/blob/HEAD/src/utils.js) (see below)
+- `date` *(string [parsable](https://day.js.org/docs/en/parse/string) by [day.js](https://day.js.org/))* — default sorting mechanism for [`pagesWithTag`](https://github.com/bensmithett/tropical/blob/HEAD/src/utils.js) (see below)
 
 ### Working with `meta.tags`
 

@@ -1,0 +1,17 @@
+import { BlogLayout } from '../../layouts/BlogLayout.jsx'
+import { pagesWithTag } from '../../utils'
+
+export const meta = {
+  title: `The Tropical Blog`,
+  Layout: BlogLayout
+}
+
+More posts coming soon! Subscribe to the [JSON Feed](/posts.json)
+
+<ul>
+  {
+    pagesWithTag(props.pages, 'post').map(({ urlPath, meta }) => (
+      <li key={urlPath}><a href={urlPath}>{meta.title}</a></li>
+    ))
+  }
+</ul>
