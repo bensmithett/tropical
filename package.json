@@ -44,6 +44,6 @@
     "component": "tropical-scaffold --type=component"
   },
   "tropical": {
-    "siteHost": "https://www.example.org"
+    "siteHost": "https://tropical.js.org"
   }
 }
