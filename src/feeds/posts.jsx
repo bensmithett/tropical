@@ -17,14 +17,14 @@ export default function renderFeed (pages) {
     title: FEED_TITLE,
     home_page_url: `${SITE_HOST}/`,
     feed_url: `${SITE_HOST}/feed.json`,
-    items: posts.map(({ Component, urlPath, meta }) => ({
+    items: posts.map(({ Component, urlPath, meta, tableOfContents }) => ({
       id: urlPath,
       url: `${SITE_HOST}${urlPath}`,
       title: meta.title,
       date_published: dayjs(meta.date).toISOString(),
       content_text: ReactDOMServer.renderToStaticMarkup(
         <RendererProvider renderer={createFelaRenderer()}>
-          <Component pages={pages} />
+          <Component meta={meta} tableOfContents={tableOfContents} pages={pages} />
         </RendererProvider>
       )
     }))
